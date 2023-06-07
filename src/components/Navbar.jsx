@@ -7,7 +7,7 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 
 
-bconst Navbar = () => {120b10198 5fmv7ri8
+const Navbar = () => {
     const [toggle, setToggle] = React.useState(false);
   return (
     <nav className='w-full flex  justify-between items-center'>
@@ -18,14 +18,14 @@ bconst Navbar = () => {120b10198 5fmv7ri8
         </div>
         <ul className="list-none sm:flex hidden justify-end items-center flex-1">
         <div className="flex items-center mr-5 relative">
-            <FullscreenExitOutlinedIcon className="icon" />
+            <FullscreenExitOutlinedIcon className="icon font-[20px]" />
           </div>
           <div className="flex items-center mr-5 relative">
-            <NotificationsNoneOutlinedIcon className="icon" />
+            <NotificationsNoneOutlinedIcon className="icon font-[20px]" />
             <div className="counter">1</div>
           </div>
           <div className="flex items-center mr-5 relative">
-            <ChatBubbleOutlineOutlinedIcon className="icon" />
+            <ChatBubbleOutlineOutlinedIcon className="icon font-[20px]" />
             <div className="counter">2</div>
           </div>
           
