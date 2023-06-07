@@ -38,9 +38,7 @@ const Navbar = () => {
           </div>
                         
   </ul>
-
-
-    </nav>
+  </nav>
 
   )
 }
@@ -98,7 +96,7 @@ export default Navbar
     //       </ul>
     //     </div>
     //   </div>
-    // </nav> 
+    // </nav>  
 
 
 
