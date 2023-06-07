@@ -1,14 +1,12 @@
+
 import { useState } from 'react'
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
-import Card from './components/Card'
+import Dashboard from './Pages/College/Dashboard'
+
 
 function App() {
   return (
-   <div className='bg-white'>
-    <Navbar/>
-    <Sidebar/>
-    <Card/>
+   <div>
+      <Dashboard/>
    </div>
   )
 }

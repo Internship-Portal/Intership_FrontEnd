@@ -32,9 +32,9 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 
-const Card = () => {
+const Card = ({type}) => {
   let data;
-  let type = "user";
+  // let type = "user";
   //temporary
   const amount = 100;
   const diff = 20;
