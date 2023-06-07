@@ -4,9 +4,11 @@ import Sidebar from './components/Sidebar'
 
 function App() {
   return (
-   <div className='bg-white'>
-    <Navbar/>
+   <div className='bg-white flex'>
     <Sidebar/>
+    <div className="flex-[6]">
+      <Navbar/>
+    </div> 
    </div>
   )
 }
