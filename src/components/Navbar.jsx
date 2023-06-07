@@ -1,23 +1,16 @@
 import React from "react";
+import Sidebar from './Sidebar'
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-
+import { menu, close } from "../assets";
 const Navbar = () => {
   const [toggle, setToggle] = React.useState(false);
   return (
     <nav className="w-full flex  justify-between items-center">
-      
       <div className="w-full p-5 flex items-center justify-between">
-        <div className="flex items-center border-solid border-gray-600 p-1 absolute">
-          <input
-            type="text"
-            placeholder="Search..."
-            className=" border-gray-400 p-1 rounded"
-          />
-          <SearchOutlinedIcon />
-        </div>
+
         <ul className="list-none sm:flex hidden justify-end items-center flex-1">
           <div className="flex items-center mr-5 relative">
             <FullscreenExitOutlinedIcon className="icon font-[20px]" />
@@ -39,17 +32,33 @@ const Navbar = () => {
             />
           </div>
         </ul>
+
+        <div className="sm:hidden flex flex-1 justify-end items-center">
+          <img
+            src={toggle ? close : menu}
+            alt="menu"
+            className="w-[28px] h-[28px] object-contain"
+            onClick={() => setToggle((prev) => !prev)}
+          />
+
+          <div
+            className={`${toggle ? `flex` : `hidden`
+              } p-6 bg-primary absolute top-20  mx-4 my-2 rounded-xl`}
+
+          >
+            <Sidebar />
+
+
+          </div>
+
+
+        </div>
       </div>
     </nav>
   );
 };
 
 export default Navbar;
-
-
-
-
-
 
 //      <nav className="w-full flex py-6 justify-between items-center">
 
