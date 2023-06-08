@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
-    <div className="flex-1 border-r-[0.5px] border-solid border-[#E6E3E3] bg-white min-h-screen">
+    <div className="flex flex-col w-[200px] border-r-[0.5px] border-solid border-[#E6E3E3] bg-white min-h-screen ">
       <div className="h-[50px] flex items-center justify-center">
         <Link to="/" style={{ textDecoration: "none" }}>
         <span className="text-xl font-bold text-[#6439ff]">Admin</span>

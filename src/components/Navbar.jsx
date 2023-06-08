@@ -8,8 +8,8 @@ import { menu, close } from "../assets";
 const Navbar = () => {
   const [toggle, setToggle] = React.useState(false);
   return (
-    <nav className="w-full flex  justify-between items-center">
-      <div className="w-full p-5 flex items-center justify-between">
+    <nav className="w-full flex justify-between items-center">
+      <div className="w-full p-[0.82rem] flex items-center justify-between">
 
         <ul className="list-none sm:flex hidden justify-end items-center flex-1">
           <div className="flex items-center mr-5 relative">
@@ -23,6 +23,7 @@ const Navbar = () => {
             <ChatBubbleOutlineOutlinedIcon className="icon font-[20px]" />
             <div className="counter">2</div>
           </div>
+          
 
           <div className="flex items-center mr-5 relative">
             <img
@@ -33,7 +34,8 @@ const Navbar = () => {
           </div>
         </ul>
 
-        <div className="sm:hidden flex flex-1 justify-end items-center">
+        <div className="sm:hidden flex flex-1 justify-between items-center">
+          <img src={menu} alt="" />
           <img
             src={toggle ? close : menu}
             alt="menu"
@@ -42,8 +44,7 @@ const Navbar = () => {
           />
 
           <div
-            className={`${toggle ? `flex` : `hidden`
-              } p-6 bg-primary absolute top-20  mx-4 my-2 rounded-xl`}
+            className={`${toggle ? `flex` : `hidden`}  bg-gray-100 absolute top-4 rounded-xl`}
 
           >
             <Sidebar />
@@ -54,6 +55,7 @@ const Navbar = () => {
 
         </div>
       </div>
+      
     </nav>
   );
 };
