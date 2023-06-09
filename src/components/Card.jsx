@@ -106,7 +106,7 @@ const Card = ({type}) => {
   }
 
   return (
-    <div className="flex justify-between p-[10px] drop-shadow-[2px_4px_10px_1px_rgba(0,0,0,0.47)] shadow-[2px_4px_10px_1px_rgba(201,201,201,0.47)] border-r-4 h-[100px] flex-1 w-1/5">
+    <div className="flex justify-between p-[10px] drop-shadow-[2px_4px_10px_1px_rgba(0,0,0,0.47)] shadow-[2px_4px_10px_1px_rgba(201,201,201,0.47)] border-r-4 h-[100px] flex-1 w-full">
       <div className="flex flex-col justify-between">
         <span className=" font-bold text-[14px] text-[#A0A0A0] ">
           {data.title}
