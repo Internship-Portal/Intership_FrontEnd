@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Navbar from '../../components/Navbar'
 import Sidebar from '../../components/Sidebar'
 import Card from '../../components/Card'
+import StudentData from '../../components/StudentData'
 
 function Dashboard() {
   return (
@@ -14,13 +15,13 @@ function Dashboard() {
     
       <Navbar/>
       <hr className='h-0 border-r-[0.5px] border-solid border-[#E6E3E3]'/>
-   
-    <div className='flex flex-col sm:flex-row p-[20px] gap-[20px]'>
+   <StudentData/>
+    {/* <div className='flex flex-col sm:flex-row p-[20px] gap-[20px]'>
     <Card type='user'/>
     <Card type='order'/>
     <Card type='earning'/>
     <Card type='balance'/>
-    </div>
+    </div> */}
     
     </div>
     
