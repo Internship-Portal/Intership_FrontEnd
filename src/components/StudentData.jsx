@@ -14,6 +14,7 @@ const StudentData = () => {
 
   const options = {
     filterType: 'checkbox',
+    responsive: "scroll",
   };
 
 
@@ -25,6 +26,7 @@ const StudentData = () => {
         data={data}
         columns={columns}
         options={options}
+        
       />
 
     </MuiThemeProvider>
