@@ -68,28 +68,27 @@ const StudentData = () => {
   ];
 
   const options = {
-    filterType: "checkbox",
+    filterType: 'checkbox',
+    responsive: "scroll",
   };
 
   return (
-    <>
-      <div className="flex">
-        <Dropdown_batch />
-        <Dropdown_dept />
-      </div>
+    <div style={{display: 'table', tableLayout:'fixed', width:'100%'}}>
+       <MuiThemeProvider >
+        <MUIDataTable
+        title={"Students"}
+        data={data}
+        columns={columns}
+        options={options}
+      />
 
-      <div className="p-8" style={{ display: "table", tableLayout: "fixed", width: "100%" }}>
-        <MuiThemeProvider>
-          <MUIDataTable
-            title={"Students"}
-            data={data}
-            columns={columns}
-            options={options}
-          />
-        </MuiThemeProvider>
-      </div>
-    </>
-  );
-};
+    </MuiThemeProvider>
 
-export default StudentData;
+    </div>
+   
+    
+
+  )
+}
+
+export default StudentData
