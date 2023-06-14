@@ -4,6 +4,7 @@ import { MuiThemeProvider } from "@material-ui/core";
 import "../components/StudentData.css";
 import Dropdown_batch from "./Dropdown_batch";
 import Dropdown_dept from "./Dropdown_dept";
+import useFetch from "../hooks/useFetch";
 const StudentData = () => {
   const columns = [
     "Name",
@@ -20,52 +21,7 @@ const StudentData = () => {
     "CGPA",
   ];
 
-  const data = [
-    [
-      "Vaibhav desale",
-      "vaibhav.desale20@pccoepune.org",
-      "7875543720",
-      "TYITA27",
-      "Full Stack",
-      "NO",
-      "8.3",
-      "1- June - 31-July",
-      "Yes",
-    ],
-    [
-      "Vaibhav desale",
-      "vaibhav.desale20@pccoepune.org",
-      "7875543720",
-      "TYITA27",
-      "Full Stack",
-      "NO",
-      "8.3",
-      "1- June - 31-July",
-      "Yes",
-    ],
-    [
-      "Vaibhav desale",
-      "vaibhav.desale20@pccoepune.org",
-      "7875543720",
-      "TYITA27",
-      "Full Stack",
-      "NO",
-      "8.3",
-      "1- June - 31-July",
-      "Yes",
-    ],
-    [
-      "Vaibhav desale",
-      "vaibhav.desale20@pccoepune.org",
-      "7875543720",
-      "TYITA27",
-      "Full Stack",
-      "NO",
-      "8.3",
-      "1- June - 31-July",
-      "Yes",
-    ],
-  ];
+  const { data, loading, error } = useFetch('http://localhost:3031/users')
 
   const options = {
     filterType: 'checkbox',
@@ -73,21 +29,21 @@ const StudentData = () => {
   };
 
   return (
-    <div style={{display: 'table', tableLayout:'fixed', width:'100%'}}>
-       <MuiThemeProvider >
-        <MUIDataTable
-        title={"Students"}
-        data={data}
-        columns={columns}
-        options={options}
-      />
-
-    </MuiThemeProvider>
-
+    <div>
+      {loading ? ("Loading") : (
+        <div style={{ display: 'table', tableLayout: 'fixed', width: '100%' }}>
+          <MuiThemeProvider >
+            <MUIDataTable
+              title={"Students"}
+              data={data}
+              columns={columns}
+              options={options}
+            />
+          </MuiThemeProvider>
+        </div>
+        )
+      }
     </div>
-   
-    
-
   )
 }
 
