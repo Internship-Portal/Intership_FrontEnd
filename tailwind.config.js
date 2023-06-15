@@ -6,7 +6,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#3956FF",
-        secondary: "#F5F6F6",
+        secondary: "#C9BCEC",
          bannerColor:"#F9DCDC",
         cardColor: "#F5F6F6",
         buttonText:"#34AEE6",
