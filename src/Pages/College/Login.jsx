@@ -7,9 +7,12 @@ import { launchPoster } from "../../assets";
 const Login = (props) => {
 
   const [credentials, setCredentials] = useState({
-    username: undefined,
+    email_id: undefined,
     password: undefined,
   });
+
+  const [officer, setOfficer] = useState(false);
+  const [company, setCompany] = useState(false);
 
   const { loading, error, dispatch } = useContext(AuthContext);
 
@@ -19,15 +22,39 @@ const Login = (props) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
+  const handleCompanyRole = () => {
+    setCompany(true)
+    setOfficer(false)
+  }
+  const handleOfficerRole = () => {
+    setOfficer(true)
+    setCompany(false)
+  }
+
   const handleClick = async (e) => {
     e.preventDefault();
-    dispatch({ type: "LOGIN_START" });
-    try {
-      const res = await axios.post("/auth/login", credentials);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-      navigate("/")
-    } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+    if (company) {
+      dispatch({ type: "LOGIN_START_COMPANY" });
+      try {
+        console.log(credentials)
+        const res = await axios.post("http://localhost:4000/api/company/loginCompany", credentials);
+        dispatch({ type: "LOGIN_SUCCESS_COMPANY", payload: res.data.details });
+        navigate("/")
+      } catch (err) {
+        dispatch({ type: "LOGIN_FAILURE_COMPANY", payload: err.response.data });
+      }
+    }
+    else if (officer) {
+      dispatch({ type: "LOGIN_START_OFFICER" });
+      try {
+        const res = await axios.post("http://localhost:4000/api/officer/loginOfficer", credentials);
+        
+        console.log(res)
+        dispatch({ type: "LOGIN_SUCCESS_OFFICER", payload: res.data.details });
+        navigate("/")
+      } catch (err) {
+        dispatch({ type: "LOGIN_FAILURE_OFFICER", payload: err.response.data });
+      }
     }
   };
 
@@ -50,11 +77,21 @@ const Login = (props) => {
             <h4 className=" my-2 mt-4 text-gray-900 text-center">
               Welcome {props.type}
             </h4>
+
+            <div className="flex items-center pl-3">
+              <input id="company radio" type="radio" value="" name="list-radio" onClick={handleCompanyRole}/>
+              <label htmlFor="company radio">Company </label>
+
+              <input id="officer radio" type="radio" value="" name="list-radio" onClick={handleOfficerRole}/>
+              <label htmlFor="officer radio">Officer</label>
+            </div>
+
             <div className="max-w-[300px] mx-auto w-full  bg-white p-8 px-8  rounded-3xl ">
               <div className="flex flex-col text-primary opacity-80 py-2">
                 <label> Email</label>
                 <input
                   type="text"
+                  id="email_id"
                   placeholder="Username"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
                   onChange={handleChange}
@@ -64,6 +101,7 @@ const Login = (props) => {
                 <label>Password</label>
                 <input
                   type="password"
+                  id="password"
                   placeholder="Password"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2  border-gray-800 text-black"
                   onChange={handleChange}
