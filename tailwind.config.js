@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#6439FF",
+        primary: "#3956FF",
         secondary: "#F5F6F6",
          bannerColor:"#F9DCDC",
         cardColor: "#F5F6F6",
