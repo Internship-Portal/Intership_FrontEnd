@@ -48,9 +48,10 @@ const Login = (props) => {
       dispatch({ type: "LOGIN_START_OFFICER" });
       try {
         const res = await axios.post("http://localhost:4000/api/officer/loginOfficer", credentials);
-        
         console.log(res)
         dispatch({ type: "LOGIN_SUCCESS_OFFICER", payload: res.data.details });
+       console.log(res.data.data[0].college_details[1].student_details) 
+        dispatch({ type: "SET_DEPARTMENT" , payload:res.data.data[0].college_details[1].student_details })
         navigate("/")
       } catch (err) {
         dispatch({ type: "LOGIN_FAILURE_OFFICER", payload: err.response.data });

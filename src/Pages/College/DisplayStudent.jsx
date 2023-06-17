@@ -1,10 +1,10 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
 import Sidebar from '../../components/Sidebar'
-// import StudentData from '../../components/StudentData'
-import Card from '../../components/Card'
+import StudentData from '../../components/StudentData'
 
-function Dashboard() {
+function DisplayStudent() {
+
   return (
     <div className='bg-white flex'>
       <div className='hidden sm:flex'>
@@ -13,10 +13,10 @@ function Dashboard() {
       <div className='flex-[3]'>
         <Navbar />
         <hr className='h-0 border-r-[0.5px] border-solid border-[#E6E3E3]' />
-        {/* <Card /> */}
+        <StudentData />
       </div>
     </div>
   )
 }
 
-export default Dashboard
+export default DisplayStudent

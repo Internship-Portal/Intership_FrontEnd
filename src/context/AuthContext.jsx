@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   company:null,
   loading: false,
   error: null,
+  data : []
 };
 
 export const AuthContext = createContext(INITIAL_STATE);
@@ -59,6 +60,12 @@ const AuthReducer = (state, action) => {
         loading: false,
         error: null,
       };
+    case "SET_DEPARTMENT":
+      return{
+
+        loading: false,
+        data:action.payload
+      }
     default:
       return state;
   }
@@ -77,6 +84,7 @@ export const AuthContextProvider = ({ children }) => {
         user: state.user,
         loading: state.loading,
         error: state.error,
+        data: state.data,
         dispatch,
       }}
     >

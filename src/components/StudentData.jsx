@@ -1,28 +1,33 @@
 import React from "react";
+import { useContext } from "react";
 import MUIDataTable from "mui-datatables";
 import { MuiThemeProvider } from "@material-ui/core";
 import "../components/StudentData.css";
 import Dropdown_batch from "./Dropdown_batch";
 import Dropdown_dept from "./Dropdown_dept";
 import useFetch from "../hooks/useFetch";
+import { AuthContext } from "../context/AuthContext";
+
 const StudentData = () => {
   const columns = [
-    "Name",
-    "Email Id",
-    "Mobile No.",
-    "Roll No.",
-    "Skills",
-    "Achievments",
-    "CGPA",
-    "Unavailable Dates",
-    "Internship Status",
-    "Live Backlog",
-    "CGPA",
-    "CGPA",
+    "name",
+    "email_id",
+    "mobile_no",
+    "roll_no",
+    "skills",
+    "achievements",
+    "cgpa",
+    // "Unavailable Dates",
+    "year_batch",
+    "backlog",
+    "location",
+    "tenth_percentage",
+    "twelve_percentage",
   ];
 
-  const { data, loading, error } = useFetch('http://localhost:3031/users')
-
+  // const { loading, error, dispatch } = useContext(AuthContext);
+  const { data, loading, error } = useContext(AuthContext);
+  // console.log(data)
   const options = {
     filterType: 'checkbox',
     responsive: "scroll",

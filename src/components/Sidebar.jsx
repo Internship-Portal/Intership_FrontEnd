@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link} from "react-router-dom"
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 function Sidebar() {
 
   const [showCompany, setshowCompany] = useState(false)
   const [showCalendar, setshowCalendar] = useState(false)
-
 
   return (
     <div className="flex flex-col w-[200px] border-r-[0.5px] border-solid border-[#E6E3E3] bg-white min-h-screen z-50 ">
@@ -82,12 +81,12 @@ function Sidebar() {
               <ul>
                 <div className="flex flex-col">
                   <li className='items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]'>
-                    <Link to="/subscribedCompanies" style={{ textDecoration: "none" }}>
+                    <Link to="/addstudents" style={{ textDecoration: "none" }}>
                       <span className='text-[13px] font-semibold text-[#888] ml-[10px]'>Publish Calendar</span>
                     </Link>
                   </li>
                   <li className='items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]'>
-                    <Link to="/confirmedCompanies" style={{ textDecoration: "none" }}>
+                    <Link to="/displaystudents" style={{ textDecoration: "none" }}>
                       <span className='text-[13px] font-semibold text-[#888] ml-[10px]'>Display Calendar</span>
                     </Link>
                   </li>
