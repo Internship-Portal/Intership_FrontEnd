@@ -6,6 +6,7 @@ import DisplayStudent from './Pages/College/DisplayStudent'
 import Forgot_password from './Pages/Login/Forgot_password'
 import Confirm_password from './Pages/Login/Confirm_password'
 import OTP from './Pages/Login/OTP'
+import SignUp from './Pages/Login/SignUp'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/confirmpassword' element={<Confirm_password/>}></Route>
           <Route path='/forgotpassword' element={<Forgot_password/>}></Route>
           <Route path='/otp' element={<OTP/>}></Route>
+          <Route path='/signup' element={<SignUp/>}></Route>
         </Routes>
       </BrowserRouter>
    </div>

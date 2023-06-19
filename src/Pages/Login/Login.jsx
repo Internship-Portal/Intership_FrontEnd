@@ -7,7 +7,6 @@ import { toggleButtonGroupClasses } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Login = (props) => {
-
   const [credentials, setCredentials] = useState({
     email_id: undefined,
     password: undefined,
@@ -18,35 +17,37 @@ const Login = (props) => {
 
   const { loading, error, dispatch } = useContext(AuthContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
   const handleCompanyRole = () => {
-    setCompany(true)
-    setOfficer(false)
-  }
+    setCompany(true);
+    setOfficer(false);
+  };
   const handleOfficerRole = () => {
-    setOfficer(true)
-    setCompany(false)
-  }
+    setOfficer(true);
+    setCompany(false);
+  };
 
   const handleClick = async (e) => {
     e.preventDefault();
     if (company) {
       dispatch({ type: "LOGIN_START_COMPANY" });
       try {
-        console.log(credentials)
-        const res = await axios.post("http://localhost:4000/api/company/loginCompany", credentials);
+        console.log(credentials);
+        const res = await axios.post(
+          "http://localhost:4000/api/company/loginCompany",
+          credentials
+        );
         dispatch({ type: "LOGIN_SUCCESS_COMPANY", payload: res.data.details });
-        navigate("/")
+        navigate("/");
       } catch (err) {
         dispatch({ type: "LOGIN_FAILURE_COMPANY", payload: err.response.data });
       }
-    }
-    else if (officer) {
+    } else if (officer) {
       dispatch({ type: "LOGIN_START_OFFICER" });
       try {
         const res = await axios.post("http://localhost:4000/api/officer/loginOfficer", credentials);
@@ -61,15 +62,17 @@ const Login = (props) => {
     }
   };
 
-
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
         <div className=" hidden sm:block">
-          <div className="w-full h-screen object-cover bg-primary opacity-80"   >
-            <img className=" z-1 h-screen p-32 mx-auto flex items-center justify-center" src={launchPoster} alt="" />
+          <div className="w-full h-screen object-cover bg-primary opacity-80">
+            <img
+              className=" z-1 h-screen p-32 mx-auto flex items-center justify-center"
+              src={launchPoster}
+              alt=""
+            />
           </div>
-
         </div>
 
         <div className=" flex flex-col justify-center ">
@@ -82,10 +85,23 @@ const Login = (props) => {
             </h4>
 
             <div className="flex items-center pl-3">
-              <input id="company radio" defaultChecked type="radio" value="" name="list-radio" onClick={handleCompanyRole} />
+              <input
+                id="company radio"
+                defaultChecked
+                type="radio"
+                value=""
+                name="list-radio"
+                onClick={handleCompanyRole}
+              />
               <label htmlFor="company radio">Company </label>
 
-              <input id="officer radio" type="radio" value="" name="list-radio" onClick={handleOfficerRole} />
+              <input
+                id="officer radio"
+                type="radio"
+                value=""
+                name="list-radio"
+                onClick={handleOfficerRole}
+              />
               <label htmlFor="officer radio">Officer</label>
             </div>
 
@@ -110,17 +126,25 @@ const Login = (props) => {
                   onChange={handleChange}
                 ></input>
               </div>
-              <button className=" my-2 py-1 bg-primary text-black w-full rounded-xl text-xl" disabled={loading} onClick={handleClick}>
+              <button
+                className=" my-2 py-1 bg-primary text-black w-full rounded-xl text-xl"
+                disabled={loading}
+                onClick={handleClick}
+              >
                 Login
               </button>
-              <Link to='/forgotpassword' style={{ textDecoration: "none" }}>
+              <Link to="/forgotpassword" style={{ textDecoration: "none" }}>
                 <div className="text-center text-primary opacity-80">
-                  <p>Forgot Password ?</p>
+                  <Link to="/forgotpassword">
+                    <p>Forgot Password ?</p>
+                  </Link>
                 </div>
               </Link>
             </div>
             <div className=" text-center mt-2 text-lg">
+              <Link to="/signup">
               <p>Don't Have Account ?</p>
+              </Link>
             </div>
             {error && <span>{error.message}</span>}
           </form>
