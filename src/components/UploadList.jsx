@@ -7,6 +7,15 @@ import { AuthContext } from '../context/AuthContext';
 
 const UploadList = () => {
 
+  const token = localStorage.getItem('jwt')
+
+  const config = {
+    headers :{
+      "Content-type" : "application/json",
+      "Authorization" : `bearer ${token}`
+    }
+  }
+
   const [user,setUser]= useState({
     department_name:"",
     year_batch: null,
@@ -31,7 +40,7 @@ const UploadList = () => {
   const handleClick = async ()=>{
     try {
       console.log(user)
-      const res = await axios.post(`http://localhost:4000/api/officer/uploadCSVOfStudents/${id}`,user)
+      const res = await axios.post(`http://localhost:4000/api/officer/uploadCSVOfStudents/${id}`,user,config)
       console.log(res);
     } catch (error) {
       console.log(error.response.data)
