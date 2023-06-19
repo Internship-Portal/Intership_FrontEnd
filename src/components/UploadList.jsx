@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import DropDownB from "./Dropdown_batch";
 import DropDownD from "./Dropdown_dept";
-import { AuthContext } from "../context/AuthContext";
+import config from "../hooks/config"
 
 const UploadList = () => {
   const [user, setUser] = useState({
@@ -12,10 +12,7 @@ const UploadList = () => {
     csvFile: null,
   });
 
-  const token = localStorage.getItem('jwt')
-
-  const { officer } = useContext(AuthContext);
-  const id = officer;
+  const {id , headers} = config()
 
   const handleBatchChange = (data) => {
     setUser({ ...user, year_batch: data });
@@ -27,17 +24,6 @@ const UploadList = () => {
 
   const handleChange = (event) => {
     setUser({ ...user, csvFile: event.target.files[0] });
-  };
-
-  // const headers = {
-  //   "Content-Type": "multipart/form-data",
-  //   Authorization:
-  //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjQ4OWM1MTdkMDVmMjdjY2MwY2ZjMDkxIiwiZW1haWxfaWQiOiJkdW1teW9mZmljZXJAZ21haWwuY29tIiwiaWF0IjoxNjg3MTgyODE2fQ.LywiWdhg2FsKjKy-KEiwBmpcSUUoVrcPnRO8aeAO7-k",
-  // };
-  const headers = {
-    "Content-Type": "multipart/form-data",
-    Authorization:
-      `Bearer ${token}`,
   };
 
   const handleClick = async () => {
