@@ -3,6 +3,8 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { launchPoster } from "../../assets";
+import { toggleButtonGroupClasses } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
 
@@ -12,7 +14,7 @@ const Login = (props) => {
   });
 
   const [officer, setOfficer] = useState(false);
-  const [company, setCompany] = useState(false);
+  const [company, setCompany] = useState(toggleButtonGroupClasses);
 
   const { loading, error, dispatch } = useContext(AuthContext);
 
@@ -50,8 +52,8 @@ const Login = (props) => {
         const res = await axios.post("http://localhost:4000/api/officer/loginOfficer", credentials);
         console.log(res)
         dispatch({ type: "LOGIN_SUCCESS_OFFICER", payload: res.data.details });
-       console.log(res.data.data[0].college_details[1].student_details) 
-        dispatch({ type: "SET_DEPARTMENT" , payload:res.data.data[0].college_details[1].student_details })
+        console.log(res.data.data[0].college_details[1].student_details)
+        dispatch({ type: "SET_DEPARTMENT", payload: res.data.data[0].college_details[1].student_details })
         navigate("/")
       } catch (err) {
         dispatch({ type: "LOGIN_FAILURE_OFFICER", payload: err.response.data });
@@ -80,10 +82,10 @@ const Login = (props) => {
             </h4>
 
             <div className="flex items-center pl-3">
-              <input id="company radio" type="radio" value="" name="list-radio" onClick={handleCompanyRole}/>
+              <input id="company radio" defaultChecked type="radio" value="" name="list-radio" onClick={handleCompanyRole} />
               <label htmlFor="company radio">Company </label>
 
-              <input id="officer radio" type="radio" value="" name="list-radio" onClick={handleOfficerRole}/>
+              <input id="officer radio" type="radio" value="" name="list-radio" onClick={handleOfficerRole} />
               <label htmlFor="officer radio">Officer</label>
             </div>
 
@@ -111,9 +113,11 @@ const Login = (props) => {
               <button className=" my-2 py-1 bg-primary text-black w-full rounded-xl text-xl" disabled={loading} onClick={handleClick}>
                 Login
               </button>
-              <div className="text-center text-primary opacity-80">
-                <p>Forgot Password ?</p>
-              </div>
+              <Link to='/forgotpassword' style={{ textDecoration: "none" }}>
+                <div className="text-center text-primary opacity-80">
+                  <p>Forgot Password ?</p>
+                </div>
+              </Link>
             </div>
             <div className=" text-center mt-2 text-lg">
               <p>Don't Have Account ?</p>
