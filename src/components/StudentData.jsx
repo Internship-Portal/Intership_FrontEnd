@@ -5,7 +5,6 @@ import { MuiThemeProvider } from "@material-ui/core";
 import "../components/StudentData.css";
 import Dropdown_batch from "./Dropdown_batch";
 import Dropdown_dept from "./Dropdown_dept";
-import useFetch from "../hooks/useFetch";
 import { AuthContext } from "../context/AuthContext";
 import config from "../hooks/config";
 

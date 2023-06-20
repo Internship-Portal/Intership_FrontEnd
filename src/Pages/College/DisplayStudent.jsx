@@ -8,14 +8,14 @@ import { useEffect } from 'react';
 
 function DisplayStudent() {
 
-  const displayStu=()=>{
-    toast.success("Displaying the Students",{
-      position:'top-center'
-    })
-  }
-  useEffect(() => {
-    displayStu();
-  }, [])
+  // const displayStu=()=>{
+  //   toast.success("Displaying the Students",{
+  //     position:'top-center'
+  //   })
+  // }
+  // useEffect(() => {
+  //   displayStu();
+  // }, [])
   
   return (
     <div className='bg-white flex'>
@@ -27,7 +27,7 @@ function DisplayStudent() {
         <hr className='h-0 border-r-[0.5px] border-solid border-[#E6E3E3]' />
         <StudentData />
       </div>
-      <ToastContainer/>
+      {/* <ToastContainer/> */}
     </div>
   )
 }

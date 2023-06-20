@@ -9,6 +9,34 @@ import { Link } from "react-router-dom";
 
 
 const SignUp = () => {
+
+  const [officer, setOfficer] = useState({
+    username: "",
+    email_id: "",
+    mobile_no: "",
+    college_name: "Pimpri Chinchwad College of Engineering,Pune",
+    password:""
+  })
+
+  const navigate = useNavigate()
+
+  const handleChange = (event) => {
+    console.log(event.target)
+    setOfficer({ ...officer, [event.target.name]: event.target.value })
+    console.log(officer)
+  }
+
+  const handleClick = async () => {
+    try {
+      console.log(officer)
+      const res = await axios.post("http://localhost:4000/api/officer/createOfficer", officer)
+      console.log(res)
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 h-fit w-full">
@@ -23,12 +51,12 @@ const SignUp = () => {
         </div>
 
         <div className=" flex flex-col justify-center py-0 ">
-          <form className="max-w-[380px] w-4/5 sm:w-full mx-auto bg-primary opacity-80 p-8 px-8 rounded-3xl h-fit ">
+          <form className="max-w-[380px] w-4/5 sm:w-full mx-auto bg-primary opacity-80 p-8 px-8 rounded-3xl h-fit " onSubmit={e=>e.preventDefault()}>
             <h2 className=" text-4xl dark:text-white font-poppins font-bold text-center">
               SignUp
             </h2>
             <h4 className=" my-2 mt-4 text-gray-900 text-center">
-              Welcome 
+              Welcome
             </h4>
 
             <div className="flex items-center pl-3">
@@ -52,44 +80,81 @@ const SignUp = () => {
 
             <div className="max-w-[300px] mx-auto w-full  bg-white p-8 px-8  rounded-3xl ">
               <div className="flex flex-col text-primary opacity-80 py-2">
-                <label> Email</label>
+                <label>Username</label>
                 <input
+                  name="username"
                   type="text"
-                  id="email_id"
+                  id="username"
                   placeholder="Username"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
-                //   onChange={handleChange}
+                  onChange={handleChange}
+                ></input>
+              </div>
+              <div className="flex flex-col text-primary opacity-80 py-2">
+                <label>Email</label>
+                <input
+                  name="email_id"
+                  type="text"
+                  id="email_id"
+                  placeholder="Email Id"
+                  className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
+                  onChange={handleChange}
+                ></input>
+              </div>
+              <div className="flex flex-col text-primary opacity-80 py-2">
+                <label>Mobile No.</label>
+                <input
+                  name="mobile_no"
+                  type="text"
+                  id="mobile_no"
+                  placeholder="Mobile No."
+                  className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
+                  onChange={handleChange}
+                ></input>
+              </div>
+              <div className="flex flex-col text-primary opacity-80 py-2">
+                <label>College Name</label>
+                <input
+                name="college_name"
+                  type="text"
+                  id="college_name"
+                  placeholder="College Name"
+                  defaultValue={officer.college_name}
+                  className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
+                  onChange={handleChange}
                 ></input>
               </div>
               <div className="flex flex-col text-primary opacity-80 py-2">
                 <label>Password</label>
-                <input
+                <input  
                   type="password"
                   id="password"
                   placeholder="Password"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2  border-gray-800 text-black"
-                //   onChange={handleChange}
+                  // onChange={handleChange}
                 ></input>
               </div>
               <div className="flex flex-col text-primary opacity-80 py-2">
                 <label>Confirm Password</label>
                 <input
+                name="password"
                   type="password"
                   id="password"
                   placeholder="Confirm Password"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2  border-gray-800 text-black"
-                //   onChange={handleChange}
+                  onChange={handleChange}
                 ></input>
               </div>
+
               <button
                 className=" my-2 py-1 bg-primary text-black w-full rounded-xl text-xl"
                 // disabled={loading}
-                // onClick={handleClick}
+               onClick={()=>handleClick()}
               >
-                <Link to="/login">
                 Create New Account
-                </Link>
+                
               </button>
+
             </div>
             {/* {error && <span>{error.message}</span>} */}
           </form>
