@@ -41,7 +41,7 @@ const UploadList = () => {
 
   return (
     <div>
-      <div className="flex flex-row">
+      <div className="flex flex-row items-center justify-end">
         <DropDownB onhandleBatchChange={handleBatchChange} />
         <DropDownD onhandleDeptChange={handleDeptChange} />
       </div>

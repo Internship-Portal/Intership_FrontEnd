@@ -63,7 +63,7 @@ const StudentData = () => {
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex justify-end">
       <Dropdown_batch onhandleBatchChange={handleBatch}/>
       <Dropdown_dept onhandleDeptChange={handleDept}/>
       </div>

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { launchPoster } from "../../assets";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
@@ -31,6 +33,16 @@ const Login = (props) => {
     setCompany(false);
   };
 
+  const successLogin=()=>{
+    toast.success("Login Successful",{
+      position:'top-center'
+    })
+  }
+  const errLogin=()=>{
+    toast.error("Login Unsuccessful",{
+      position:'top-center'
+    })
+  }
   const handleClick = async (e) => {
     e.preventDefault();
     if (company) {
@@ -41,9 +53,11 @@ const Login = (props) => {
           "http://localhost:4000/api/company/loginCompany",
           credentials
         );
+        successLogin();
         dispatch({ type: "LOGIN_SUCCESS_COMPANY", payload: res.data.details });
         navigate("/");
       } catch (err) {
+        errLogin();
         dispatch({ type: "LOGIN_FAILURE_COMPANY", payload: err.response.data });
       }
     } else if (officer) {
@@ -53,7 +67,9 @@ const Login = (props) => {
         dispatch({ type: "LOGIN_SUCCESS_OFFICER", payload: res.data.data });
         localStorage.setItem("jwt",res.data.token)
         navigate("/")
+        // successLogin();
       } catch (err) {
+        errLogin();
         dispatch({ type: "LOGIN_FAILURE_OFFICER", payload: err.response.data });
       }
     }
@@ -121,12 +137,14 @@ const Login = (props) => {
                   placeholder="Password"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2  border-gray-800 text-black"
                   onChange={handleChange}
+                  // onClick={successLogin}
                 ></input>
               </div>
               <button
                 className=" my-2 py-1 bg-primary text-black w-full rounded-xl text-xl"
                 disabled={loading}
                 onClick={handleClick}
+                // onClick={successLogin}
               >
                 Login
               </button>
@@ -147,6 +165,7 @@ const Login = (props) => {
           </form>
         </div>
       </div>
+      <ToastContainer/>
     </>
   );
 };
