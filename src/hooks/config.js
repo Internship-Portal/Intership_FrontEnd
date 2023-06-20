@@ -1,10 +1,13 @@
 import jwt_decode from "jwt-decode"
 
 function config() {
+    let id = null
     const token =localStorage.getItem("jwt")
-
-    const decoded = jwt_decode(token)
-    const id = decoded.data
+    
+    if(token){
+      const decoded = jwt_decode(token)
+    id = decoded.data
+    }
 
     const headers ={
         "Content-type":"multipart/form-data",

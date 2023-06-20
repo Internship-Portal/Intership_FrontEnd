@@ -3,7 +3,6 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { launchPoster } from "../../assets";
-import { toggleButtonGroupClasses } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Login = (props) => {
@@ -13,7 +12,7 @@ const Login = (props) => {
   });
 
   const [officer, setOfficer] = useState(false);
-  const [company, setCompany] = useState(toggleButtonGroupClasses);
+  const [company, setCompany] = useState(true);
 
   const { loading, error, dispatch } = useContext(AuthContext);
 
@@ -51,12 +50,8 @@ const Login = (props) => {
       dispatch({ type: "LOGIN_START_OFFICER" });
       try {
         const res = await axios.post("http://localhost:4000/api/officer/loginOfficer", credentials);
-        console.log(res.data.token)
         dispatch({ type: "LOGIN_SUCCESS_OFFICER", payload: res.data.data });
         localStorage.setItem("jwt",res.data.token)
-        // localStorage.setItem(res.data.token)
-        // console.log(res.data.data[0].college_details[1].student_details)
-        // dispatch({ type: "SET_DEPARTMENT", payload: res.data.data[0].college_details[1].student_details })
         navigate("/")
       } catch (err) {
         dispatch({ type: "LOGIN_FAILURE_OFFICER", payload: err.response.data });
