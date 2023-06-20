@@ -38,7 +38,6 @@ const SignUp = () => {
                 type="radio"
                 value=""
                 name="list-radio"
-                // onClick={handleCompanyRole}
               />
               <label htmlFor="company radio">Company </label>
 
@@ -47,7 +46,6 @@ const SignUp = () => {
                 type="radio"
                 value=""
                 name="list-radio"
-                // onClick={handleOfficerRole}
               />
               <label htmlFor="officer radio">Officer</label>
             </div>

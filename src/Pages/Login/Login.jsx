@@ -66,8 +66,8 @@ const Login = (props) => {
         const res = await axios.post("http://localhost:4000/api/officer/loginOfficer", credentials);
         dispatch({ type: "LOGIN_SUCCESS_OFFICER", payload: res.data.data });
         localStorage.setItem("jwt",res.data.token)
+        successLogin();
         navigate("/")
-        // successLogin();
       } catch (err) {
         errLogin();
         dispatch({ type: "LOGIN_FAILURE_OFFICER", payload: err.response.data });

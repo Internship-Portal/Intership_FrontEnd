@@ -10,15 +10,15 @@ function Dashboard() {
   const {id} =config()
   const navigate = useNavigate()
 
-  const successLogin=()=>{
-    toast.success("Login Successful",{
-      position:'top-center'
-    })
-  }
+  // const successLogin=()=>{
+  //   toast.success("",{
+  //     position:'top-center'
+  //   })
+  // }
 
-  useEffect(() => {
-      successLogin();
-    }, []);
+  // useEffect(() => {
+  //     successLogin();
+  //   }, []);
   useEffect(() => {
     console.log(id)
     if (!id) navigate("/login")
