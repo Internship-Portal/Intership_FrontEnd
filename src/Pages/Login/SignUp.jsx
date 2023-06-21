@@ -10,7 +10,21 @@ import { Link } from "react-router-dom";
 
 const SignUp = () => {
 
-  const [officer, setOfficer] = useState({
+
+  const [officer, setOfficer] = useState(false);
+  const [company, setCompany] = useState(true);
+
+  const [companyDetails, setCompanyDetails] = useState({
+    username: "",
+    email_id: "",
+    mobile_no: "",
+    company_name: "",
+    password:""
+  })
+
+  
+
+  const [officerDetails, setOfficerDetails] = useState({
     username: "",
     email_id: "",
     mobile_no: "",
@@ -18,20 +32,54 @@ const SignUp = () => {
     password:""
   })
 
+  const handleCompanyRole = () => {
+    setCompany(true);
+    setOfficer(false);
+  };
+  const handleOfficerRole = () => {
+    setOfficer(true);
+    setCompany(false);
+  };
+
+
   const navigate = useNavigate()
 
-  const handleChange = (event) => {
+  const handleChangeOfficer = (event) => {
     console.log(event.target)
-    setOfficer({ ...officer, [event.target.name]: event.target.value })
-    console.log(officer)
+    setOfficerDetails({ ...officerDetails, [event.target.name]: event.target.value })
+    console.log(officerDetails)
   }
+
+  const handleChangeCompany = (event) => {
+    console.log(event.target)
+    setCompanyDetails({ ...companyDetails, [event.target.name]: event.target.value })
+   
+  }
+
+
+  
 
   const handleClick = async () => {
     try {
-      console.log(officer)
-      const res = await axios.post("http://localhost:4000/api/officer/createOfficer", officer)
-      console.log(res)
-      navigate('/')
+      if(officer)
+      {
+        console.log(officerDetails)
+        const res = await axios.post("http://localhost:4000/api/officer/createOfficer", officerDetails)
+        console.log(res)
+        localStorage.clear()
+        localStorage.setItem("jwt",res.data.token)
+        navigate('/login')
+
+      }
+      else if(company) {
+        console.log(companyDetails)
+        const res = await axios.post("http://localhost:4000/api/company/createCompany", companyDetails)
+        console.log(res)
+        localStorage.clear()
+        localStorage.setItem("jwt",res.data.token)
+        navigate('/login')
+      }
+     
     } catch (error) {
       console.log(error)
     }
@@ -66,6 +114,7 @@ const SignUp = () => {
                 type="radio"
                 value=""
                 name="list-radio"
+                onClick={handleCompanyRole}
               />
               <label htmlFor="company radio">Company </label>
 
@@ -74,6 +123,7 @@ const SignUp = () => {
                 type="radio"
                 value=""
                 name="list-radio"
+                onClick={handleOfficerRole}
               />
               <label htmlFor="officer radio">Officer</label>
             </div>
@@ -87,7 +137,7 @@ const SignUp = () => {
                   id="username"
                   placeholder="Username"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
-                  onChange={handleChange}
+                  onChange={officer?handleChangeOfficer:handleChangeCompany}
                 ></input>
               </div>
               <div className="flex flex-col text-primary opacity-80 py-2">
@@ -98,7 +148,7 @@ const SignUp = () => {
                   id="email_id"
                   placeholder="Email Id"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
-                  onChange={handleChange}
+                  onChange={officer?handleChangeOfficer:handleChangeCompany}
                 ></input>
               </div>
               <div className="flex flex-col text-primary opacity-80 py-2">
@@ -109,21 +159,36 @@ const SignUp = () => {
                   id="mobile_no"
                   placeholder="Mobile No."
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
-                  onChange={handleChange}
+                  onChange={officer?handleChangeOfficer:handleChangeCompany}
                 ></input>
               </div>
-              <div className="flex flex-col text-primary opacity-80 py-2">
+           {officer &&   <div className="flex flex-col text-primary opacity-80 py-2">
                 <label>College Name</label>
                 <input
                 name="college_name"
                   type="text"
                   id="college_name"
                   placeholder="College Name"
-                  defaultValue={officer.college_name}
+                  defaultValue={officerDetails.college_name}
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
-                  onChange={handleChange}
+                  onChange={handleChangeOfficer}
                 ></input>
-              </div>
+              </div>}
+              {
+            company &&  <div className="flex flex-col text-primary opacity-80 py-2">
+            <label>company Name</label>
+            <input
+            name="company_name"
+              type="text"
+              id="company_name"
+              placeholder="Company Name"
+              defaultValue={companyDetails.company_name}
+              className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
+              onChange={handleChangeCompany}
+            ></input>
+          </div>
+
+              }
               <div className="flex flex-col text-primary opacity-80 py-2">
                 <label>Password</label>
                 <input  
@@ -142,7 +207,7 @@ const SignUp = () => {
                   id="password"
                   placeholder="Confirm Password"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2  border-gray-800 text-black"
-                  onChange={handleChange}
+                  onChange={officer?handleChangeOfficer:handleChangeCompany}
                 ></input>
               </div>
 

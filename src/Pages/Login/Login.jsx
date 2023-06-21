@@ -46,31 +46,34 @@ const Login = (props) => {
   const handleClick = async (e) => {
     e.preventDefault();
     if (company) {
-      dispatch({ type: "LOGIN_START_COMPANY" });
+      //dispatch({ type: "LOGIN_START_COMPANY" });
       try {
         console.log(credentials);
         const res = await axios.post(
           "http://localhost:4000/api/company/loginCompany",
           credentials
         );
+        localStorage.clear();
+        localStorage.setItem("jwt",res.data.token)
         successLogin();
-        dispatch({ type: "LOGIN_SUCCESS_COMPANY", payload: res.data.details });
+       // dispatch({ type: "LOGIN_SUCCESS_COMPANY", payload: res.data.details });
         navigate("/");
       } catch (err) {
         errLogin();
-        dispatch({ type: "LOGIN_FAILURE_COMPANY", payload: err.response.data });
+        //dispatch({ type: "LOGIN_FAILURE_COMPANY", payload: err.response.data });
       }
     } else if (officer) {
       dispatch({ type: "LOGIN_START_OFFICER" });
       try {
         const res = await axios.post("http://localhost:4000/api/officer/loginOfficer", credentials);
-        dispatch({ type: "LOGIN_SUCCESS_OFFICER", payload: res.data.data });
+        // dispatch({ type: "LOGIN_SUCCESS_OFFICER", payload: res.data.data });
+        localStorage.clear();
         localStorage.setItem("jwt",res.data.token)
         successLogin();
         navigate("/")
       } catch (err) {
         errLogin();
-        dispatch({ type: "LOGIN_FAILURE_OFFICER", payload: err.response.data });
+        // dispatch({ type: "LOGIN_FAILURE_OFFICER", payload: err.response.data });
       }
     }
   };
