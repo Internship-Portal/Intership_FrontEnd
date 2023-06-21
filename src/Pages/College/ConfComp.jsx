@@ -3,6 +3,7 @@ import Sidebar from '../../components/Sidebar'
 import Navbar from '../../components/Navbar'
 
 function ConfComp() {
+
   return (
     <div className='bg-white flex'>
       <div className='hidden sm:flex'>
@@ -12,9 +13,9 @@ function ConfComp() {
         <Navbar />
         <hr className='h-0 border-r-[0.5px] border-solid border-[#E6E3E3]' />
       </div>
-      {/* <ToastContainer/> */}
     </div>
   )
+  
 }
 
 export default ConfComp

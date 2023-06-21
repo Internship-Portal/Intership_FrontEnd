@@ -62,7 +62,11 @@ const AuthReducer = (state, action) => {
       };
     case "SET_DEPARTMENT":
       return{
-
+        loading: false,
+        data:action.payload
+      }
+    case "SET_COMPANIES":
+      return{
         loading: false,
         data:action.payload
       }
