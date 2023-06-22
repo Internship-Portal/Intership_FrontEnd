@@ -1,19 +1,19 @@
-import jwt_decode from "jwt-decode"
+import jwt_decode from "jwt-decode";
 
 function config() {
-    let id = null
-    const token =localStorage.getItem("jwt")
-    
-    if(token){
-      const decoded = jwt_decode(token)
-    id = decoded.data
-    }
+  let id = null;
+  const token = localStorage.getItem("jwt");
 
-    const headers ={
-        "Content-type":"multipart/form-data",
-        Authorization : `Bearer ${token}`
-    }
-  return ({id , headers})
+  if (token) {
+    const decoded = jwt_decode(token);
+    id = decoded.data;
+  }
+
+  const headers = {
+    "Content-type": "multipart/form-data",
+    Authorization: `Bearer ${token}`,
+  };
+  return { id, headers };
 }
 
-export default config
+export default config;

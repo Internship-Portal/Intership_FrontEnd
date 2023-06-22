@@ -3,10 +3,9 @@ import axios from "axios";
 import { useState } from "react";
 import DropDownB from "./Dropdown_batch";
 import DropDownD from "./Dropdown_dept";
-import config from "../hooks/config"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import config from "../hooks/config";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UploadList = () => {
   const [user, setUser] = useState({
@@ -15,7 +14,7 @@ const UploadList = () => {
     csvFile: null,
   });
 
-  const {id , headers} = config()
+  const { id, headers } = config();
 
   const handleBatchChange = (data) => {
     setUser({ ...user, year_batch: data });
@@ -29,20 +28,20 @@ const UploadList = () => {
     setUser({ ...user, csvFile: event.target.files[0] });
   };
 
-  const successfulUpload=()=>{
-    toast.success("Upload Successfully !",{
-      position:"top-center"
-    })
-  }
-  const unsuccessfulUpload=()=>{
-    toast.error("Upload Unsuccessful !",{
-      position:"top-center"
-    })
-  }
+  const successfulUpload = () => {
+    toast.success("Upload Successfully !", {
+      position: "top-center",
+    });
+  };
+  const unsuccessfulUpload = () => {
+    toast.error("Upload Unsuccessful !", {
+      position: "top-center",
+    });
+  };
   const handleClick = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:4000/api/officer/uploadCSVOfStudents/${id}`,
+        `http://localhost:4000/api/officer/uploadCSVOfStudents`,
         user,
         { headers }
       );
@@ -137,7 +136,7 @@ const UploadList = () => {
           <span>Upload</span>
         </button>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
