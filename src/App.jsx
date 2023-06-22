@@ -9,6 +9,7 @@ import OTP from './Pages/Login/OTP'
 import SignUp from './Pages/Login/SignUp'
 import SubComp from './Pages/College/SubComp'
 import ConfComp from './Pages/College/ConfComp'
+import DashBoard from './Pages/company/DashBoard'
 import GetCompany from './Pages/company/GetCollege'
 
 function App() {
@@ -16,8 +17,9 @@ function App() {
    <div>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Dashboard/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/officer' element={<Dashboard/>}></Route>
+          <Route path='/company' element={<DashBoard/>}></Route>
+          <Route path='/' element={<Login/>}></Route>
           <Route path='/addstudents' element={<AddStudent/>}></Route>
           <Route path='/displaystudents' element={<DisplayStudent/>}></Route>
           <Route path='/subscribedCompanies' element={<SubComp/>}></Route>
