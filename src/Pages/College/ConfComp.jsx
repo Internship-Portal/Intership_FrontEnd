@@ -12,7 +12,7 @@ function ConfComp() {
 
   const [student, setStudent] = useState({
     year_batch: null,
-    department_name: "",
+    departments: ["CS","IT","ENTC"],
   })
 
   const handleBatch = (data) => {
@@ -52,6 +52,7 @@ function ConfComp() {
   const handleClick = async (company) => {
     try {
       console.log(id)
+      console.log(student)
       const token = localStorage.getItem("jwt")
       const res =await fetch(
         "http://localhost:4000/api/officer/giveAccessToCompanies",
