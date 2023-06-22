@@ -1,45 +1,53 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import Sidebar from '../../components/Sidebar'
-import Navbar from '../../components/Navbar'
-import config from '../../hooks/config'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Sidebar from "../../components/Sidebar";
+import Navbar from "../../components/Navbar";
+import config from "../../hooks/config";
 
 function SubComp() {
+  const [data, setData] = useState([]);
+  const { headers } = config();
 
-  const [data, setData] = useState([])
-  const { headers } = config()
+  const getConf = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:4000/api/officer/getAllRequestedCompanies",
+        {
+          headers: headers,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Request failed with status code " + response.status);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setData(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const getConf = async () => {
-      try {
-        const res = await axios.get(
-          "http://localhost:4000/api/officer/getAllRequestedCompanies",
-          { headers }
-        );
-        console.log(res);
-        setData(res.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getConf();
-  }, [data]);
+  }, []);
 
   const handleClick = async (company) => {
     try {
-      const token = localStorage.getItem("jwt")
-      console.log(company)
+      const token = localStorage.getItem("jwt");
+      console.log(company);
       const res = await fetch(
         "http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
         {
           method: "PUT",
           headers: {
-            "content-type":"application/json",
-            "authorization": `bearer ${token}`
+            "content-type": "application/json",
+            authorization: `bearer ${token}`,
           },
           body: JSON.stringify({
             company_id: company.company_id,
-            message: company.message
+            message: company.message,
           }),
         }
       );
@@ -50,8 +58,8 @@ function SubComp() {
 
       const result = await res.json();
       console.log(result);
-    } 
-    catch (error) {
+      getConf();
+    } catch (error) {
       console.log(error);
     }
   };

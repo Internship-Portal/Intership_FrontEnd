@@ -4,49 +4,48 @@ import { useState, useEffect } from "react";
 import config from "..//../hooks/config";
 
 const GetCollege = () => {
-const temp={
-  _id:"345678",
-  message:"dfghfgh"
-}
-  const [colleges,setColleges]=useState([]);
-  const [loading,setLoading]=useState(false);
+  const temp = {
+    _id: "345678",
+    message: "dfghfgh",
+  };
+  const [colleges, setColleges] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-const subscribeCollege=async(college)=>{
-  
-  const message=college.college_name;
-  const _id=college._id;
- const token=localStorage.getItem('jwt')
-    const res=await fetch(`http://localhost:4000/api/company/addSubscribeRequestToOfficer`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "authorization":`bearer ${token}` 
-      },
-      body: JSON.stringify({_id:_id,message:message}),
-    });
-    console.log(res)
-
-}
-
+  const subscribeCollege = async (college) => {
+    const message = college.college_name;
+    const _id = college._id;
+    const token = localStorage.getItem("jwt");
+    const res = await fetch(
+      `http://localhost:4000/api/company/addSubscribeRequestToOfficer`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${token}`,
+        },
+        body: JSON.stringify({ _id: _id, message: message }),
+      }
+    );
+    console.log(res);
+    getallcollege();
+  };
 
   const getallcollege = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:4000/api/officer/getAll`,
-        {headers}
-      ).then(function (res) {
-        console.log(res);
-        setLoading(true);
-        setColleges(res.data.data);
-        setLoading(false);
-       
-        //setCoins(res.data);
-      })
-      .catch((err) => console.log(err));
+      const res = await axios
+        .get(`http://localhost:4000/api/company/getAllFilteredOfficers`, {
+          headers,
+        })
+        .then(function (res) {
+          console.log(res);
+          setLoading(true);
+          setColleges(res.data.data);
+          setLoading(false);
 
-     
-     
-      
+          //setCoins(res.data);
+        })
+        .catch((err) => console.log(err));
+
       // console.log(res);
     } catch (err) {
       console.log(err.response.data);
@@ -86,7 +85,6 @@ const subscribeCollege=async(college)=>{
           <div
             className=" text-center items-center inline-flex w-full sm:w-1/3"
             key={college._id}
-            
           >
             <div className="border-solid border-black border-2 w-3/4 mx-auto my-2 ">
               <div className=" ">
@@ -95,7 +93,14 @@ const subscribeCollege=async(college)=>{
                 </div>
                 <div className="">{college.email_id}</div>
                 <div>No. of Available Students: {college.avaible_stu}</div>
-                <button onClick={(e)=>{subscribeCollege(college)}} className=" border-2 border-black">Subscribe</button>
+                <button
+                  onClick={(e) => {
+                    subscribeCollege(college);
+                  }}
+                  className=" border-2 border-black"
+                >
+                  Subscribe
+                </button>
               </div>
             </div>
           </div>
