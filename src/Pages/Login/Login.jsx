@@ -92,14 +92,14 @@ const Login = (props) => {
         <div className=" hidden sm:block">
           <div className="w-full h-screen object-cover bg-primary opacity-80">
             <img
-              className=" z-1 h-screen p-32 mx-auto flex items-center justify-center"
+              className=" z-1 h-screen p-32 mx-auto flex items-center justify-center px-0 py-0 pb-0"
               src={launchPoster}
               alt=""
             />
           </div>
         </div>
 
-        <div className=" flex flex-col justify-center ">
+        <div className=" flex flex-col justify-center h-screen ">
           <form className="max-w-[380px] w-4/5 sm:w-full mx-auto bg-primary opacity-80 p-8 px-8 rounded-3xl">
             <h2 className=" text-4xl dark:text-white font-poppins font-bold text-center">
               Login
@@ -175,6 +175,7 @@ const Login = (props) => {
             {error && <span>{error.message}</span>}
           </form>
         </div>
+
       </div>
       <ToastContainer />
     </>
