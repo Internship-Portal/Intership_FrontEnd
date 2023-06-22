@@ -10,8 +10,8 @@ function Sidebar() {
   return (
     <div className="flex flex-col w-[200px] border-r-[0.5px] border-solid border-[#E6E3E3] bg-white min-h-screen z-50 ">
       <div className="h-[50px] flex items-center justify-center">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="text-xl font-bold text-[#6439ff]">Admin</span>
+        <Link to="/officer" style={{ textDecoration: "none" }}>
+          <span className="text-xl font-bold text-[#6439ff]">Officer</span>
         </Link>
         {/* <span className="text-xl font-bold text-[#6439ff]">Admin</span> */}
       </div>
@@ -19,7 +19,7 @@ function Sidebar() {
       <div className="pl-[10px]">
         <ul className='m-0 p-0 list-none'>
           <p className="text-[10px] font-bold text-[#999] mt-[15px] mb-[5px]">MAIN</p>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/officer" style={{ textDecoration: "none" }}>
             <li className='flex items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]'>
               {/* <DashboardIcon className="icon" /> */}
               <span className='text-[13px] font-semibold text-[#888] ml-[10px]'>Dashboard</span>
@@ -27,7 +27,7 @@ function Sidebar() {
           </Link>
 
           <p className="text-[10px] font-bold text-[#999] mt-[15px] mb-[5px]">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to="/students" style={{ textDecoration: "none" }}>
             <li className='flex items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]'>
               {/* <PersonOutlineIcon className="icon" /> */}
               <span className='text-[13px] font-semibold text-[#888] ml-[10px]'>Students</span>

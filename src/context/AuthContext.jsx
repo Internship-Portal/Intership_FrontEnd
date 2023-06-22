@@ -62,7 +62,6 @@ const AuthReducer = (state, action) => {
       };
     case "SET_DEPARTMENT":
       return{
-
         loading: false,
         data:action.payload
       }

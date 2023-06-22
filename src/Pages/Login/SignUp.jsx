@@ -68,7 +68,7 @@ const SignUp = () => {
         console.log(res)
         localStorage.clear()
         localStorage.setItem("jwt",res.data.token)
-        navigate('/login')
+        navigate('/')
 
       }
       else if(company) {
@@ -77,7 +77,7 @@ const SignUp = () => {
         console.log(res)
         localStorage.clear()
         localStorage.setItem("jwt",res.data.token)
-        navigate('/login')
+        navigate('/')
       }
      
     } catch (error) {

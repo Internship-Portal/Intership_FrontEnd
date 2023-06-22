@@ -33,47 +33,55 @@ const Login = (props) => {
     setCompany(false);
   };
 
-  const successLogin=()=>{
-    toast.success("Login Successful",{
-      position:'top-center'
+  const successLogin = () => {
+    toast.success("Login Successful", {
+      position: 'top-center'
     })
   }
-  const errLogin=()=>{
-    toast.error("Login Unsuccessful",{
-      position:'top-center'
+  const errLogin = () => {
+    toast.error("Login Unsuccessful", {
+      position: 'top-center'
     })
   }
+
+
   const handleClick = async (e) => {
     e.preventDefault();
+
     if (company) {
-      //dispatch({ type: "LOGIN_START_COMPANY" });
       try {
         console.log(credentials);
-        const res = await axios.post(
-          "http://localhost:4000/api/company/loginCompany",
-          credentials
-        );
+
+        const res = await axios.post("http://localhost:4000/api/company/loginCompany", credentials );
+
         localStorage.clear();
-        localStorage.setItem("jwt",res.data.token)
+        localStorage.setItem("jwt", res.data.token)
+        console.log(res.data.token)
+
         successLogin();
-       // dispatch({ type: "LOGIN_SUCCESS_COMPANY", payload: res.data.details });
-        navigate("/");
+
+        navigate("/company");
+
       } catch (err) {
         errLogin();
-        //dispatch({ type: "LOGIN_FAILURE_COMPANY", payload: err.response.data });
       }
-    } else if (officer) {
-      dispatch({ type: "LOGIN_START_OFFICER" });
+    }
+     else if (officer) {
       try {
-        const res = await axios.post("http://localhost:4000/api/officer/loginOfficer", credentials);
-        // dispatch({ type: "LOGIN_SUCCESS_OFFICER", payload: res.data.data });
+        console.log(credentials);
+
+        const res = await axios.post("http://localhost:4000/api/officer/loginOfficer", credentials );
+
         localStorage.clear();
-        localStorage.setItem("jwt",res.data.token)
+        localStorage.setItem("jwt", res.data.token)
+        console.log(res.data.token)
+
         successLogin();
-        navigate("/")
+
+        navigate("/officer")
+        
       } catch (err) {
         errLogin();
-        // dispatch({ type: "LOGIN_FAILURE_OFFICER", payload: err.response.data });
       }
     }
   };
@@ -140,14 +148,14 @@ const Login = (props) => {
                   placeholder="Password"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2  border-gray-800 text-black"
                   onChange={handleChange}
-                  // onClick={successLogin}
+                // onClick={successLogin}
                 ></input>
               </div>
               <button
                 className=" my-2 py-1 bg-primary text-black w-full rounded-xl text-xl"
                 disabled={loading}
                 onClick={handleClick}
-                // onClick={successLogin}
+              // onClick={successLogin}
               >
                 Login
               </button>
@@ -161,7 +169,7 @@ const Login = (props) => {
             </div>
             <div className=" text-center mt-2 text-lg">
               <Link to="/signup">
-              <p>Don't Have Account ?</p>
+                <p>Don't Have Account ?</p>
               </Link>
             </div>
             {error && <span>{error.message}</span>}
@@ -169,7 +177,7 @@ const Login = (props) => {
         </div>
 
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 };
