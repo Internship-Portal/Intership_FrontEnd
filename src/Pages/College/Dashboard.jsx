@@ -12,25 +12,25 @@ function Dashboard() {
   const {id} =config()
   const navigate = useNavigate()
 
-  // const {headers} = config()
+  const {headers} = config()
 
-  // const {dispatch} = useContext(AuthContext)
+  const {dispatch} = useContext(AuthContext)
 
   useEffect(() => {
     console.log(id)
     if (!id) navigate("/login")
 
-    // const getComp =async ()=>{
-    //   try {
-    //     const res = await axios.get(`http://localhost:4000/api/officer/getOneOfficer/${id}`,{headers})
-    //     console.log(res.data.data.subscribe_request_from_company)
-    //     dispatch({type : "SET_COMPANIES" , payload : res.data.data.subscribe_request_from_company})
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
+    const getComp =async ()=>{
+      try {
+        const res = await axios.get(`http://localhost:4000/api/officer/getOneOfficer/${id}`,{headers})
+        console.log(res.data.data.subscribe_request_from_company)
+        dispatch({type : "SET_COMPANIES" , payload : res.data.data.subscribe_request_from_company})
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
-    // getComp()
+    getComp()
   }, []);
 
   return (

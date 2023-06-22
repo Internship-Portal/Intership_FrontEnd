@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../../components/Sidebar'
 import Navbar from '../../components/Navbar'
+import config from '../../hooks/config'
+import axios from 'axios'
 
 function ConfComp() {
+
+  const {id} = config()
+
+  useEffect(()=>{
+    const getConf =async ()=>{
+      try {
+        const res = await axios.get(`http://localhost:4000/api/officer/getOneOfficer/${id}`,{headers})
+        console.log(res)
+      } catch (error) {
+        console.log(error.response)
+      }
+    }
+    getConf()
+  },[])
 
   return (
     <div className='bg-white flex'>
