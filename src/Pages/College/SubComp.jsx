@@ -8,7 +8,6 @@ function SubComp() {
 
   const [data, setData] = useState([])
   const { headers } = config()
-  console.log(data);
 
   useEffect(() => {
     const getConf = async () => {
@@ -24,15 +23,20 @@ function SubComp() {
       }
     };
     getConf();
-  }, []);
+  }, [data]);
 
   const handleClick = async (company) => {
     try {
-      const response = await fetch(
+      const token = localStorage.getItem("jwt")
+      console.log(company)
+      const res = await fetch(
         "http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
         {
           method: "PUT",
-          headers: headers,
+          headers: {
+            "content-type":"application/json",
+            "authorization": `bearer ${token}`
+          },
           body: JSON.stringify({
             company_id: company.company_id,
             message: company.message
@@ -40,13 +44,14 @@ function SubComp() {
         }
       );
 
-      if (!response.ok) {
+      if (!res.ok) {
         throw new Error("Request failed");
       }
 
-      const result = await response.json();
+      const result = await res.json();
       console.log(result);
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
     }
   };

@@ -24,6 +24,30 @@ function ConfComp() {
     getConf();
   }, []);
 
+  const handleClick =()=>{
+    try {
+      const res = fetch(
+        "http://localhost:4000/api/officer/giveAccessToCompanies",
+        {
+          method :"PUT",
+          headers: headers,
+          body: JSON.stringify({
+            "company_id":"648df2cf2fc66c676a4d7344",
+            "access": [{
+                "year_batch": 2024,
+                "departments": ["IT","Comp","Entc"]
+            },{
+                "year_batch": 2023,
+                "departments": ["IT","Comp"]
+            }]
+          })
+        }
+      );
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="bg-white flex">
       <div className="hidden sm:flex">
