@@ -4,10 +4,7 @@ import { useState, useEffect } from "react";
 import config from "..//../hooks/config";
 
 const GetCollege = () => {
-  const temp = {
-    _id: "345678",
-    message: "dfghfgh",
-  };
+  const [clicked,setClicked]=useState(false)
   const [colleges, setColleges] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -50,6 +47,7 @@ const GetCollege = () => {
     } catch (err) {
       console.log(err.response.data);
     }
+    setClicked(true);
   };
 
   const { id, headers } = config();
@@ -98,6 +96,7 @@ const GetCollege = () => {
                     subscribeCollege(college);
                   }}
                   className=" border-2 border-black"
+                  
                 >
                   Subscribe
                 </button>

@@ -11,6 +11,10 @@ import SubComp from "./Pages/College/SubComp";
 import ConfComp from "./Pages/College/ConfComp";
 import DashBoard from "./Pages/company/DashBoard";
 import GetCompany from "./Pages/company/GetCollege";
+import ConfirmedCollege from "./Pages/company/ConfirmedCollege";
+
+import SubscribedCollege from "./Pages/company/SubscribedCollege";
+import DisplayStudents from "./Pages/company/DisplayStudents";
 
 function App() {
   return (
@@ -29,6 +33,9 @@ function App() {
           <Route path="/otp" element={<OTP />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/getcollege" element={<GetCompany />}></Route>
+          <Route path="/confimedcollege" element={<ConfirmedCollege/>}></Route>
+          <Route path="/requestedcollege" element={<SubscribedCollege/>}></Route>
+          <Route path="/company/displaystudent" element={<DisplayStudents/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
