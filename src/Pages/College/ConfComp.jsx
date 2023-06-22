@@ -23,6 +23,27 @@ function ConfComp() {
     setStudent({ ...student, department_name: data })
   }
 
+  const getConf = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:4000/api/officer/getAllSubscribedCompanies",
+        {
+          headers: headers,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Request failed with status code " + response.status);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setData(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   useEffect(() => {
     getConf();
