@@ -8,6 +8,7 @@ function SubComp() {
 
   const [data, setData] = useState([])
   const { headers } = config()
+  console.log(data);
 
   useEffect(() => {
     const getConf = async () => {
@@ -27,50 +28,59 @@ function SubComp() {
 
   const handleClick = async (company) => {
     try {
-      console.log(headers)
-      const res = await axios.put("http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
+      const response = await fetch(
+        "http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
         {
-          company_id: company.company_id,
-          message: company.message
-        },
-        { headers })
-      console.log(res)
+          method: "PUT",
+          headers: headers,
+          body: JSON.stringify({
+            company_id: company.company_id,
+            message: company.message
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      const result = await response.json();
+      console.log(result);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
-    <div className='bg-white flex'>
-      <div className='hidden sm:flex'>
+    <div className="bg-white flex">
+      <div className="hidden sm:flex">
         <Sidebar />
       </div>
-      <div className='flex-[3]'>
+      <div className="flex-[3]">
         <Navbar />
-        <hr className='h-0 border-r-[0.5px] border-solid border-[#E6E3E3]' />
+        <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
 
-        {
-          data && data.map((company) => (
+        {data &&
+          data.map((company) => (
             <div
               className=" text-center items-center inline-flex w-full sm:w-1/3"
               key={company.index}
             >
               <div className="border-solid border-black border-2 w-3/4 mx-auto my-2 ">
                 <div className=" ">
-                  <div className=" text-lg font-bold justify-start flex px-4">{company.company_name}</div>
+                  <div className=" text-lg font-bold justify-start flex px-4">
+                    {company.company_name}
+                  </div>
                   <div className="">{company.company_id}</div>
                   <div>{company.message}</div>
                 </div>
                 <button onClick={() => handleClick(company)}>Accept</button>
               </div>
             </div>
-          ))
-        }
-
+          ))}
       </div>
-
     </div>
-  )
+  );
 }
 
-export default SubComp
+export default SubComp;
