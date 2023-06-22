@@ -71,7 +71,7 @@ const GetCollege = () => {
       <div>
         <div className="m-2 flex justify-end ">
           <input
-            className="m-2 flex justify-end border-solid border-black border-2 p-1 rounded-lg"
+            className="m-2 flex justify-end border-solid border-black border-2 p-1 rounded-lg bg-primary bg-opacity-30 text-black placeholder:text-black"
             type="search"
             placeholder="Search here"
             onChange={handleChange}
@@ -81,12 +81,12 @@ const GetCollege = () => {
 
         {searchItem.map((college) => (
           <div
-            className=" text-center items-center inline-flex w-full sm:w-1/3"
+            className=" text-center items-center inline-flex w-full sm:w-1/3 "
             key={college._id}
           >
-            <div className="border-solid border-black border-2 w-3/4 mx-auto my-2 ">
+            <div className="bg-primary bg-opacity-30 rounded-xl w-3/4 mx-auto my-2 shadow-[0_35px_60px_0px_rgba(0,0,0,0.3)]">
               <div className=" ">
-                <div className=" text-lg font-bold justify-start flex px-4">
+                <div className="flex justify-center text-lg font-bold sm:justify-start  px-4">
                   {college.college_name}
                 </div>
                 <div className="">{college.email_id}</div>
@@ -95,8 +95,7 @@ const GetCollege = () => {
                   onClick={(e) => {
                     subscribeCollege(college);
                   }}
-                  className=" border-2 border-black"
-                  
+                  className=" bg-indigo-700 bg-opacity-80 m-2 text-white rounded-lg p-2" 
                 >
                   Subscribe
                 </button>
