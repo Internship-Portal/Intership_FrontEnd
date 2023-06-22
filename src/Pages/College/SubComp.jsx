@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import Sidebar from '../../components/Sidebar'
 import Navbar from '../../components/Navbar'
@@ -7,15 +7,27 @@ import config from '../../hooks/config'
 
 function SubComp() {
 
+  const [comp,setComp]=useState({
+    company_id :"",
+    message :""
+  })
+
   const { data } = useContext(AuthContext)
   console.log(data)
 
-  const { headers } = config
+  const { headers } = config()
 
   const handleClick = async (company) => {
+
+    setComp({
+      company_id:company.company_id,
+      message:company.message
+    })
+
     try {
-      console.log(company)
-      const res = await axios.put("http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer", {company_id:company.company_id,message:company.message},{ headers })
+      console.log(comp)
+      console.log(headers)
+      const res = await axios.put("http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer", comp , { headers })
       console.log(res)
     } catch (error) {
       console.log(error)
