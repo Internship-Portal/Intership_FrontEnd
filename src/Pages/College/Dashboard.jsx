@@ -18,7 +18,7 @@ function Dashboard() {
 
   useEffect(() => {
     console.log(id)
-    // if (!id) navigate("/login")
+    if (!id) navigate("/login")
 
     const getComp =async ()=>{
       try {
