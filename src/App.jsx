@@ -35,7 +35,7 @@ function App() {
           <Route path="/getcollege" element={<GetCompany />}></Route>
           <Route path="/confimedcollege" element={<ConfirmedCollege/>}></Route>
           <Route path="/requestedcollege" element={<SubscribedCollege/>}></Route>
-          <Route path="/company/displaystudent" element={<DisplayStudents/>}></Route>
+          <Route path="/companystudent" element={<DisplayStudents/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

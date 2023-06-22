@@ -11,11 +11,13 @@ const ConfirmedCollege = () => {
     const { id ,headers } = config();
   const [data, setData] = useState([])
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const [student, setStudent] = useState({
+    _id:"123",
     year_batch: null,
     departments: ["CS","IT","ENTC"],
+    department_name:"IT"
   })
 
   const handleBatch = (data) => {
@@ -49,8 +51,11 @@ const ConfirmedCollege = () => {
 
 
   const handleClick=(college)=>{
-
-    navigate()
+    
+    setStudent({ ...student, _id:college.officer_id })
+    if(student.year_batch!=null)
+       navigate('/companystudent',{state:student})
+    
   }
 
   useEffect(() => {
