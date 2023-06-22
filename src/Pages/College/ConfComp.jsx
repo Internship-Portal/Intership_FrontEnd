@@ -3,10 +3,26 @@ import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import axios from "axios";
+import Dropdown_batch from '../../components/Dropdown_batch'
+import Dropdown_dept from '../../components/Dropdown_dept'
 
 function ConfComp() {
-  const { headers } = config();
-  const [data,setData] = useState([])
+  const { id ,headers } = config();
+  const [data, setData] = useState([])
+
+  const [student, setStudent] = useState({
+    year_batch: null,
+    department_name: "",
+  })
+
+  const handleBatch = (data) => {
+    setStudent({ ...student, year_batch: data })
+  }
+
+  const handleDept = (data) => {
+    setStudent({ ...student, department_name: data })
+  }
+
 
   useEffect(() => {
     const getConf = async () => {
@@ -24,25 +40,26 @@ function ConfComp() {
     getConf();
   }, []);
 
-  const handleClick =()=>{
+  const handleClick = async (company) => {
     try {
-      const res = fetch(
+      console.log(id)
+      const token = localStorage.getItem("jwt")
+      const res =await fetch(
         "http://localhost:4000/api/officer/giveAccessToCompanies",
         {
-          method :"PUT",
-          headers: headers,
+          method: "PUT",
+          headers: {
+            "content-type":"application/json",
+            "authorization": `bearer ${token}`
+          },
           body: JSON.stringify({
-            "company_id":"648df2cf2fc66c676a4d7344",
-            "access": [{
-                "year_batch": 2024,
-                "departments": ["IT","Comp","Entc"]
-            },{
-                "year_batch": 2023,
-                "departments": ["IT","Comp"]
-            }]
+            company_id: company.company_id,
+            access: [student]
           })
         }
       );
+      const result = await res.json()
+      console.log(result)
     } catch (error) {
       console.log(error)
     }
@@ -69,7 +86,12 @@ function ConfComp() {
                   <div className="">{company.company_id}</div>
                   <div>{company.message}</div>
                 </div>
-                <button onClick={()=>handleClick(company)}>Send</button>
+                <div className="flex">
+                  <Dropdown_batch onhandleBatchChange={handleBatch} />
+                  <Dropdown_dept onhandleDeptChange={handleDept} />
+                </div>
+
+                <button onClick={() => handleClick(company)}>Send</button>
               </div>
             </div>
           ))
