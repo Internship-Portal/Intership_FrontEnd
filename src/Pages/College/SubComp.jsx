@@ -1,33 +1,39 @@
-import React, { useContext, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Sidebar from '../../components/Sidebar'
 import Navbar from '../../components/Navbar'
-import { AuthContext } from '../../context/AuthContext'
 import config from '../../hooks/config'
 
 function SubComp() {
 
-  const [comp,setComp]=useState({
-    company_id :"",
-    message :""
-  })
-
-  const { data } = useContext(AuthContext)
-  console.log(data)
-
+  const [data, setData] = useState([])
   const { headers } = config()
 
+  useEffect(() => {
+    const getConf = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/api/officer/getAllRequestedCompanies",
+          { headers }
+        );
+        console.log(res);
+        setData(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getConf();
+  }, []);
+
   const handleClick = async (company) => {
-
-    setComp({
-      company_id:company.company_id,
-      message:company.message
-    })
-
     try {
-      console.log(comp)
       console.log(headers)
-      const res = await axios.put("http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer", comp , { headers })
+      const res = await axios.put("http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
+        {
+          company_id: company.company_id,
+          message: company.message
+        },
+        { headers })
       console.log(res)
     } catch (error) {
       console.log(error)
@@ -55,7 +61,7 @@ function SubComp() {
                   <div className="">{company.company_id}</div>
                   <div>{company.message}</div>
                 </div>
-                <button onClick={()=>handleClick(company)}>Accept</button>
+                <button onClick={() => handleClick(company)}>Accept</button>
               </div>
             </div>
           ))

@@ -65,11 +65,6 @@ const AuthReducer = (state, action) => {
         loading: false,
         data:action.payload
       }
-    case "SET_COMPANIES":
-      return{
-        loading: false,
-        data:action.payload
-      }
     default:
       return state;
   }
