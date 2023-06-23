@@ -3,30 +3,30 @@ import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import axios from "axios";
-import Dropdown_batch from '../../components/Dropdown_batch'
-import Dropdown_dept from '../../components/Dropdown_dept'
+import Dropdown_batch from "../../components/Dropdown_batch";
+import Dropdown_dept from "../../components/Dropdown_dept";
 import { useNavigate } from "react-router-dom";
 
 const ConfirmedCollege = () => {
-    const { id ,headers } = config();
-  const [data, setData] = useState([])
+  const { id, headers } = config();
+  const [data, setData] = useState([]);
 
   const navigate = useNavigate();
 
   const [student, setStudent] = useState({
-    _id:"123",
+    _id: "123",
     year_batch: null,
-    departments: ["CS","IT","ENTC"],
-    department_name:"IT"
-  })
+    departments: ["CS", "IT", "ENTC"],
+    department_name: "IT",
+  });
 
   const handleBatch = (data) => {
-    setStudent({ ...student, year_batch: data })
-  }
+    setStudent({ ...student, year_batch: data });
+  };
 
   const handleDept = (data) => {
-    setStudent({ ...student, department_name: data })
-  }
+    setStudent({ ...student, department_name: data });
+  };
 
   const getConf = async () => {
     try {
@@ -49,17 +49,20 @@ const ConfirmedCollege = () => {
     }
   };
 
-
-  const handleClick=(college)=>{
-    
-    setStudent({ ...student, _id:college.officer_id })
-    if(student.year_batch!=null)
-       navigate('/companystudent',{state:student})
-    
-  }
+  const handleClick = (college) => {
+   
+    if (student.year_batch != null)
+      navigate("/companystudent", {
+        state: {
+          officer_id: college.officer_id,
+          year_batch: student.year_batch,
+          department_name: student.department_name,
+        },
+      });
+  };
 
   useEffect(() => {
-    getConf()
+    getConf();
   }, []);
 
   return (
@@ -96,7 +99,7 @@ const ConfirmedCollege = () => {
           ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ConfirmedCollege
+export default ConfirmedCollege;

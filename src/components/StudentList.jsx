@@ -8,32 +8,18 @@ import Dropdown_dept from "./Dropdown_dept";
 import { AuthContext } from "../context/AuthContext";
 import config from "../hooks/config";
 const StudentList = (collegeDetails) => {
-    const [student, setStudent] = useState({
-       
-        students: [],
-      });
+  console.log(collegeDetails.collegeDetails)
+    const [student, setStudent] = useState([]);
 
     const [loading,setLoading]=useState(false);
       const columns = [
         "name",
         "email_id",
         "mobile_no",
-        "roll_no",
-        "skills",
-        "achievements",
-        "cgpa",
-        // "Unavailable Dates",
-        "year_batch",
-        "backlog",
-        "location",
-        "tenth_percentage",
-        "twelve_percentage",
+        
       ];
     
 
-      const data=[
-        {}
-      ]
       
       const { id, headers } = config();
     
@@ -44,23 +30,36 @@ const StudentList = (collegeDetails) => {
 
       const getStudentData=async()=>{
         try {
-            const officer_id=collegeDetails._id;
-            const year_batch=collegeDetails.year_batch;
-            const department_name=collegeDetails.department_name;
+            const officer_id=collegeDetails.collegeDetails.officer_id;
+            const year_batch=parseInt(collegeDetails.collegeDetails.year_batch);
+            const department_name=collegeDetails.collegeDetails.department_name;
             const token = localStorage.getItem("jwt");
+            const data={
+              "officer_id":officer_id,
+              "year_batch":year_batch,
+              "department_name":department_name
+            }
+          
             const res = await fetch(
                 `http://localhost:4000/api/company/getStudentDetailsbyDeptAndYear`,
                 {
                   method: "PUT",
                   headers: {
-                    "Content-Type": "application/json",
-                    authorization: `bearer ${token}`,
+                    "Content-Type":"application/json",
+                    authorization:`bearer ${token}`,
                   },
-                  body: JSON.stringify({officer_id:officer_id,year_batch:year_batch,department_name:department_name }),
+                  body: JSON.stringify({ 
+                    officer_id:officer_id,
+                    year_batch:year_batch,
+                    department_name:department_name
+        }),
                 }
               );
-            console.log(res)
-            setStudent({ ...student, students: res.data.data.student_details });
+              const result= await res.json();
+            
+            setLoading(true);
+            setStudent( result.data.student_details );
+            setLoading(false);
           } catch (error) {
             console.log(error.response.data);
           }
@@ -84,7 +83,7 @@ const StudentList = (collegeDetails) => {
           <MuiThemeProvider>
             <MUIDataTable
               title={"Students"}
-              data={data}
+              data={student}
               columns={columns}
               options={options}
             />

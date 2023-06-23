@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 const DisplayStudents = () => {
   
   const collegeDetails=useLocation()
-  console.log(collegeDetails.state)
+ 
   return (
     <div className='bg-white flex'>
     <div className='hidden sm:flex'>
