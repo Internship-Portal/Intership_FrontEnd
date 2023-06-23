@@ -79,15 +79,15 @@ function SubComp() {
               className=" text-center items-center inline-flex w-full sm:w-1/3"
               key={company.index}
             >
-              <div className="border-solid border-black border-2 w-3/4 mx-auto my-2 ">
+              <div className="bg-primary bg-opacity-30 rounded-xl border-solid w-3/4 mx-auto my-2 ">
                 <div className=" ">
-                  <div className=" text-lg font-bold justify-start flex px-4">
+                  <div className=" flex justify-center text-lg font-bold sm:justify-start  px-4">
                     {company.company_name}
                   </div>
                   <div className="">{company.company_id}</div>
                   <div>{company.message}</div>
                 </div>
-                <button onClick={() => handleClick(company)}>Accept</button>
+                <button className=" bg-indigo-700 bg-opacity-80 m-2 text-white rounded-lg p-2 font-poppins hover:w-3/4" onClick={() => handleClick(company)}>Accept</button>
               </div>
             </div>
           ))}

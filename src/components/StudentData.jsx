@@ -65,7 +65,7 @@ const StudentData = () => {
 
   return (
     <div>
-      <div className="flex justify-end">
+      <div className="flex justify-center sm:justify-end sm:pr-12 mt-5 ">
         <Dropdown_batch onhandleBatchChange={handleBatch} />
         <Dropdown_dept onhandleDeptChange={handleDept} />
       </div>
@@ -73,8 +73,8 @@ const StudentData = () => {
       {loading ? (
         "Loading"
       ) : (
-        <div style={{ display: "table", tableLayout: "fixed", width: "100%" }}>
-          <MuiThemeProvider>
+        <div style={{ display: "table", tableLayout: "fixed", width: "100%" }} className="px-8">
+          <MuiThemeProvider  className="font-poppins">
             <MUIDataTable
               title={"Students"}
               data={student.students}

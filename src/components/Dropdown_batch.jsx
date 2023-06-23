@@ -10,12 +10,12 @@ const DropDownB = (props) => {
 
   return (
     <div>
-  <div className="relative w-full lg:max-w-sm p-10">
+  <div className="relative w-full lg:max-w-sm p-4">
             <select className="w-full p-2.5 text-black bg-slate-300 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600" onClick={handleClick}>
-                <option className=''>Batch</option>
-                <option >2023</option>
-                <option>2024</option>
-                <option>2025</option>
+                <option className='font-poppins'>Batch</option>
+                <option  className='font-poppins' >2023</option>
+                <option className='font-poppins'>2024</option>
+                <option className='font-poppins'>2025</option>
             </select>
         </div> 
 

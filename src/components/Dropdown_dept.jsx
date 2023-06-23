@@ -10,12 +10,12 @@ const DropDownD = (props) => {
 
   return (
     <div>
-  <div className="relative w-full lg:max-w-sm p-10">
+  <div className="relative w-full lg:max-w-sm p-4 mx-auto">
             <select className="w-full p-2.5 text-black bg-slate-300 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600" onClick={handleClick}>
-                <option>Department</option>
-                <option>CS</option>
-                <option>IT</option>
-                <option>EnTc</option>
+                <option className='font-poppins'>Dept</option>
+                <option className='font-poppins'>CS</option>
+                <option className='font-poppins'>IT</option>
+                <option className='font-poppins'>EnTc</option>
             </select>
         </div>
 

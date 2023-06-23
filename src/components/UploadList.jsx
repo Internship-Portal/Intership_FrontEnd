@@ -55,7 +55,7 @@ const UploadList = () => {
 
   return (
     <div>
-      <div className="flex flex-row items-center justify-end">
+      <div className="flex flex-row items-center justify-center sm:justify-end sm:pr-32 ">
         <DropDownB onhandleBatchChange={handleBatchChange} />
         <DropDownD onhandleDeptChange={handleDeptChange} />
       </div>
@@ -82,10 +82,10 @@ const UploadList = () => {
                 ></path>
               </svg>
               <p className="mb-2 text-sm text-black ">
-                <span className="font-semibold">Click to upload</span> or drag
+                <span className="font-semibold font-poppins">Click to upload</span> or drag
                 and drop
               </p>
-              <p className="text-xs text-black">CSV</p>
+              <p className="text-xs text-black font-poppins">CSV</p>
             </div>
             <input
               id="dropzone-file"
