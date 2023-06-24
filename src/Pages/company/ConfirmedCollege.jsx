@@ -50,7 +50,6 @@ const ConfirmedCollege = () => {
   };
 
   const handleClick = (college) => {
-   
     if (student.year_batch != null)
       navigate("/companystudent", {
         state: {
@@ -77,23 +76,22 @@ const ConfirmedCollege = () => {
         {data &&
           data.map((college) => (
             <div
-              className=" text-center items-center inline-flex w-full sm:w-1/3"
+              className=" text-center items-center flex w-full "
               key={college.college_id}
             >
-              <div className="border-solid border-black border-2 w-3/4 mx-auto my-2 ">
-                <div className=" ">
-                  <div className=" text-lg font-bold justify-start flex px-4">
+              <div className="bg-primary  bg-opacity-30 rounded-xl w-3/4 mx-auto my-2 shadow-[0_35px_60px_0px_rgba(0,0,0,0.3)] flex">
+                <div className=" flex w-[55%]">
+                  <div className=" font-poppins flex justify-center text-lg font-bold sm:justify-start  px-4 w-1/2">
                     {college.college_name}
                   </div>
-                  <div className="">{college.company_id}</div>
-                  <div>{college.message}</div>
+                  <div className="w-1/2 border-l-2 border-l-black border-r-2 border-r-black">{college.message}</div>
                 </div>
                 <div className="flex">
                   <Dropdown_batch onhandleBatchChange={handleBatch} />
                   <Dropdown_dept onhandleDeptChange={handleDept} />
                 </div>
 
-                <button onClick={() => handleClick(college)}>View List</button>
+                <button className="font-poppins bg-indigo-700 bg-opacity-80 m-2 text-white rounded-lg p-2 w-32 h-10 hover:w-1/5 items-center text-center mx-auto my-auto" onClick={() => handleClick(college)}>View List</button>
               </div>
             </div>
           ))}

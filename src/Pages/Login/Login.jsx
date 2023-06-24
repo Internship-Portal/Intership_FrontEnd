@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { launchPoster } from "../../assets";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
@@ -35,15 +35,14 @@ const Login = (props) => {
 
   const successLogin = () => {
     toast.success("Login Successful", {
-      position: 'top-center'
-    })
-  }
+      position: "top-center",
+    });
+  };
   const errLogin = () => {
     toast.error("Login Unsuccessful", {
-      position: 'top-center'
-    })
-  }
-
+      position: "top-center",
+    });
+  };
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -52,34 +51,37 @@ const Login = (props) => {
       try {
         console.log(credentials);
 
-        const res = await axios.post("http://localhost:4000/api/company/loginCompany", credentials );
+        const res = await axios.post(
+          "http://localhost:4000/api/company/loginCompany",
+          credentials
+        );
 
         localStorage.clear();
-        localStorage.setItem("jwt", res.data.token)
-        console.log(res.data.token)
+        localStorage.setItem("jwt", res.data.token);
+        console.log(res.data.token);
 
         successLogin();
 
         navigate("/company");
-
       } catch (err) {
         errLogin();
       }
-    }
-     else if (officer) {
+    } else if (officer) {
       try {
         console.log(credentials);
 
-        const res = await axios.post("http://localhost:4000/api/officer/loginOfficer", credentials );
+        const res = await axios.post(
+          "http://localhost:4000/api/officer/loginOfficer",
+          credentials
+        );
 
         localStorage.clear();
-        localStorage.setItem("jwt", res.data.token)
-        console.log(res.data.token)
+        localStorage.setItem("jwt", res.data.token);
+        console.log(res.data.token);
 
         successLogin();
 
-        navigate("/officer")
-        
+        navigate("/officer");
       } catch (err) {
         errLogin();
       }
@@ -88,9 +90,9 @@ const Login = (props) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full object-cover">
         <div className=" hidden sm:block">
-          <div className="w-full h-screen object-cover bg-primary opacity-80">
+          <div className="w-full h-full object-cover bg-primary opacity-80">
             <img
               className=" z-1 h-screen p-32 mx-auto flex items-center justify-center px-0 py-0 pb-0"
               src={launchPoster}
@@ -99,7 +101,7 @@ const Login = (props) => {
           </div>
         </div>
 
-        <div className=" flex flex-col justify-center h-screen ">
+        <div className=" flex flex-col justify-center h-full ">
           <form className="max-w-[380px] w-4/5 sm:w-full mx-auto bg-primary opacity-80 p-8 px-8 rounded-3xl">
             <h2 className=" text-4xl dark:text-white font-poppins font-bold text-center">
               Login
@@ -148,14 +150,14 @@ const Login = (props) => {
                   placeholder="Password"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2  border-gray-800 text-black"
                   onChange={handleChange}
-                // onClick={successLogin}
+                  // onClick={successLogin}
                 ></input>
               </div>
               <button
                 className=" my-2 py-1 bg-primary text-black w-full rounded-xl text-xl"
                 disabled={loading}
                 onClick={handleClick}
-              // onClick={successLogin}
+                // onClick={successLogin}
               >
                 Login
               </button>
@@ -175,7 +177,6 @@ const Login = (props) => {
             {error && <span>{error.message}</span>}
           </form>
         </div>
-
       </div>
       <ToastContainer />
     </>
