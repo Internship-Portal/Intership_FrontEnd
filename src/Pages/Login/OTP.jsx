@@ -1,24 +1,19 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
 
 const OTP = () => {
 
-  const [otp, setOtp] = useState()
+  const [otp, setOtp] = useState(null)
   const navigate = useNavigate()
 
   const handleChange = (event) => {
     setOtp(event.target.value);
-    console.log(otp);
   }
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token")
-      console.log(token)
-      console.log(otp)
       const res = await fetch(
         "http://localhost:4000/api/otp/verifyOTP",
         {

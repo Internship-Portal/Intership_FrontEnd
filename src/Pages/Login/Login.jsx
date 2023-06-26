@@ -49,7 +49,6 @@ const Login = (props) => {
 
     if (company) {
       try {
-        console.log(credentials);
 
         const res = await axios.post(
           "http://localhost:4000/api/company/loginCompany",
@@ -58,17 +57,17 @@ const Login = (props) => {
 
         localStorage.clear();
         localStorage.setItem("jwt", res.data.token);
-        console.log(res.data.token);
+        console.log(res)
 
         successLogin();
 
         navigate("/company");
       } catch (err) {
         errLogin();
+        console.log(err.response)
       }
     } else if (officer) {
       try {
-        console.log(credentials);
 
         const res = await axios.post(
           "http://localhost:4000/api/officer/loginOfficer",
@@ -77,13 +76,14 @@ const Login = (props) => {
 
         localStorage.clear();
         localStorage.setItem("jwt", res.data.token);
-        console.log(res.data.token);
+        console.log(res);
 
         successLogin();
 
         navigate("/officer");
       } catch (err) {
         errLogin();
+        console.log(err.response)
       }
     }
   };

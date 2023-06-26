@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 
 const Confirm_password = () => {
 
@@ -11,26 +10,37 @@ const Confirm_password = () => {
     password: ""
   })
 
-  const token = localStorage.getItem("token")
-
-  const headers = {
-    "Content-type": "multipart/form-data",
-    Authorization: `Bearer ${token}`,
-  };
-
   const navigate = useNavigate()
 
   const handleChange = (event) => {
     setPass({ ...pass, [event.target.name]: event.target.value });
-    console.log(pass);
   }
 
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:4000/api/otp/changepassword", { password: pass.password }, headers)
-      // localStorage.setItem("token",res.data.token)
-      console.log(res);
-      navigate('/login')
+      const token = localStorage.getItem("token")
+
+      const res = await fetch(
+        "http://localhost:4000/api/otp/changepassword",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `bearer ${token}`,
+          },
+          body: JSON.stringify({
+            password: pass.password,
+          }),
+        }
+      );
+
+      const result = await res.json();
+      console.log(result);
+
+      if (res.ok) {
+        navigate('/')
+      }
 
     } catch (error) {
       console.log(error)

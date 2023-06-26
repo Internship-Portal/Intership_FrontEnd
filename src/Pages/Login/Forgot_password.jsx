@@ -1,6 +1,5 @@
 import React , {useState} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Forgot_password = () => {
 
@@ -9,7 +8,6 @@ const Forgot_password = () => {
 
   const handleChange = (event)=>{
     setemail(event.target.value);
-    console.log(email);
   }
 
   const handleClick = async (e)=>{
