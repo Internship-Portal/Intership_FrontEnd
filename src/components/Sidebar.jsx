@@ -42,7 +42,7 @@ function Sidebar() {
             <ArrowDropDownRoundedIcon style={{color:"grey"}}/>
             </div>
             
-            {showCompany &&
+            {showCompany && 
               <ul>
                 <div className="flex flex-col">
                   <li className='items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]'>
