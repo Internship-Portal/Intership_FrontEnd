@@ -1,7 +1,45 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React , {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Forgot_password = () => {
+
+  const [email, setemail] = useState("")
+  const navigate = useNavigate()
+
+  const handleChange = (event)=>{
+    setemail(event.target.value);
+  }
+
+  const handleClick = async (e)=>{
+    e.preventDefault();
+    try {
+      const res = await fetch(
+        "http://localhost:4000/api/otp/sendOTP",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify({
+            email_id: email,
+          }),
+        }
+      );
+
+      const result = await res.json();
+      console.log(result);
+
+      localStorage.setItem("token",result.token)
+
+      if (res.ok) {
+        navigate('/otp')
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900 h-screen">
@@ -15,13 +53,13 @@ const Forgot_password = () => {
                 </h2>
                 <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="#">
                     <div>
-                        <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                        <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required=""/>
+                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                        <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" onChange={handleChange}/>
                     </div>
-              <Link to='/otp' style={{ textDecoration: "none" }}>
-                <button type="submit" className="w-full text-white bg-gray-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800  max-w-full p-4 mt-4">Submit</button>
-              </Link>
-
+              
+                <button type="submit" className="w-full text-white bg-gray-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800  max-w-full p-4 mt-4"  onClick={handleClick}>Submit</button>
+              
+              {/* {error && <h4>{error.message}</h4>} */}
             </form>
           </div>
         </div>
