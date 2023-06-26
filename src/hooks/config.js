@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 
-function config() {
+function config(){
   let id = null;
   const token = localStorage.getItem("jwt");
 
@@ -16,4 +16,5 @@ function config() {
   return { id, headers };
 }
 
-export default config;
+
+export default config
