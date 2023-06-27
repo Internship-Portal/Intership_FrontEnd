@@ -15,6 +15,7 @@ import ConfirmedCollege from "./Pages/company/ConfirmedCollege";
 
 import SubscribedCollege from "./Pages/company/SubscribedCollege";
 import DisplayStudents from "./Pages/company/DisplayStudents";
+import Sidebar_ from "./components/Sidebar_";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/confirmedcollege" element={<ConfirmedCollege/>}></Route>
           <Route path="/requestedcollege" element={<SubscribedCollege/>}></Route>
           <Route path="/companystudent" element={<DisplayStudents/>}></Route>
+          {/* <Route path="/sidebar" element={<Sidebar_/>}></Route> */}
         </Routes>
       </BrowserRouter>
     </div>

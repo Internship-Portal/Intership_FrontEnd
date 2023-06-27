@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Navbar from '../../components/Navbar'
-import Sidebar from '../../components/Sidebar'
+import Sidebar_ from '../../components/Sidebar_'
 import { useNavigate } from 'react-router-dom'
 import config from '../../hooks/config'
 import { ToastContainer, toast } from 'react-toastify';
@@ -20,7 +20,7 @@ function Dashboard() {
   return (
     <div className='bg-white flex'>
       <div className='hidden sm:flex'>
-        <Sidebar />
+        <Sidebar_ />
       </div>
       <div className='flex-[3]'>
         <Navbar />

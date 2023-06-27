@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react'
 import Navbar from '../../components/Navbar'
-import Sidebar from '../../components/Sidebar'
+import SidebarCompany from '../../components/SidebarCompany'
 import config from '../../hooks/config'
 // import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,7 +15,7 @@ function Dashboard() {
   return (
     <div className='bg-white flex'>
       <div className='hidden sm:flex'>
-        <Sidebar />
+        <SidebarCompany/>
       </div>
       <div className='flex-[3]'>
         <Navbar />
