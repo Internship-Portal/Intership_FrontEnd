@@ -89,7 +89,7 @@ const SignUp = () => {
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 h-fit w-full">
         <div className=" hidden sm:block">
-          <div className="w-full h-screen object-cover bg-primary opacity-80">
+          <div className="w-full h-full object-cover bg-primary opacity-80">
             <img
               className=" z-1 h-full p-32 mx-auto flex items-center justify-center  px-0 py-0 pb-0"
               src={launchPoster}

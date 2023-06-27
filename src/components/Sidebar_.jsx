@@ -26,7 +26,7 @@ const Sidebar_ = () => {
           } duration-300 h-screen bg-cardBackground relative p-5 pt-8`}
         >
           <img
-            src="./src/assets/img.jpg"
+            src="./src/assets/symbol.png"
             className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple rounded-full ${
               !open && "rotate-180"
             }`}
