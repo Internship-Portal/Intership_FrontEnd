@@ -7,10 +7,18 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import PersonIcon from '@mui/icons-material/Person';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 
-const SidebarCompany = () => {
+const SidebarCompany = (props) => {
+  const user=props.user;
+  
   const [open, setOpen] = useState(false);
   const [showCompany, setshowCompany] = useState(false);
   const [showCalendar, setshowCalendar] = useState(false);
+  const [officer,isOfficer]=useState(user);
+
+  useState(()=>{
+       
+  },[])
+ 
   return (
     <>
       <div className="flex">
@@ -75,7 +83,7 @@ const SidebarCompany = () => {
                   }}
                 >
                   <span className="text-[13px] mr-2 font-semibold text-[#888] ml-[10px]">
-                    Colleges
+                  {(user == "officer")?"Colleges":"Comapanies"}
                   </span>
                   <ArrowDropDownRoundedIcon style={{ color: "grey" }} />
                 </div>
@@ -89,7 +97,7 @@ const SidebarCompany = () => {
                           style={{ textDecoration: "none" }}
                         >
                           <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
-                            Requested Colleges
+                           Requested {(user == "officer")?"Colleges":"Comapanies"}
                           </span>
                         </Link>
                       </li>
@@ -99,7 +107,7 @@ const SidebarCompany = () => {
                           style={{ textDecoration: "none" }}
                         >
                           <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
-                            Confirmed Colleges
+                            Confirmed {(user == "officer")?"Colleges":"Comapanies"}
                           </span>
                         </Link>
                       </li>

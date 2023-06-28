@@ -15,7 +15,7 @@ function Dashboard() {
   return (
     <div className='bg-white flex'>
       <div className='hidden sm:flex'>
-        <SidebarCompany/>
+        <SidebarCompany user={"company"}/>
       </div>
       <div className='flex-[3]'>
         <Navbar />
