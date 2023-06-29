@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from './Sidebar'
+import Sidebar_ from './Sidebar_'
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
@@ -47,7 +47,7 @@ const Navbar = () => {
             className={`${toggle ? `flex` : `hidden`}  bg-gray-100 absolute top-4 rounded-xl`}
 
           >
-            <Sidebar />
+            <Sidebar_ />
 
 
           </div>
