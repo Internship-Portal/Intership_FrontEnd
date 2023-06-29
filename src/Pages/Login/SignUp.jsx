@@ -69,7 +69,6 @@ const SignUp = () => {
         localStorage.clear()
         localStorage.setItem("jwt",res.data.token)
         navigate('/')
-
       }
       else if(company) {
         console.log(companyDetails)

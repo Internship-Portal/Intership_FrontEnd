@@ -14,7 +14,11 @@ const UploadList = () => {
     csvFile: null,
   });
 
-  const { id, headers } = config();
+  const token = localStorage.getItem("jwt")
+  const headers = {
+    "Content-type": "multipart/form-data",
+    Authorization: `Bearer ${token}`,
+  }
 
   const handleBatchChange = (data) => {
     setUser({ ...user, year_batch: data });
@@ -38,6 +42,7 @@ const UploadList = () => {
       position: "top-center",
     });
   };
+
   const handleClick = async () => {
     try {
       const res = await axios.post(
@@ -118,7 +123,7 @@ const UploadList = () => {
             className="mt-1 text-sm text-gray-500 dark:text-gray-300"
             id="file_input_help"
           >
-           CSV File only
+            CSV File only
           </p>
         </div>
 
