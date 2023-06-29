@@ -16,6 +16,7 @@ import ConfirmedCollege from "./Pages/company/ConfirmedCollege";
 import SubscribedCollege from "./Pages/company/SubscribedCollege";
 import DisplayStudents from "./Pages/company/DisplayStudents";
 import Sidebar_ from "./components/Sidebar_";
+import DataTable from "./components/DataTable";
 
 function App() {
   return (
@@ -37,7 +38,7 @@ function App() {
           <Route path="/confirmedcollege" element={<ConfirmedCollege/>}></Route>
           <Route path="/requestedcollege" element={<SubscribedCollege/>}></Route>
           <Route path="/companystudent" element={<DisplayStudents/>}></Route>
-         
+          <Route path="/datatable" element={<DataTable/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

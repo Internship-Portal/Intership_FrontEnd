@@ -5,6 +5,8 @@ import config from "../../hooks/config";
 import axios from "axios";
 import Dropdown_batch from "../../components/Dropdown_batch";
 import Dropdown_dept from "../../components/Dropdown_dept";
+import DataTable from "../../components/DataTable";
+import SidebarCompany from "../../components/SidebarCompany";
 import { useNavigate } from "react-router-dom";
 
 const ConfirmedCollege = () => {
@@ -19,6 +21,44 @@ const ConfirmedCollege = () => {
     departments: ["CS", "IT", "ENTC"],
     department_name: "IT",
   });
+  const col = [
+    {
+      name: "Logo",
+      diplay: false,
+    },
+    {
+      name: "College",
+      diplay: true,
+    },
+    {
+      name: "Location",
+      diplay: true,
+    },
+    {
+      name: "Available Studen",
+      diplay: true,
+    },
+    {
+      name: "Internship Period",
+      diplay: true,
+    },
+
+    {
+      name: "Year",
+      diplay: false,
+      displayRow: false,
+    },
+    {
+      name: "Department",
+      diplay: false,
+      displayRow: false,
+    },
+    {
+      name: "View List",
+      diplay: false,
+      displayRow: false,
+    },
+  ];
 
   const handleBatch = (data) => {
     setStudent({ ...student, year_batch: data });
@@ -50,6 +90,7 @@ const ConfirmedCollege = () => {
   };
 
   const handleClick = (college) => {
+    console.log(student.year_batch);
     if (student.year_batch != null)
       navigate("/companystudent", {
         state: {
@@ -67,34 +108,21 @@ const ConfirmedCollege = () => {
   return (
     <div className="bg-white flex">
       <div className="hidden sm:flex">
-        <Sidebar />
+        <SidebarCompany user={"Company"}/>
       </div>
       <div className="flex-[3]">
         <Navbar />
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
 
-        {data &&
-          data.map((college) => (
-            <div
-              className=" text-center items-center flex w-full "
-              key={college.college_id}
-            >
-              <div className="bg-primary  bg-opacity-30 rounded-xl w-3/4 mx-auto my-2 shadow-[0_35px_60px_0px_rgba(0,0,0,0.3)] flex">
-                <div className=" flex w-[55%]">
-                  <div className=" font-poppins flex justify-center text-lg font-bold sm:justify-start  px-4 w-1/2">
-                    {college.college_name}
-                  </div>
-                  <div className="w-1/2 border-l-2 border-l-black border-r-2 border-r-black">{college.message}</div>
-                </div>
-                <div className="flex">
-                  <Dropdown_batch onhandleBatchChange={handleBatch} />
-                  <Dropdown_dept onhandleDeptChange={handleDept} />
-                </div>
-
-                <button className="font-poppins bg-indigo-700 bg-opacity-80 m-2 text-white rounded-lg p-2 w-32 h-10 hover:w-1/5 items-center text-center mx-auto my-auto" onClick={() => handleClick(college)}>View List</button>
-              </div>
-            </div>
-          ))}
+        <DataTable
+          col={col}
+          row={data}
+          deptYear={true}
+          handleBatch={handleBatch}
+          handleDept={handleDept}
+          handleChange={handleClick}
+          action={"View List"}
+        />
       </div>
     </div>
   );
