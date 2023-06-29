@@ -34,26 +34,7 @@ const Navbar = () => {
           </div>
         </ul>
 
-        <div className="sm:hidden flex flex-1 justify-between items-center">
-          <img src={menu} alt="" />
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="w-[28px] h-[28px] object-contain"
-            onClick={() => setToggle((prev) => !prev)}
-          />
-
-          <div
-            className={`${toggle ? `flex` : `hidden`}  bg-gray-100 absolute top-4 rounded-xl`}
-
-          >
-            <Sidebar_ />
-
-
-          </div>
-
-
-        </div>
+       
       </div>
       
     </nav>

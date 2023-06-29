@@ -2,26 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
-import HomeIcon from '@mui/icons-material/Home';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import PersonIcon from '@mui/icons-material/Person';
-import ApartmentIcon from '@mui/icons-material/Apartment';
+import HomeIcon from "@mui/icons-material/Home";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import PersonIcon from "@mui/icons-material/Person";
+import ApartmentIcon from "@mui/icons-material/Apartment";
 
 const SidebarCompany = (props) => {
-  const user=props.user;
-  
+  const user = props.user;
+
   const [open, setOpen] = useState(false);
   const [showCompany, setshowCompany] = useState(false);
   const [showCalendar, setshowCalendar] = useState(false);
-  const [officer,isOfficer]=useState(user);
+  const [officer, isOfficer] = useState(user);
 
-  useState(()=>{
-       
-  },[])
- 
+  useState(() => {}, []);
+
   return (
     <>
-      <div className="flex">
+      <div className="flex h-screen">
         <div
           className={`${
             open ? " w-64" : "w-20"
@@ -35,7 +33,7 @@ const SidebarCompany = (props) => {
             onClick={() => setOpen(!open)}
           />
           <div className="flex gap-x-4 items-center">
-          <ApartmentIcon className="text-white" fontSize="large"/>
+            <ApartmentIcon className="text-white" fontSize="large" />
             <Link to="/company" style={{ textDecoration: "none" }}>
               <h1
                 className={`text-white origin-left font-medium text-xl duration-300 ${
@@ -47,15 +45,8 @@ const SidebarCompany = (props) => {
             </Link>
           </div>
           <ul className="pt-6">
-            {/* {menus.map((menu,index)=>(
-                <li key={index} className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:bg-opacity-25 rounded-md `}>
-                    <img className="h-10" src={`./src/assets/${menu.src}`} />
-                    <span className={`${!open && 'hidden'} origin-left duration-200`}>{menu.title}</span>
-                </li>    
-            ))} */}
-
             <p className="text-[10px] font-bold text-[#999] mt-[15px] mb-[5px] py-4">
-            <HomeIcon />
+              <HomeIcon />
               MAIN
             </p>
             <div className={`${!open && "hidden"}`}>
@@ -70,11 +61,10 @@ const SidebarCompany = (props) => {
             </div>
 
             <p className="text-[10px] font-bold text-[#999] mt-[15px] mb-[5px] py-4">
-              <FormatListBulletedIcon/>
+              <FormatListBulletedIcon />
               LISTS
             </p>
             <div className={`${!open && "hidden"}`}>
-            
               <li className="items-center p-[5px] cursor-pointer">
                 {/* <StoreIcon className="icon" />  */}
                 <div
@@ -83,7 +73,7 @@ const SidebarCompany = (props) => {
                   }}
                 >
                   <span className="text-[13px] mr-2 font-semibold text-[#888] ml-[10px]">
-                  {(user == "officer")?"Colleges":"Comapanies"}
+                    {user == "officer" ? "Colleges" : "Comapanies"}
                   </span>
                   <ArrowDropDownRoundedIcon style={{ color: "grey" }} />
                 </div>
@@ -97,7 +87,8 @@ const SidebarCompany = (props) => {
                           style={{ textDecoration: "none" }}
                         >
                           <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
-                           Requested {(user == "officer")?"Colleges":"Comapanies"}
+                            Requested{" "}
+                            {user == "officer" ? "Colleges" : "Comapanies"}
                           </span>
                         </Link>
                       </li>
@@ -107,7 +98,8 @@ const SidebarCompany = (props) => {
                           style={{ textDecoration: "none" }}
                         >
                           <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
-                            Confirmed {(user == "officer")?"Colleges":"Comapanies"}
+                            Confirmed{" "}
+                            {user == "officer" ? "Colleges" : "Comapanies"}
                           </span>
                         </Link>
                       </li>
@@ -115,10 +107,9 @@ const SidebarCompany = (props) => {
                   </ul>
                 )}
               </li>
-
             </div>
             <p className="text-[10px] font-bold text-[#999] mt-[15px] mb-[5px] py-4">
-                <PersonIcon/>
+              <PersonIcon />
               USER
             </p>
             <div className={`${!open && "hidden"}`}>
@@ -137,7 +128,6 @@ const SidebarCompany = (props) => {
             </div>
           </ul>
         </div>
-        
       </div>
     </>
   );

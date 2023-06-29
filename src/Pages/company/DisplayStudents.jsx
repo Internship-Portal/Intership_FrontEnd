@@ -11,7 +11,7 @@ const DisplayStudents = () => {
  
   return (
     <div className='bg-white flex'>
-    <div className='hidden sm:flex'>
+    <div className='sm:flex'>
       <Sidebar />
     </div>
     <div className='flex-[3]'>

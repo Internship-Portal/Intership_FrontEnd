@@ -112,7 +112,7 @@ const GetCollege = () => {
   return (
     <>
       <div className="bg-white flex">
-        <div className="hidden sm:flex">
+        <div className=" sm:flex">
           <SidebarCompany user={"Company"} />
         </div>
         <div className="flex-[3]">

@@ -19,7 +19,7 @@ const Sidebar_ = () => {
   const [showCalendar, setshowCalendar] = useState(false);
   return (
     <>
-      <div className="flex">
+      <div className="flex fixed ">
         <div
           className={`${
             open ? " w-64" : "w-20" 

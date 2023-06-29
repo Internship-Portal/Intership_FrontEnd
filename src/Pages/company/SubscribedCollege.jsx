@@ -104,7 +104,7 @@ const SubscribedCollege = () => {
 
   return (
     <div className="bg-white flex">
-    <div className="hidden sm:flex">
+    <div className="sm:flex h-screen">
     <SidebarCompany user={"Company"}/>
     </div>
     <div className="flex-[3]">

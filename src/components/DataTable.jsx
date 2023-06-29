@@ -43,7 +43,7 @@ setColleges(props.row)
 
       </div>
     </form>
-    <div class="relative overflow-y-scroll sm:rounded-lg m-9 h-[429px] ">
+    <div class="relative overflow-y-scroll sm:rounded-lg m-9 sm:h-[350px] h-[400px] ">
       <table class="w-full table-auto overflow-scroll text-sm text-left text-gray-500  ">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 shadow-md">
           <tr>

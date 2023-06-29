@@ -106,11 +106,13 @@ const ConfirmedCollege = () => {
   }, []);
 
   return (
-    <div className="bg-white flex">
-      <div className="hidden sm:flex">
-        <SidebarCompany user={"Company"}/>
+    <div className=" bg-cardBackground h-full flex">
+      <div className="bg-white flex">
+        <div className="sm:flex h-screen">
+          <SidebarCompany user={"Company"} />
+        </div>
       </div>
-      <div className="flex-[3]">
+      <div className="flex-[3] bg-white">
         <Navbar />
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
 
