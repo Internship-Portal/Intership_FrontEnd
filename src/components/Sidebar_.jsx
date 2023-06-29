@@ -22,8 +22,8 @@ const Sidebar_ = () => {
       <div className="flex">
         <div
           className={`${
-            open ? " w-64" : "w-20"
-          } duration-300 h-screen bg-cardBackground relative p-5 pt-8`}
+            open ? " w-64" : "w-20" 
+          } duration-300 h-screen bg-cardBackground relative p-5 pt-8 z-10 ss:w-40`}
         >
           <img
             src="./src/assets/symbol.png"
@@ -45,13 +45,6 @@ const Sidebar_ = () => {
             </Link>
           </div>
           <ul className="pt-6">
-            {/* {menus.map((menu,index)=>(
-                <li key={index} className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:bg-opacity-25 rounded-md `}>
-                    <img className="h-10" src={`./src/assets/${menu.src}`} />
-                    <span className={`${!open && 'hidden'} origin-left duration-200`}>{menu.title}</span>
-                </li>    
-            ))} */}
-
             <p className="text-[10px] font-bold text-[#999] mt-[15px] mb-[5px] py-4">
             <HomeIcon />
               MAIN
@@ -188,9 +181,7 @@ const Sidebar_ = () => {
             </div>
           </ul>
         </div>
-        <div className="p-7 text-2xl font-semibold flex-1 h-screen">
-          Dashboard
-        </div>
+        
       </div>
     </>
   );

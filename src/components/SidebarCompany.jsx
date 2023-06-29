@@ -137,9 +137,7 @@ const SidebarCompany = (props) => {
             </div>
           </ul>
         </div>
-        <div className="p-7 text-2xl font-semibold flex-1 h-screen">
-          Dashboard
-        </div>
+        
       </div>
     </>
   );
