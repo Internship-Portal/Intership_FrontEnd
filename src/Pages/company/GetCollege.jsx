@@ -32,7 +32,7 @@ const GetCollege = () => {
   const getallcollege = async () => {
     try {
       const res = await axios
-        .get(`http://localhost:4000/api/company/getAllFilteredOfficers`, {
+        .get(`http://localhost:4000/api/company/getAllFilteredOfficers?chunk=1`, {
           headers,
         })
         .then(function (res) {
