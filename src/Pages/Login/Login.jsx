@@ -16,7 +16,7 @@ const Login = (props) => {
   const [officer, setOfficer] = useState(false);
   const [company, setCompany] = useState(true);
 
-  const { loading, error, dispatch } = useContext(AuthContext);
+  const { loading, error} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -49,41 +49,64 @@ const Login = (props) => {
 
     if (company) {
       try {
-
-        const res = await axios.post(
+        const res = await fetch(
           "http://localhost:4000/api/company/loginCompany",
-          credentials
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              email_id: credentials.email_id,
+              password: credentials.password,
+            }),
+          }
         );
 
-        localStorage.clear();
-        localStorage.setItem("jwt", res.data.token);
-        console.log(res)
+        const result = await res.json();
 
+        localStorage.clear();
+        localStorage.setItem("jwt", result.token);
         successLogin();
 
-        navigate("/company");
-      } catch (err) {
+        if (res.ok) {
+          navigate("/company");
+        }
+
+      } catch (error) {
         errLogin();
-        console.log(err.response)
+        console.log(error);
       }
-    } else if (officer) {
+    }
+    else if (officer) {
       try {
-
-        const res = await axios.post(
+        const res = await fetch(
           "http://localhost:4000/api/officer/loginOfficer",
-          credentials
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              email_id: credentials.email_id,
+              password: credentials.password,
+            }),
+          }
         );
 
-        localStorage.clear();
-        localStorage.setItem("jwt", res.data.token);
-        console.log(res);
+        const result = await res.json();
 
+        localStorage.clear();
+        localStorage.setItem("jwt", result.token);
         successLogin();
 
-        navigate("/officer");
-      } catch (err) {
+        if (res.ok) {
+          navigate("/officer");
+        }
+
+      } catch (error) {
         errLogin();
-        console.log(err.response)
+        console.log(error);
       }
     }
   };
@@ -150,14 +173,14 @@ const Login = (props) => {
                   placeholder="Password"
                   className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2  border-gray-800 text-black"
                   onChange={handleChange}
-                  // onClick={successLogin}
+                // onClick={successLogin}
                 ></input>
               </div>
               <button
                 className=" my-2 py-1 bg-primary text-black w-full rounded-xl text-xl"
                 disabled={loading}
                 onClick={handleClick}
-                // onClick={successLogin}
+              // onClick={successLogin}
               >
                 Login
               </button>

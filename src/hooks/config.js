@@ -10,7 +10,7 @@ function config(){
   }
 
   const headers = {
-    "Content-type": "multipart/form-data",
+    "Content-type": "application/json",
     Authorization: `Bearer ${token}`,
   };
   return { id, headers };

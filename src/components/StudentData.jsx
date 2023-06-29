@@ -1,5 +1,4 @@
 import React, { useEffect, useContext, useState } from "react";
-import axios from "axios";
 import MUIDataTable from "mui-datatables";
 import { MuiThemeProvider } from "@material-ui/core";
 import "../components/StudentData.css";
@@ -31,8 +30,8 @@ const StudentData = () => {
     "twelve_percentage",
   ];
 
-  const { loading, error } = useContext(AuthContext);
-  const { id, headers } = config();
+  const { loading } = useContext(AuthContext);
+  const { headers } = config();
 
   const options = {
     filterType: "checkbox",
@@ -47,20 +46,35 @@ const StudentData = () => {
     setStudent({ ...student, department_name: data });
   };
 
-  useEffect(() => {
-    const fetchStudent = async () => {
-      try {
-        const res = await axios.post(
-          `http://localhost:4000/api/officer/getStudentDetails`,
-          student,
-          { headers }
-        );
-        setStudent({ ...student, students: res.data.data.student_details });
-      } catch (error) {
-        console.log(error.response.data);
+  const getConf = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:4000/api/officer/getStudentDetails",
+        {
+          method:"POST",
+          headers: headers,
+          body: JSON.stringify({
+            department_name:student.department_name,
+            year_batch:student.year_batch,
+          })
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Request failed with status code " + response.status);
       }
-    };
-    fetchStudent();
+
+      const result = await response.json();
+      console.log(result.data.student_details);
+      setStudent({ ...student, students: result.data.student_details });
+
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  useEffect(() => {
+    getConf();
   }, [student.year_batch, student.department_name]);
 
   return (
