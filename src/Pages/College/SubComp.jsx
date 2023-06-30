@@ -108,7 +108,7 @@ function SubComp() {
       <div className="flex-[3]">
         <Navbar />
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
-        {data && <DataTable col={col} row={data} action={"Accept"} user={"officer"} handleChange={handleClick}/>}
+       { data?<DataTable col={col} row={data} action={"Accept"} user={"officer"} handleChange={handleClick}/>:<div className="p-3">No Request Found</div>}
        
       </div>
     </div>
