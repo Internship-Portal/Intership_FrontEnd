@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import HomeIcon from "@mui/icons-material/Home";
@@ -14,7 +14,12 @@ const Sidebar = (props) => {
   const [showCompany, setshowCompany] = useState(false);
   const [showCalendar, setshowCalendar] = useState(false);
   const [officer, isOfficer] = useState(user);
-
+  const navigate=useNavigate();
+  const logout=()=>{
+    localStorage.clear();
+    navigate("/")
+    
+  }
   useState(() => {}, []);
 
   return (
@@ -198,7 +203,7 @@ const Sidebar = (props) => {
               </li>
               <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
                 {/* <ExitToAppIcon className="icon" /> */}
-                <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
+                <span className="text-[13px] font-semibold text-[#888] ml-[10px]" onClick={logout}>
                   Logout
                 </span>
               </li>

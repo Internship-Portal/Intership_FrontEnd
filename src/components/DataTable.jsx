@@ -5,16 +5,25 @@ import Dropdown_batch from './Dropdown_batch'
 import Dropdown_dept from './Dropdown_dept'
 
 const DataTable = (props) => {
-    const [colleges, setColleges] = useState([]);
+    const [data, setData] = useState([]);
     const [search, setSearch] = useState("");
+    const user=props.user;
   const col=props.col;
     const handleChange = (e) => {
       e.preventDefault();
       setSearch(e.target.value);
     };
   
-    const searchItem = colleges.filter((data) =>
-    data.college_name.toLowerCase().includes(search.toLowerCase())
+    const searchItem = data.filter((data) =>
+    (user=="officer")?
+    
+      data.company_name.toLowerCase().includes(search.toLowerCase())
+ 
+    
+    :
+      data.college_name.toLowerCase().includes(search.toLowerCase())
+    
+
   );
   const handleClick=(data)=>{
    props.handleChange(data);
@@ -28,7 +37,7 @@ const DataTable = (props) => {
     props.handleDept(data)
   }
   useEffect(()=>{
-setColleges(props.row)
+setData(props.row)
   })
   return (
     <div >
@@ -58,19 +67,19 @@ setColleges(props.row)
           </tr>
         </thead>
         <tbody >
-          {searchItem.map((college) => (
+          {searchItem.map((users) => (
             <tr class="bg-white border-b  hover:bg-gray-50  hover:shadow-md">
               <td class=" px-3 py-2">
                 <img src={pccoe} alt="" className="h-[2rem] sm:h-[3rem] " />
               </td>
               <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
-                {college.college_name}
+               {(user!="officer")?users.college_name: users.company_name}
               </th>
               <td class=" py-2 text-center">
                 Pune
               </td>
               <td class=" py-2 text-center">
-                234
+              {(user!="officer")?"234":"SDE Intern"}
               </td>
               <td class=" py-2 text-center">
                 June - July
@@ -88,8 +97,8 @@ setColleges(props.row)
               
               <td class="px-6 py-4 text-right">
                 <button className="font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-2 py-1 rounded-lg " onClick={(e) => {
-                  console.log(college)
-                 handleClick(college)
+                  console.log(users)
+                 handleClick(users)
                 }}>{props.action}</button>
               </td>
             </tr>

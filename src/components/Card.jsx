@@ -1,31 +1,4 @@
-// import React from 'react'
 
-// const Card = () => {
-//   return (
-//     <div >
-//          <div className="widget">
-//       <div className="left">
-//         <span className="title">User</span>
-//         <span className="counter">
-//           {true && "$"} 100
-//         </span>
-//         <span className="link">Click Here</span>
-//       </div>
-//       <div className="right">
-//         <div className="percentage positive">
-//           {/* <KeyboardArrowUpIcon /> */}
-//           200 %
-//         </div>
-//         {data.icon}
-//       </div>
-//     </div>
-//     </div>
-//   )
-// }
-
-// export default Card
-
-// import "./widget.scss";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
