@@ -6,7 +6,7 @@ import axios from "axios";
 import Dropdown_batch from "../../components/Dropdown_batch";
 import Dropdown_dept from "../../components/Dropdown_dept";
 import DataTable from "../../components/DataTable";
-import SidebarCompany from "../../components/SidebarCompany";
+
 import { useNavigate } from "react-router-dom";
 
 const ConfirmedCollege = () => {
@@ -109,7 +109,7 @@ const ConfirmedCollege = () => {
     <div className=" bg-cardBackground h-full flex">
       <div className="bg-white flex">
         <div className="sm:flex h-screen">
-          <SidebarCompany user={"Company"} />
+          <Sidebar user={"Company"} />
         </div>
       </div>
       <div className="flex-[3] bg-white">

@@ -12,7 +12,7 @@ const DisplayStudents = () => {
   return (
     <div className='bg-white flex'>
     <div className='sm:flex'>
-      <Sidebar />
+      <Sidebar user={"company"} />
     </div>
     <div className='flex-[3]'>
       <Navbar />

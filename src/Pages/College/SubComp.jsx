@@ -4,6 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 
+
 function SubComp() {
   const [data, setData] = useState([]);
   const { headers } = config();
@@ -67,7 +68,7 @@ function SubComp() {
   return (
     <div className="bg-white flex">
       <div className="hidden sm:flex">
-        <Sidebar />
+      <Sidebar user={"officer"}/>
       </div>
       <div className="flex-[3]">
         <Navbar />

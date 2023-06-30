@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
-import axios from "axios";
 import Dropdown_batch from "../../components/Dropdown_batch";
 import Dropdown_dept from "../../components/Dropdown_dept";
+
 
 function ConfComp() {
   const { id, headers } = config();
@@ -78,7 +78,7 @@ function ConfComp() {
   return (
     <div className="bg-white flex">
       <div className="hidden sm:flex">
-        <Sidebar />
+      <Sidebar user={"officer"}/>
       </div>
       <div className="flex-[3]">
         <Navbar />

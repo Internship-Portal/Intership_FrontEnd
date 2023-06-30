@@ -4,7 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import DataTable from "../../components/DataTable";
-import SidebarCompany from "../../components/SidebarCompany";
+
 
 const SubscribedCollege = () => {
 
@@ -105,7 +105,7 @@ const SubscribedCollege = () => {
   return (
     <div className="bg-white flex">
     <div className="sm:flex h-screen">
-    <SidebarCompany user={"Company"}/>
+    <Sidebar user={"Company"}/>
     </div>
     <div className="flex-[3]">
       <Navbar />

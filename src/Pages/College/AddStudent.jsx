@@ -3,11 +3,12 @@ import Navbar from '../../components/Navbar'
 import Sidebar from '../../components/Sidebar'
 import UploadList from '../../components/UploadList'
 
+
 function AddStudent() {
   return (
     <div className='bg-white flex'>
       <div className='hidden sm:flex'>
-        <Sidebar />
+      <Sidebar user={"officer"}/>
       </div>
       <div className='flex-[3]'>
         <Navbar />

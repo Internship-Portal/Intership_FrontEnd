@@ -101,7 +101,7 @@ const Login = (props) => {
         successLogin();
 
         if (res.ok) {
-          navigate("/officer");
+          navigate("/college");
         }
 
       } catch (error) {

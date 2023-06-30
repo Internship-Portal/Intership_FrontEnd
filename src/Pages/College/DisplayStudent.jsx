@@ -4,12 +4,13 @@ import Sidebar from '../../components/Sidebar'
 import StudentData from '../../components/StudentData'
 import 'react-toastify/dist/ReactToastify.css';
 
+
 function DisplayStudent() {
   
   return (
     <div className='bg-white flex'>
       <div className='hidden sm:flex'>
-        <Sidebar />
+        <Sidebar user={"officer"}/>
       </div>
       <div className='flex-[3]'>
         <Navbar />

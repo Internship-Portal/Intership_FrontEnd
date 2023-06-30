@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Navbar from '../../components/Navbar'
-import Sidebar_ from '../../components/Sidebar_'
 import config from '../../hooks/config'
+import Sidebar from '../../components/Sidebar'
 
 function Dashboard() {
   const {id} =config()
@@ -13,7 +13,7 @@ function Dashboard() {
   return (
     <div className='bg-white flex'>
       <div className='sm:flex'>
-        <Sidebar_ />
+        <Sidebar user={"officer"}/>
       </div>
       <div className='flex-[3]'>
         <Navbar />

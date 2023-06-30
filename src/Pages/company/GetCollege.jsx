@@ -5,7 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import { pccoe } from "../../assets";
-import SidebarCompany from "../../components/SidebarCompany";
+
 import DataTable from "../../components/DataTable";
 
 const GetCollege = () => {
@@ -113,7 +113,7 @@ const GetCollege = () => {
     <>
       <div className="bg-white flex">
         <div className=" sm:flex">
-          <SidebarCompany user={"Company"} />
+          <Sidebar user={"Company"} />
         </div>
         <div className="flex-[3]">
           <Navbar />

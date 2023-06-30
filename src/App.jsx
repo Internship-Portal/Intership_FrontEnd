@@ -15,7 +15,7 @@ import ConfirmedCollege from "./Pages/company/ConfirmedCollege";
 
 import SubscribedCollege from "./Pages/company/SubscribedCollege";
 import DisplayStudents from "./Pages/company/DisplayStudents";
-import Sidebar_ from "./components/Sidebar_";
+
 import DataTable from "./components/DataTable";
 
 function App() {
@@ -24,7 +24,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           
-          <Route path="/dashboard" element={<DashBoard />}></Route>
+          <Route path="/company" element={<DashBoard />}></Route>
+          <Route path="/college" element={<Dashboard/>}></Route>
           <Route path="/" element={<Login />}></Route>
           <Route path="/addstudents" element={<AddStudent/>}></Route>
           <Route path="/displaystudents" element={<DisplayStudent/>}></Route>
