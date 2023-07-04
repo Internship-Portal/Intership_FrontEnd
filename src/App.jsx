@@ -17,6 +17,7 @@ import SubscribedCollege from "./Pages/company/SubscribedCollege";
 import DisplayStudents from "./Pages/company/DisplayStudents";
 
 import DataTable from "./components/DataTable";
+import Verfication from "./Pages/Login/Verfication";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/requestedcollege" element={<SubscribedCollege/>}></Route>
           <Route path="/companystudent" element={<DisplayStudents/>}></Route>
           <Route path="/datatable" element={<DataTable/>}></Route>
+          <Route path="/verify" element={<Verfication/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
