@@ -53,9 +53,9 @@ setData(props.row)
       </div>
     </form>
     <div class="relative overflow-y-scroll sm:rounded-lg m-9 sm:h-[350px] h-[400px] ">
-      <table class="w-full table-auto overflow-scroll text-sm text-left text-gray-500  ">
+      <table class="w-full table-auto overflow-scroll text-sm text-left text-gray-500 shadow ">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 shadow-md">
-          <tr>
+          <tr className='bg-cardBackground text-white'>
 
             {
 

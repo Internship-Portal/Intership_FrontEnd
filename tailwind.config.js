@@ -4,14 +4,20 @@ module.exports = {
   mode: "jit",
   theme: {
     extend: {
+      backgroundImage: {
+        'loginBackground': "url('/src/assets/login.jpg')",
+       
+      },
       colors: {
-        primary: "#3956FF",
+        primary: "#0E9FC8",
+        primaryText: "#002342",
+
         secondary: "#C9BCEC",
          bannerColor:"#F9DCDC",
         cardColor: "#F5F6F6",
         buttonText:"#34AEE6",
         aboutText:"#BAC8CA",
-        cardBackground:"#112240",
+        cardBackground:"#0E9FC8",
         cardText:"#A3ADCC",
         footer:"#204482"
       },
