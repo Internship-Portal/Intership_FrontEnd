@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const OTP = () => {
 
   const [otp, setOtp] = useState(null)
+  
   const navigate = useNavigate()
 
   const handleChange = (event) => {
@@ -15,7 +16,7 @@ const OTP = () => {
     try {
       const token = localStorage.getItem("token")
       const res = await fetch(
-        "http://localhost:4000/api/otp/verifyOTP",
+        "http://localhost:4000/api/otp/verifyOTPValidation",
         {
           method: "POST",
           headers: {
@@ -32,7 +33,9 @@ const OTP = () => {
       console.log(result);
 
       if (res.ok) {
-        navigate('/confirmpassword')
+        localStorage.clear();
+        localStorage.setItem('jwt',result.token)
+        navigate("/signup")
       }
       
     } catch (error) {

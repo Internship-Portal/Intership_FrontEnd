@@ -3,11 +3,46 @@ import axios from "axios";
 import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
+import DataTable from "../../components/DataTable";
 
-
+ 
 function SubComp() {
   const [data, setData] = useState([]);
   const { headers } = config();
+  const col = [ 
+    {
+      "name": "Logo",
+      "diplay": false
+
+    },
+    {
+      "name": "Company",
+      "diplay": true
+    },
+    {
+      "name": "Location"
+      ,
+      "diplay": true
+    },
+    {
+      "name": "Job Profile"
+      ,
+      "diplay": true
+    },
+    {
+      "name": "Internship Period",
+      "diplay": true
+    },
+
+    {
+      "name": "Accept",
+      "diplay": false,
+      "displayRow":false
+
+    }
+
+
+  ]
 
   const getConf = async () => {
     try {
@@ -73,25 +108,8 @@ function SubComp() {
       <div className="flex-[3]">
         <Navbar />
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
-
-        {data &&
-          data.map((company) => (
-            <div
-              className=" text-center items-center inline-flex w-full sm:w-1/3"
-              key={company.index}
-            >
-              <div className="bg-primary bg-opacity-30 rounded-xl border-solid w-3/4 mx-auto my-2 ">
-                <div className=" ">
-                  <div className=" flex justify-center text-lg font-bold sm:justify-start  px-4">
-                    {company.company_name}
-                  </div>
-                  <div className="">{company.company_id}</div>
-                  <div>{company.message}</div>
-                </div>
-                <button className=" bg-indigo-700 bg-opacity-80 m-2 text-white rounded-lg p-2 font-poppins hover:w-3/4" onClick={() => handleClick(company)}>Accept</button>
-              </div>
-            </div>
-          ))}
+       { data?<DataTable col={col} row={data} action={"Accept"} user={"officer"} handleChange={handleClick}/>:<div className="p-3">No Request Found</div>}
+       
       </div>
     </div>
   );

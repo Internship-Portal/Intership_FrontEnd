@@ -6,7 +6,8 @@ import { AuthContext } from "../../context/AuthContext";
 import { launchPoster } from "../../assets";
 import { toggleButtonGroupClasses } from "@mui/material";
 import { Link } from "react-router-dom";
-
+import jwt_decode from "jwt-decode";
+import config from "../../hooks/config";
 
 const SignUp = () => {
 
@@ -16,7 +17,7 @@ const SignUp = () => {
 
   const [companyDetails, setCompanyDetails] = useState({
     username: "",
-    email_id: "",
+    
     mobile_no: "",
     company_name: "",
     password:""
@@ -26,7 +27,7 @@ const SignUp = () => {
 
   const [officerDetails, setOfficerDetails] = useState({
     username: "",
-    email_id: "",
+    
     mobile_no: "",
     college_name: "Pimpri Chinchwad College of Engineering,Pune",
     password:""
@@ -41,7 +42,7 @@ const SignUp = () => {
     setCompany(false);
   };
 
-
+  const {headers}=config();
   const navigate = useNavigate()
 
   const handleChangeOfficer = (event) => {
@@ -61,18 +62,23 @@ const SignUp = () => {
 
   const handleClick = async () => {
     try {
+      
+   
+    
       if(officer)
       {
+          
         console.log(officerDetails)
-        const res = await axios.post("http://localhost:4000/api/officer/createOfficer", officerDetails)
+        const res = await axios.post("http://localhost:4000/api/officer/createOfficer", officerDetails,{headers:headers})
         console.log(res)
         localStorage.clear()
         localStorage.setItem("jwt",res.data.token)
         navigate('/')
       }
       else if(company) {
+       
         console.log(companyDetails)
-        const res = await axios.post("http://localhost:4000/api/company/createCompany", companyDetails)
+        const res = await axios.post("http://localhost:4000/api/company/createCompany",companyDetails,{headers:headers})
         console.log(res)
         localStorage.clear()
         localStorage.setItem("jwt",res.data.token)
@@ -139,17 +145,7 @@ const SignUp = () => {
                   onChange={officer?handleChangeOfficer:handleChangeCompany}
                 ></input>
               </div>
-              <div className="flex flex-col text-primary opacity-80 py-2">
-                <label>Email</label>
-                <input
-                  name="email_id"
-                  type="text"
-                  id="email_id"
-                  placeholder="Email Id"
-                  className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
-                  onChange={officer?handleChangeOfficer:handleChangeCompany}
-                ></input>
-              </div>
+             
               <div className="flex flex-col text-primary opacity-80 py-2">
                 <label>Mobile No.</label>
                 <input

@@ -4,11 +4,49 @@ import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import Dropdown_batch from "../../components/Dropdown_batch";
 import Dropdown_dept from "../../components/Dropdown_dept";
-
-
+import DataTable from "../../components/DataTable";
+ 
 function ConfComp() {
   const { id, headers } = config();
   const [data, setData] = useState([]);
+  const col = [
+    {
+      name: "Logo",
+      diplay: false,
+    },
+    {
+      name: "Company",
+      diplay: true,
+    },
+    {
+      name: "Location",
+      diplay: true,
+    },
+    {
+      name: "Job Profile",
+      diplay: true,
+    },
+    {
+      name: "Internship Period",
+      diplay: true,
+    },
+
+    {
+      name: "Year",
+      diplay: false,
+      displayRow: false,
+    },
+    {
+      name: "Department",
+      diplay: false,
+      displayRow: false,
+    },
+    {
+      name: "Send List",
+      diplay: false,
+      displayRow: false,
+    },
+  ];
 
   const [student, setStudent] = useState({
     year_batch: null,
@@ -85,33 +123,17 @@ function ConfComp() {
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
 
         {data &&
-          data.map((company) => (
-            <div
-              className=" text-center items-center inline-flex w-full sm:w-1/3"
-              key={company.company_id}
-            >
-              <div className="mt-3 bg-primary bg-opacity-30 rounded-xl w-3/4 mx-auto  ">
-                <div className=" ">
-                  <div className=" flex justify-center text-lg font-bold sm:justify-start  px-4 font-poppins">
-                    {company.company_name}
-                  </div>
-                  <div className="mt-2 font-poppins">{company.message}</div>
-                </div>
-                <div className=" block">
-                  <div className="flex">
-                    <div className=" w-full">
-                      <Dropdown_batch className="p-0 m-0" onhandleBatchChange={handleBatch} />
-                    </div>
-                    <div className="w-full">
-                      <Dropdown_dept onhandleDeptChange={handleDept} />
-                    </div>
-                  </div>
-                </div>
-
-                <button className=" bg-indigo-700 bg-opacity-80 m-2 text-white rounded-lg p-2 font-poppins hover:w-3/4" onClick={() => handleClick(company)}>Send</button>
-              </div>
-            </div>
-          ))}
+        <DataTable
+        col={col}
+        row={data}
+        deptYear={true}
+        handleBatch={handleBatch}
+        handleDept={handleDept}
+        handleChange={handleClick}
+        action={"Send List"}
+        user={"officer"}
+      />}
+              
       </div>
     </div>
   );

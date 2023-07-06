@@ -6,7 +6,8 @@ import { launchPoster } from "../../assets";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
     email_id: undefined,
@@ -16,7 +17,7 @@ const Login = (props) => {
   const [officer, setOfficer] = useState(false);
   const [company, setCompany] = useState(true);
 
-  const { loading, error} = useContext(AuthContext);
+  const { loading, error } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -25,6 +26,7 @@ const Login = (props) => {
   };
 
   const handleCompanyRole = () => {
+    console.log("clicked");
     setCompany(true);
     setOfficer(false);
   };
@@ -72,13 +74,11 @@ const Login = (props) => {
         if (res.ok) {
           navigate("/company");
         }
-
       } catch (error) {
         errLogin();
         console.log(error);
       }
-    }
-    else if (officer) {
+    } else if (officer) {
       try {
         const res = await fetch(
           "http://localhost:4000/api/officer/loginOfficer",
@@ -103,7 +103,6 @@ const Login = (props) => {
         if (res.ok) {
           navigate("/college");
         }
-
       } catch (error) {
         errLogin();
         console.log(error);
@@ -112,28 +111,18 @@ const Login = (props) => {
   };
 
   return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full object-cover">
-        <div className=" hidden sm:block">
-          <div className="w-full h-full object-cover bg-primary opacity-80">
-            <img
-              className=" z-1 h-screen p-32 mx-auto flex items-center justify-center px-0 py-0 pb-0"
-              src={launchPoster}
-              alt=""
-            />
-          </div>
-        </div>
+    <div className="w-full h-screen bg-no-repeat bg-cover bg-fixed bg-loginBackground flex items-center justify-center ">
+      <div className=" w-[50%] sm:w-[25%] h-[75%] border-solid border-2 border-[#D9D9D9]  rounded-xl flex flex-col items-center justify-evenly backdrop-blur-[20px] shadow-md  bg-[#ffffff78]" >
+        <h1 className="font-semibold font-poppins text-black text-[2rem]">
+          Log In
+        </h1>
 
-        <div className=" flex flex-col justify-center h-full ">
-          <form className="max-w-[380px] w-4/5 sm:w-full mx-auto bg-primary opacity-80 p-8 px-8 rounded-3xl">
-            <h2 className=" text-4xl dark:text-white font-poppins font-bold text-center">
-              Login
-            </h2>
-            <h4 className=" my-2 mt-4 text-gray-900 text-center">
-              Welcome {props.type}
-            </h4>
-
-            <div className="flex items-center pl-3">
+      
+          <div className="grid w-[75%] gap-6 grid-cols-2">
+            <div
+              className={`border-solid  p-1 text-center  ${officer ? `border-none` : `border-b-primary border-b-4`
+                }`}
+            >
               <input
                 id="company radio"
                 defaultChecked
@@ -141,68 +130,85 @@ const Login = (props) => {
                 value=""
                 name="list-radio"
                 onClick={handleCompanyRole}
+                className={`hidden peer`}
               />
-              <label htmlFor="company radio">Company </label>
+              <label htmlFor="company radio" className="text-primaryText font-semibold">Company </label>
+            </div>
 
+            <div
+              className={`border-solid  p-1  text-center ${officer ? `border-b-primary border-b-4` : `border-none`
+                }`}
+            >
               <input
                 id="officer radio"
                 type="radio"
                 value=""
                 name="list-radio"
+                className={`hidden peer ${officer ? `border-primary text-white` : "text-black"
+                  }`}
                 onClick={handleOfficerRole}
               />
-              <label htmlFor="officer radio">Officer</label>
+              <label htmlFor="officer radio" className="text-primaryText font-semibold">Officer</label>
             </div>
+          </div>
+            
+          
+            <div className="flex flex-col w-[75%] my-3">
+              <div className="flex flex-row items-center justify-between ">
+                <label className="text-primaryText text-[20px] font-semibold"> Email</label>
+                <EmailIcon />
+              </div>
+              <input
+                type="text"
+                id="email_id"
+                placeholder="Username"
+                className="bg-transparent placeholder-gray-200 border  border-l-0 border-t-0 border-r-0  border-b-2 focus:border-b-6  border-b-primary outline-none   text-sm   block w-full p-2.5 text-black"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex flex-col w-[75%] my-3">
+            <div className="flex flex-row items-center justify-between ">
 
-            <div className="max-w-[300px] mx-auto w-full  bg-white p-8 px-8  rounded-3xl ">
-              <div className="flex flex-col text-primary opacity-80 py-2">
-                <label> Email</label>
-                <input
-                  type="text"
-                  id="email_id"
-                  placeholder="Username"
-                  className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
-                  onChange={handleChange}
-                ></input>
+                <label className="text-primaryText text-[20px] font-semibold">Password</label>
+              <LockIcon />
               </div>
-              <div className="flex flex-col text-primary opacity-80 py-2">
-                <label>Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2  border-gray-800 text-black"
-                  onChange={handleChange}
-                // onClick={successLogin}
-                ></input>
-              </div>
-              <button
-                className=" my-2 py-1 bg-primary text-black w-full rounded-xl text-xl"
-                disabled={loading}
-                onClick={handleClick}
+
+              
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                className="bg-transparent placeholder-gray-200 border  border-l-0 border-t-0 border-r-0  border-b-2 focus:border-b-6  border-b-primary outline-none   text-sm   block w-full p-2.5 text-black"
+                onChange={handleChange}
               // onClick={successLogin}
-              >
-                Login
-              </button>
-              <Link to="/forgotpassword" style={{ textDecoration: "none" }}>
-                <div className="text-center text-primary opacity-80">
-                  <Link to="/forgotpassword">
-                    <p>Forgot Password ?</p>
-                  </Link>
-                </div>
-              </Link>
+              />
             </div>
-            <div className=" text-center mt-2 text-lg">
-              <Link to="/signup">
-                <p>Don't Have Account ?</p>
-              </Link>
-            </div>
-            {error && <span>{error.message}</span>}
-          </form>
-        </div>
+            <Link to="/forgotpassword" style={{ textDecoration: "none" }} className="text-primaryText">
+              <div className="">
+                <Link to="/forgotpassword">
+                  <p>Forgot Password ?</p>
+                </Link>
+              </div>
+            </Link>
+            <button
+              className="py-2 bg-primary font-poppins font-semibold text-[20px] w-[75%] rounded-lg "
+              disabled={loading}
+              onClick={handleClick}
+            // onClick={successLogin}
+            >
+              Log In
+            </button>
+         
+          
+          <div className="">
+            <Link to="/signup" className="text-primaryText">
+              <p>Don't Have Account ?</p>
+            </Link>
+          </div>
+          {error && <span>{error.message}</span>}
+       
       </div>
-      <ToastContainer />
-    </>
+    </div>
   );
 };
 

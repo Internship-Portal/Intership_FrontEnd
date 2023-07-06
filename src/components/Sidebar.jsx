@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import HomeIcon from "@mui/icons-material/Home";
@@ -14,7 +14,12 @@ const Sidebar = (props) => {
   const [showCompany, setshowCompany] = useState(false);
   const [showCalendar, setshowCalendar] = useState(false);
   const [officer, isOfficer] = useState(user);
-
+  const navigate=useNavigate();
+  const logout=()=>{
+    localStorage.clear();
+    navigate("/")
+    
+  }
   useState(() => {}, []);
 
   return (
@@ -64,14 +69,14 @@ const Sidebar = (props) => {
               >
                 <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
                   {/* <DashboardIcon className="icon" /> */}
-                  <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
+                  <span className="text-[13px] font-semibold text-white ml-[10px]">
                     Dashboard
                   </span>
                 </li>
               </Link>
             </div>
 
-            <p className="text-[10px] font-bold text-[#999] mt-[15px] mb-[5px] py-4">
+            <p className="text-[10px] font-bold text-white mt-[15px] mb-[5px] py-4">
               <FormatListBulletedIcon />
               LISTS
             </p>
@@ -83,7 +88,7 @@ const Sidebar = (props) => {
                     setshowCompany(!showCompany);
                   }}
                 >
-                  <span className="text-[13px] mr-2 font-semibold text-[#888] ml-[10px]">
+                  <span className="text-[13px] mr-2 font-semibold text-white ml-[10px]">
                     {user == "officer" ? "Colleges" : "Comapanies"}
                   </span>
                   <ArrowDropDownRoundedIcon style={{ color: "grey" }} />
@@ -98,7 +103,7 @@ const Sidebar = (props) => {
                             to={"/getcollege"}
                             style={{ textDecoration: "none" }}
                           >
-                            <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
+                            <span className="text-[13px] font-semibold text-white ml-[10px]">
                               Display{" "}
                               {user == "officer" ? "Companies" : "Colleges"}
                             </span>
@@ -114,7 +119,7 @@ const Sidebar = (props) => {
                           }
                           style={{ textDecoration: "none" }}
                         >
-                          <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
+                          <span className="text-[13px] font-semibold text-white ml-[10px]">
                             Requested{" "}
                             {user == "officer" ? "Comapanies" : "Colleges"}
                           </span>
@@ -129,7 +134,7 @@ const Sidebar = (props) => {
                           }
                           style={{ textDecoration: "none" }}
                         >
-                          <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
+                          <span className="text-[13px] font-semibold text-white ml-[10px]">
                             Confirmed{" "}
                             {user == "officer" ? "Comapanies" : "Colleges"}
                           </span>
@@ -149,7 +154,7 @@ const Sidebar = (props) => {
                       setshowCalendar(!showCalendar);
                     }}
                   >
-                    <span className="text-[13px] mr-2 font-semibold text-[#888] ml-[10px]">
+                    <span className="text-[13px] mr-2 font-semibold text-white ml-[10px]">
                       Calender
                     </span>
                     <ArrowDropDownRoundedIcon style={{ color: "grey" }} />
@@ -163,7 +168,7 @@ const Sidebar = (props) => {
                             to="/addstudents"
                             style={{ textDecoration: "none" }}
                           >
-                            <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
+                            <span className="text-[13px] font-semibold text-white ml-[10px]">
                               Publish Calender
                             </span>
                           </Link>
@@ -173,7 +178,7 @@ const Sidebar = (props) => {
                             to="/displaystudents"
                             style={{ textDecoration: "none" }}
                           >
-                            <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
+                            <span className="text-[13px] font-semibold text-white ml-[10px]">
                               Display Calender
                             </span>
                           </Link>
@@ -192,13 +197,13 @@ const Sidebar = (props) => {
             <div className={`${!open && "hidden"}`}>
               <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
                 {/* <AccountCircleOutlinedIcon className="icon" /> */}
-                <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
+                <span className="text-[13px] font-semibold text-white ml-[10px]">
                   Profile
                 </span>
               </li>
               <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
                 {/* <ExitToAppIcon className="icon" /> */}
-                <span className="text-[13px] font-semibold text-[#888] ml-[10px]">
+                <span className="text-[13px] font-semibold text-white ml-[10px]" onClick={logout}>
                   Logout
                 </span>
               </li>

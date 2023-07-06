@@ -10,14 +10,14 @@ const SubscribedCollege = () => {
 
   const [data, setData] = useState([]);
   const { headers } = config();
-  const col = [
+  const col = [ 
     {
       "name": "Logo",
       "diplay": false
 
     },
     {
-      "name": "College",
+      "name": "Company",
       "diplay": true
     },
     {
@@ -26,7 +26,7 @@ const SubscribedCollege = () => {
       "diplay": true
     },
     {
-      "name": "Available Studen"
+      "name": "Available Student"
       ,
       "diplay": true
     },

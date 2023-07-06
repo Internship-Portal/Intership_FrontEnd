@@ -99,7 +99,7 @@ const ConfirmedCollege = () => {
           department_name: student.department_name,
         },
       });
-  };
+  }; 
 
   useEffect(() => {
     getConf();
