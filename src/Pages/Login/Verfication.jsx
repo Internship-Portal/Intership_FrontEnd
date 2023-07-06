@@ -35,48 +35,34 @@ const Verfication = () => {
   };
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 h-fit w-full">
-        <div className=" hidden sm:block">
-          <div className="w-full h-full object-cover bg-primary opacity-80">
-            <img
-              className=" z-1 h-full p-32 mx-auto flex items-center justify-center  px-0 py-0 pb-0"
-              src={launchPoster}
-              alt=""
-            />
+      <div className="w-full h-screen bg-no-repeat bg-cover bg-fixed bg-loginBackground flex items-center justify-center">
+        <div className=" w-[50%] sm:w-[25%] h-[55%] border-solid border-2 border-[#D9D9D9]  rounded-xl flex flex-col items-center justify-evenly backdrop-blur-[20px] shadow-md  bg-[#ffffff78]">
+          <h2 className=" font-semibold font-poppins text-black text-[2rem]">
+            SignUp
+          </h2>
+          <h4 className=" my-2 mt-4 text-gray-900 font-semibold text-lg text-center">Welcome</h4>
+          <div className="flex flex-col w-[75%] my-3">
+          <div className="flex flex-row items-center justify-between ">
+            <label className="text-primaryText text-[20px] font-semibold">Email</label>
           </div>
-        </div>
-
-        <div className=" flex flex-col justify-center py-0 h-full">
-          <form
-            className="max-w-[380px] w-4/5 sm:w-full mx-auto bg-primary opacity-80 p-8 px-8 rounded-3xl h-fit "
-            onSubmit={(e) => e.preventDefault()}
+            <input
+              name="email_id"
+              type="text"
+              id="email_id"
+              placeholder="Enter Email Address"
+              className=" bg-transparent placeholder-gray-200 border  border-l-0 border-t-0 border-r-0  border-b-2 focus:border-b-6  border-b-primary outline-none   text-sm   block w-full p-2.5 text-black"
+              onChange={handleEmailChange}
+            ></input>
+          </div>
+          <button
+            className=" py-2 bg-primary font-poppins font-semibold text-[20px] w-[75%] rounded-lg "
+            // disabled={loading}
+            onClick={handleClick}
           >
-            <h2 className=" text-4xl dark:text-white font-poppins font-bold text-center">
-              SignUp
-            </h2>
-            <h4 className=" my-2 mt-4 text-gray-900 text-center">Welcome</h4>
+            Send Otp
+          </button>
 
-            <div className="flex flex-col text-primary opacity-80 py-2">
-              <label>Email</label>
-              <input
-                name="email_id"
-                type="text"
-                id="email_id"
-                placeholder="Enter Email Address"
-                className=" rounded-lg bg mt-2 p-2 focus:bottom-1 border-b-2 border-gray-700"
-                onChange={handleEmailChange}
-              ></input>
-            </div>
-            <button
-              className=" my-2 py-1 bg-primary text-black w-full rounded-xl text-xl"
-              // disabled={loading}
-              onClick={handleClick}
-            >
-              Send Otp
-            </button>
-
-            {/* {error && <span>{error.message}</span>} */}
-          </form>
+          {/* {error && <span>{error.message}</span>} */}
         </div>
       </div>
     </div>
