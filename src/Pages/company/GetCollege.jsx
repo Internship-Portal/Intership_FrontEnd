@@ -30,7 +30,9 @@ const GetCollege = () => {
         body: JSON.stringify({ _id: _id, message: message }),
       }
     );
-    console.log(res);
+    const result=await res.json()
+    
+    console.log(result);
     getallcollege();
   };
 
