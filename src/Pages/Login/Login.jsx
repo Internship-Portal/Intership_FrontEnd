@@ -112,101 +112,117 @@ const Login = (props) => {
 
   return (
     <div className="w-full h-screen bg-no-repeat bg-cover bg-fixed bg-loginBackground flex items-center justify-center ">
-      <div className=" w-[50%] sm:w-[25%] h-[75%] border-solid border-2 border-[#D9D9D9]  rounded-xl flex flex-col items-center justify-evenly backdrop-blur-[20px] shadow-md  bg-[#ffffff78]" >
+      <div className=" w-[50%] sm:w-[25%] h-[75%] border-solid border-2 border-[#D9D9D9]  rounded-xl flex flex-col items-center justify-evenly backdrop-blur-[20px] shadow-md  bg-[#ffffff78]">
         <h1 className="font-semibold font-poppins text-black text-[2rem]">
           Log In
         </h1>
 
-      
-          <div className="grid w-[75%] gap-6 grid-cols-2">
-            <div
-              className={`border-solid  p-1 text-center  ${officer ? `border-none` : `border-b-primary border-b-4`
-                }`}
+        <div className="grid w-[75%] gap-6 grid-cols-2">
+          <div
+            className={`border-solid  p-1 text-center  ${
+              officer ? `border-none` : `border-b-primary border-b-4`
+            }`}
+          >
+            <input
+              id="company radio"
+              defaultChecked
+              type="radio"
+              value=""
+              name="list-radio"
+              onClick={handleCompanyRole}
+              className={`hidden peer`}
+            />
+            <label
+              htmlFor="company radio"
+              className="text-primaryText font-semibold"
             >
-              <input
-                id="company radio"
-                defaultChecked
-                type="radio"
-                value=""
-                name="list-radio"
-                onClick={handleCompanyRole}
-                className={`hidden peer`}
-              />
-              <label htmlFor="company radio" className="text-primaryText font-semibold">Company </label>
-            </div>
-
-            <div
-              className={`border-solid  p-1  text-center ${officer ? `border-b-primary border-b-4` : `border-none`
-                }`}
-            >
-              <input
-                id="officer radio"
-                type="radio"
-                value=""
-                name="list-radio"
-                className={`hidden peer ${officer ? `border-primary text-white` : "text-black"
-                  }`}
-                onClick={handleOfficerRole}
-              />
-              <label htmlFor="officer radio" className="text-primaryText font-semibold">Officer</label>
-            </div>
+              Company{" "}
+            </label>
           </div>
-            
-          
-            <div className="flex flex-col w-[75%] my-3">
-              <div className="flex flex-row items-center justify-between ">
-                <label className="text-primaryText text-[20px] font-semibold"> Email</label>
-                <EmailIcon />
-              </div>
-              <input
-                type="text"
-                id="email_id"
-                placeholder="Username"
-                className="bg-transparent placeholder-gray-200 border  border-l-0 border-t-0 border-r-0  border-b-2 focus:border-b-6  border-b-primary outline-none   text-sm   block w-full p-2.5 text-black"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="flex flex-col w-[75%] my-3">
-            <div className="flex flex-row items-center justify-between ">
 
-                <label className="text-primaryText text-[20px] font-semibold">Password</label>
-              <LockIcon />
-              </div>
+          <div
+            className={`border-solid  p-1  text-center ${
+              officer ? `border-b-primary border-b-4` : `border-none`
+            }`}
+          >
+            <input
+              id="officer radio"
+              type="radio"
+              value=""
+              name="list-radio"
+              className={`hidden peer ${
+                officer ? `border-primary text-white` : "text-black"
+              }`}
+              onClick={handleOfficerRole}
+            />
+            <label
+              htmlFor="officer radio"
+              className="text-primaryText font-semibold"
+            >
+              Officer
+            </label>
+          </div>
+        </div>
 
-              
-              <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                className="bg-transparent placeholder-gray-200 border  border-l-0 border-t-0 border-r-0  border-b-2 focus:border-b-6  border-b-primary outline-none   text-sm   block w-full p-2.5 text-black"
-                onChange={handleChange}
-              // onClick={successLogin}
-              />
-            </div>
-            <Link to="/forgotpassword" style={{ textDecoration: "none" }} className="text-primaryText">
-              <div className="">
-                <Link to="/forgotpassword">
-                  <p>Forgot Password ?</p>
-                </Link>
-              </div>
-            </Link>
-            <button
-              className="py-2 bg-primary font-poppins font-semibold text-[20px] w-[75%] rounded-lg "
-              disabled={loading}
-              onClick={handleClick}
+        <div className="flex flex-col w-[75%] my-3">
+          <div className="flex flex-row items-center justify-between ">
+            <label className="text-primaryText text-[20px] font-semibold">
+              {" "}
+              Email
+            </label>
+            <EmailIcon />
+          </div>
+          <input
+            type="text"
+            id="email_id"
+            placeholder="Username"
+            className="bg-transparent placeholder-gray-200 border  border-l-0 border-t-0 border-r-0  border-b-2 focus:border-b-6  border-b-primary outline-none   text-sm   block w-full p-2.5 text-black"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex flex-col w-[75%] my-3">
+          <div className="flex flex-row items-center justify-between ">
+            <label className="text-primaryText text-[20px] font-semibold">
+              Password
+            </label>
+            <LockIcon />
+          </div>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            className="bg-transparent placeholder-gray-200 border  border-l-0 border-t-0 border-r-0  border-b-2 focus:border-b-6  border-b-primary outline-none   text-sm   block w-full p-2.5 text-black"
+            onChange={handleChange}
             // onClick={successLogin}
-            >
-              Log In
-            </button>
-         
-          
+          />
+        </div>
+        <Link
+          to="/forgotpassword"
+          style={{ textDecoration: "none" }}
+          className="text-primaryText"
+        >
           <div className="">
-            <Link to="/signup" className="text-primaryText">
-              <p>Don't Have Account ?</p>
+            <Link to="/forgotpassword">
+              <p>Forgot Password ?</p>
             </Link>
           </div>
-          {error && <span>{error.message}</span>}
-       
+        </Link>
+        <button
+          className="py-2 bg-primary font-poppins font-semibold text-[20px] w-[75%] rounded-lg "
+          disabled={loading}
+          onClick={handleClick}
+          // onClick={successLogin}
+        >
+          Log In
+        </button>
+
+        <div className="">
+          <Link to="/signup" className="text-primaryText">
+            <p>Don't Have Account ?</p>
+          </Link>
+        </div>
+        {error && <span>{error.message}</span>}
       </div>
     </div>
   );
