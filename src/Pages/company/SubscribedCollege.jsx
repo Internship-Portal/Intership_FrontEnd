@@ -5,45 +5,37 @@ import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import DataTable from "../../components/DataTable";
 
-
 const SubscribedCollege = () => {
-
   const [data, setData] = useState([]);
   const { headers } = config();
-  const col = [ 
+  const col = [
     {
-      "name": "Logo",
-      "diplay": false
-
+      name: "Logo",
+      diplay: false,
     },
     {
-      "name": "Company",
-      "diplay": true
+      name: "Company",
+      diplay: true,
     },
     {
-      "name": "Location"
-      ,
-      "diplay": true
+      name: "Location",
+      diplay: true,
     },
     {
-      "name": "Available Student"
-      ,
-      "diplay": true
+      name: "Available Student",
+      diplay: true,
     },
     {
-      "name": "Internship Period",
-      "diplay": true
+      name: "Internship Period",
+      diplay: true,
     },
 
     {
-      "name": "Subscribe",
-      "diplay": false,
-      "displayRow":false
-
-    }
-
-
-  ]
+      name: "Subscribe",
+      diplay: false,
+      displayRow: false,
+    },
+  ];
 
   const getConf = async () => {
     try {
@@ -65,62 +57,61 @@ const SubscribedCollege = () => {
       console.log(error);
     }
   };
-  
-  const cancelRequest=async(college)=>{
-    try{
-      const token=localStorage.getItem('jwt')
-      const officer_id=college.officer_id;
-      console.log(college)
-      const res=await fetch('http://localhost:4000/api/company/addCancelledRequest',{
-        method:"PUT",
-        headers:{
-          "content-type": "application/json",
+
+  const cancelRequest = async (college) => {
+    try {
+      const token = localStorage.getItem("jwt");
+      const officer_id = college.officer_id;
+      console.log(college, officer_id, college.college_name);
+      const res = await fetch(
+        "http://localhost:4000/api/company/addCancelledRequestByCompany",
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
             authorization: `bearer ${token}`,
-        },
-        body:JSON.stringify({
-          officer_id:officer_id,
-          message:college.college_name
-        }),
-      })
-      const result=await res.json()
-      console.log(result)
-      getConf()
-
-    }catch(err)
-    {
-  console.log(err)
+          },
+          body: JSON.stringify({
+            officer_id: officer_id,
+            message: college.college_name,
+          }),
+        }
+      );
+      const result = await res.json();
+      console.log(result);
+      getConf();
+    } catch (err) {
+      console.log(err);
     }
-  }
- 
-
-
+  };
 
   useEffect(() => {
-   getConf()
+    getConf();
   }, []);
-
-
-
 
   return (
     <div className="bg-white flex">
-    <div className="sm:flex h-screen">
-    <Sidebar user={"Company"}/>
+      <div className="sm:flex h-screen">
+        <Sidebar user={"Company"} />
+      </div>
+      <div className="flex-[3]">
+        <Navbar />
+        <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
+
+        {data && (
+          <DataTable
+            col={col}
+            row={data}
+            handleChange={cancelRequest}
+            action={"Cancel"}
+          />
+        )}
+        {!data && (
+          <h1 className="text-2xl text-center mt-10">No Requests Found</h1>
+        )}
+      </div>
     </div>
-    <div className="flex-[3]">
-      <Navbar />
-      <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
+  );
+};
 
-      <DataTable col={col} row={data} handleChange={cancelRequest} action={"Cancel"}/>
-    </div>
-  </div>
-  )
-}
-
-export default SubscribedCollege
-
-
-
-
-
-
+export default SubscribedCollege;

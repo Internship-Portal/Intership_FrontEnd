@@ -5,44 +5,37 @@ import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import DataTable from "../../components/DataTable";
 
- 
 function SubComp() {
   const [data, setData] = useState([]);
   const { headers } = config();
-  const col = [ 
+  const col = [
     {
-      "name": "Logo",
-      "diplay": false
-
+      name: "Logo",
+      diplay: false,
     },
     {
-      "name": "Company",
-      "diplay": true
+      name: "Company",
+      diplay: true,
     },
     {
-      "name": "Location"
-      ,
-      "diplay": true
+      name: "Location",
+      diplay: true,
     },
     {
-      "name": "Job Profile"
-      ,
-      "diplay": true
+      name: "Job Profile",
+      diplay: true,
     },
     {
-      "name": "Internship Period",
-      "diplay": true
+      name: "Internship Period",
+      diplay: true,
     },
 
     {
-      "name": "Accept",
-      "diplay": false,
-      "displayRow":false
-
-    }
-
-
-  ]
+      name: "Accept",
+      diplay: false,
+      displayRow: false,
+    },
+  ];
 
   const getConf = async () => {
     try {
@@ -91,10 +84,10 @@ function SubComp() {
       if (!res.ok) {
         throw new Error("Request failed");
       }
+      getConf();
 
       const result = await res.json();
       console.log(result);
-      getConf();
     } catch (error) {
       console.log(error);
     }
@@ -103,13 +96,22 @@ function SubComp() {
   return (
     <div className="bg-white flex">
       <div className="hidden sm:flex">
-      <Sidebar user={"officer"}/>
+        <Sidebar user={"officer"} />
       </div>
       <div className="flex-[3]">
         <Navbar />
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
-       { data?<DataTable col={col} row={data} action={"Accept"} user={"officer"} handleChange={handleClick}/>:<div className="p-3">No Request Found</div>}
-       
+        {data ? (
+          <DataTable
+            col={col}
+            row={data}
+            action={"Accept"}
+            user={"officer"}
+            handleChange={handleClick}
+          />
+        ) : (
+          <div className="p-3">No Request Found</div>
+        )}
       </div>
     </div>
   );
