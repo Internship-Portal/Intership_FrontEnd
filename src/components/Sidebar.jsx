@@ -58,7 +58,7 @@ const Sidebar = (props) => {
             </Link>
           </div>
           <ul className="pt-6">
-            <p className="text-[10px] font-bold text-[#999] mt-[15px] mb-[5px] py-4">
+            <p className="text-[10px] font-bold text-white mt-[15px] mb-[5px] py-4">
               <HomeIcon />
               MAIN
             </p>
@@ -88,7 +88,7 @@ const Sidebar = (props) => {
                     setshowCompany(!showCompany);
                   }}
                 >
-                  <span className="text-[13px] mr-2 font-semibold text-white ml-[10px]">
+                  <span className="text-[13px] mr-2 font-semibold text-white ml-[10px]" id="display_info">
                     {user == "officer" ? "Colleges" : "Comapanies"}
                   </span>
                   <ArrowDropDownRoundedIcon style={{ color: "grey" }} />
@@ -98,7 +98,7 @@ const Sidebar = (props) => {
                   <ul>
                     <div className="flex flex-col">
                       {user != "officer" && (
-                        <li className="items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
+                        <li className="items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]" id="display_college">
                           <Link
                             to={"/getcollege"}
                             style={{ textDecoration: "none" }}
@@ -190,7 +190,7 @@ const Sidebar = (props) => {
               </div>
             )}
 
-            <p className="text-[10px] font-bold text-[#999] mt-[15px] mb-[5px] py-4">
+            <p className="text-[10px] font-bold text-white mt-[15px] mb-[5px] py-4">
               <PersonIcon />
               USER
             </p>

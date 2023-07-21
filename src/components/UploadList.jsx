@@ -4,8 +4,8 @@ import { useState } from "react";
 import DropDownB from "./Dropdown_batch";
 import DropDownD from "./Dropdown_dept";
 import config from "../hooks/config";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 const UploadList = () => {
   const [user, setUser] = useState({
@@ -141,7 +141,7 @@ const UploadList = () => {
           <span>Upload</span>
         </button>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 };

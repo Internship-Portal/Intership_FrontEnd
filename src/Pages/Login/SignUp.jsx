@@ -10,6 +10,7 @@ import jwt_decode from "jwt-decode";
 import config from "../../hooks/config";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
+import { ToastContainer } from "react-toastify";
 
 const SignUp = () => {
   const [officer, setOfficer] = useState(false);
@@ -252,6 +253,7 @@ const SignUp = () => {
           <Link to='/'> Already have account? </Link>
         </div>
       </div>
+      <ToastContainer/>
       {/* {error && <span>{error.message}</span>} */}
     </div>
     // </div>

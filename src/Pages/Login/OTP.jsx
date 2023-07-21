@@ -30,7 +30,7 @@ const OTP = () => {
 
       const result = await res.json();
       console.log(result);
-
+        console.log(res.ok);
       if (res.ok) {
         localStorage.clear();
         localStorage.setItem("jwt", result.token);

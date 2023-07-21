@@ -41,7 +41,7 @@ const Login = (props) => {
     });
   };
   const errLogin = () => {
-    toast.error("Login Unsuccessful", {
+    toast.error("Email or Password is Invalid", {
       position: "top-center",
     });
   };
@@ -64,18 +64,18 @@ const Login = (props) => {
             }),
           }
         );
-
         const result = await res.json();
-
         localStorage.clear();
         localStorage.setItem("jwt", result.token);
-        successLogin();
-
+        console.log(res.ok);
         if (res.ok) {
           navigate("/company");
         }
+        else
+        {
+          errLogin();
+        }
       } catch (error) {
-        errLogin();
         console.log(error);
       }
     } else if (officer) {
@@ -98,10 +98,13 @@ const Login = (props) => {
 
         localStorage.clear();
         localStorage.setItem("jwt", result.token);
-        successLogin();
 
         if (res.ok) {
           navigate("/college");
+        }
+        else
+        {
+          errLogin();
         }
       } catch (error) {
         errLogin();
@@ -218,12 +221,13 @@ const Login = (props) => {
         </button>
 
         <div className="">
-          <Link to="/signup" className="text-primaryText">
+          <Link to="/verify" className="text-primaryText">
             <p>Don't Have Account ?</p>
           </Link>
         </div>
         {error && <span>{error.message}</span>}
       </div>
+      <ToastContainer/>
     </div>
   );
 };
