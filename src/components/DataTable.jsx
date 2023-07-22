@@ -36,6 +36,9 @@ const DataTable = (props) => {
   const handleDept=(data)=>{
     props.handleDept(data)
   }
+
+ 
+  
   useEffect(()=>{
 setData(props.row)
   })

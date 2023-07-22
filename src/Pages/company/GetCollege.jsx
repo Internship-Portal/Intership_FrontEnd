@@ -13,8 +13,6 @@ const GetCollege = () => {
   const [colleges, setColleges] = useState([]);
   const [loading, setLoading] = useState(false);
 
-
-
   const subscribeCollege = async (college) => {
     const message = college.college_name;
     const _id = college._id;
@@ -30,8 +28,8 @@ const GetCollege = () => {
         body: JSON.stringify({ _id: _id, message: message }),
       }
     );
-    const result=await res.json()
-    
+    const result = await res.json();
+
     console.log(result);
     getallcollege();
   };
@@ -39,10 +37,13 @@ const GetCollege = () => {
   const getallcollege = async () => {
     try {
       const res = await axios
-        .get(`http://localhost:4000/api/company/getAllOfficerByFilterInChunks?chunk=1
-        `, {
-          headers,
-        })
+        .get(
+          `http://localhost:4000/api/company/getAllOfficerByFilterInChunks?chunk=1
+        `,
+          {
+            headers,
+          }
+        )
         .then(function (res) {
           console.log(res);
           setLoading(true);
@@ -61,55 +62,38 @@ const GetCollege = () => {
     setClicked(true);
   };
 
-  const { id, headers } = config();
+  const { headers } = config();
   useEffect(() => {
     getallcollege();
   }, []);
 
-  const [search, setSearch] = useState("");
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    setSearch(e.target.value);
-  };
-
-  const searchItem = colleges.filter((data) =>
-    data.college_name.toLowerCase().includes(search.toLowerCase())
-  );
-
   const col = [
     {
-      "name": "Logo",
-      "diplay": false
-
+      name: "Logo",
+      diplay: false,
     },
     {
-      "name": "College",
-      "diplay": true
+      name: "College",
+      diplay: true,
     },
     {
-      "name": "Location"
-      ,
-      "diplay": true
+      name: "Location",
+      diplay: true,
     },
     {
-      "name": "Available Studen"
-      ,
-      "diplay": true
+      name: "Available Studen",
+      diplay: true,
     },
     {
-      "name": "Internship Period",
-      "diplay": true
+      name: "Internship Period",
+      diplay: true,
     },
 
     {
-      "name": "Subscribe",
-      "diplay": false
-
-    }
-
-
-  ]
+      name: "Subscribe",
+      diplay: false,
+    },
+  ];
 
   return (
     <>
@@ -120,7 +104,12 @@ const GetCollege = () => {
         <div className="flex-[3]">
           <Navbar />
           <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
-         <DataTable col={col} row={colleges} handleChange={subscribeCollege} action={"Subscribe"}/>
+          <DataTable
+            col={col}
+            row={colleges}
+            handleChange={subscribeCollege}
+            action={"Subscribe"}
+          />
         </div>
       </div>
     </>
