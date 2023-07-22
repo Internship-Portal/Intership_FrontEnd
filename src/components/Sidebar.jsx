@@ -24,7 +24,7 @@ const Sidebar = (props) => {
 
   return (
     <>
-      <div className="flex h-screen">
+      <div className="flex h-full  bg-cardBackground">
         <div
           className={`${
             open ? " w-64" : "w-20"

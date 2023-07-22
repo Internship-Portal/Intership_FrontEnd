@@ -1,12 +1,37 @@
 import React from "react";
+import { CSVLink, CSVDownload } from "react-csv";
 import axios from "axios";
 import { useState } from "react";
 import DropDownB from "./Dropdown_batch";
 import DropDownD from "./Dropdown_dept";
 import config from "../hooks/config";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 
+const csv = [
+  [
+    "name",
+    "email_id",
+    "college_name",
+    "location",
+    "branch",
+    "mobile_no",
+    "roll_no",
+    "achievements,skills",
+    "hobbies",
+    "cgpa",
+    "year_batch",
+    "Internship_status",
+    "tenth_percentage",
+    "twelve_percentage",
+    "diploma_percentage",
+    "internship_start_date",
+    "internship_end_date",
+    "backlog",
+    "linked_profile_link",
+    "github_profile_link",
+    "leetcode_profile",
+    "geeksforgeeks_profile",
+  ],
+];
 const UploadList = () => {
   const [user, setUser] = useState({
     department_name: "",
@@ -14,11 +39,11 @@ const UploadList = () => {
     csvFile: null,
   });
 
-  const token = localStorage.getItem("jwt")
+  const token = localStorage.getItem("jwt");
   const headers = {
     "Content-type": "multipart/form-data",
     Authorization: `Bearer ${token}`,
-  }
+  };
 
   const handleBatchChange = (data) => {
     setUser({ ...user, year_batch: data });
@@ -87,8 +112,10 @@ const UploadList = () => {
                 ></path>
               </svg>
               <p className="mb-2 text-sm text-black ">
-                <span className="font-semibold font-poppins">Click to upload</span> or drag
-                and drop
+                <span className="font-semibold font-poppins">
+                  Click to upload
+                </span>{" "}
+                or drag and drop
               </p>
               <p className="text-xs text-black font-poppins">CSV</p>
             </div>
@@ -141,6 +168,13 @@ const UploadList = () => {
           <span>Upload</span>
         </button>
       </div>
+      <CSVLink
+        className=" font-bold inline-flex items-center my-2 w-full rounded-lg"
+        data={csv} 
+        filename={"CSV_Template.csv"}
+      >
+        <div className="bg-gray-300 hover:bg-gray-400 text-gray-800 mx-auto p-2 rounded-lg">Download Template CSV File</div>
+      </CSVLink>
       {/* <ToastContainer /> */}
     </div>
   );
