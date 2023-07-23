@@ -33,8 +33,8 @@ const StudentDataTable = (props) => {
 
 
 
-  const handleClick = (data) => {
-    props.handleChange(data);
+  const handleClick = () => {
+    props.handleClick();
   };
 
   const [checked, setChecked] = useState([{}]);
@@ -124,6 +124,10 @@ const StudentDataTable = (props) => {
 
         <Dropdown_dept onhandleDeptChange={handleDept} />
         <Dropdown_batch onhandleBatchChange={handleBatch} />
+        <button className="font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-2 py-1 rounded-lg " onClick={(e) => {
+                 
+                 handleClick()
+                }}>Send List</button>
       </form>
 
       <div class="relative overflow-y-scroll sm:rounded-lg m-9 sm:h-[350px] h-[400px] ">

@@ -18,6 +18,8 @@ import DisplayStudents from "./Pages/company/DisplayStudents";
 
 import DataTable from "./components/DataTable";
 import Verfication from "./Pages/Login/Verfication";
+import SendList from "./Pages/College/SendList";
+import GetStudents from "./Pages/company/GetStudents";
 
 function App() {
   return (
@@ -42,6 +44,9 @@ function App() {
           <Route path="/companystudent" element={<DisplayStudents/>}></Route>
           <Route path="/datatable" element={<DataTable/>}></Route>
           <Route path="/verify" element={<Verfication/>}></Route>
+          <Route path="/sendList" element={<SendList/>}></Route>
+          <Route path="/getStudents" element={<GetStudents/>}></Route>
+          
         </Routes>
       </BrowserRouter>
     </div>

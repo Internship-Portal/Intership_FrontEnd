@@ -15,12 +15,7 @@ const ConfirmedCollege = () => {
 
   const navigate = useNavigate();
 
-  const [student, setStudent] = useState({
-    _id: "123",
-    year_batch: null,
-    departments: ["CS", "IT", "ENTC"],
-    department_name: "IT",
-  });
+  
   const col = [
     {
       name: "Logo",
@@ -90,13 +85,10 @@ const ConfirmedCollege = () => {
   };
 
   const handleClick = (college) => {
-    console.log(student.year_batch);
-    if (student.year_batch != null)
-      navigate("/companystudent", {
+ 
+      navigate("/getStudents", {
         state: {
-          officer_id: college.officer_id,
-          year_batch: student.year_batch,
-          department_name: student.department_name,
+          officer_id: college.officer_id,       
         },
       });
   }; 
@@ -119,9 +111,6 @@ const ConfirmedCollege = () => {
         <DataTable
           col={col}
           row={data}
-          deptYear={true}
-          handleBatch={handleBatch}
-          handleDept={handleDept}
           handleChange={handleClick}
           action={"View List"}
         />

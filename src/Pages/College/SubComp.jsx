@@ -4,10 +4,12 @@ import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import DataTable from "../../components/DataTable";
+import { useNavigate } from "react-router-dom";
 
 function SubComp() {
   const [data, setData] = useState([]);
   const { headers } = config();
+  const navigate=useNavigate();
   const col = [
     {
       name: "Logo",
@@ -64,30 +66,38 @@ function SubComp() {
 
   const handleClick = async (company) => {
     try {
-      const token = localStorage.getItem("jwt");
-      console.log(company);
-      const res = await fetch(
-        "http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-            authorization: `bearer ${token}`,
-          },
-          body: JSON.stringify({
-            company_id: company.company_id,
+      console.log(company)
+      navigate('/sendList',{
+        state: {
+          company_id: company.company_id,
             message: company.message,
-          }),
-        }
-      );
+            company_name:company.company_name
+        },
+      })
+      // const token = localStorage.getItem("jwt");
+      // console.log(company);
+      // const res = await fetch(
+      //   "http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
+      //   {
+      //     method: "PUT",
+      //     headers: {
+      //       "content-type": "application/json",
+      //       authorization: `bearer ${token}`,
+      //     },
+      //     body: JSON.stringify({
+      //       company_id: company.company_id,
+      //       message: company.message,
+      //     }),
+      //   }
+      // );
 
-      if (!res.ok) {
-        throw new Error("Request failed");
-      }
-      getConf();
+      // if (!res.ok) {
+      //   throw new Error("Request failed");
+      // }
+      // getConf();
 
-      const result = await res.json();
-      console.log(result);
+      // const result = await res.json();
+      // console.log(result);
     } catch (error) {
       console.log(error);
     }
