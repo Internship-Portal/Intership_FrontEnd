@@ -11,7 +11,7 @@ const GetStudents = () => {
     const collegeDetails=useLocation()
     
     const [student, setStudent] = useState({
-        department_name: "",
+      department_name: "",
         year_batch: null,
         students: [],
       });
@@ -96,15 +96,10 @@ const GetStudents = () => {
                   authorization: `bearer ${token}`,
                 },
                 body: JSON.stringify({
-                  company_id: companyDetails.state.company_id,
-                  message: companyDetails.state.message,
-                  selected_students:[
-                    {
-                        department_name:student.department_name,
-                        year_batch:student.year_batch,
-                        student_details:selectStudents
-                    }
-                  ]
+                  company_id: collegeDetails.state.officer_id,
+                  department_name:student.department_name,
+                  year_batch:student.year_batch,
+                  selected_students:selectStudents
                 }),
               }
             );
@@ -140,8 +135,6 @@ const GetStudents = () => {
                 officer_id:collegeDetails.state.officer_id,
                 year_batch: student.year_batch,
                 department_name: student.department_name,
-               
-
               }),
             }
           );
