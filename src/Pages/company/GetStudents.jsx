@@ -85,10 +85,15 @@ const GetStudents = () => {
       const handleClick=async()=>{
         try {
            
+          
             const token = localStorage.getItem("jwt");
+            console.log(token)
+            console.log(selectStudents)
+            console.log(student)
+            console.log(collegeDetails.state.officer_id)
            
             const res = await fetch(
-              "http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
+              "http://localhost:4000/api/company/setSelectedStudentsWithoutDates",
               {
                 method: "PUT",
                 headers: {
@@ -96,7 +101,7 @@ const GetStudents = () => {
                   authorization: `bearer ${token}`,
                 },
                 body: JSON.stringify({
-                  company_id: collegeDetails.state.officer_id,
+                  officer_id: collegeDetails.state.officer_id,
                   department_name:student.department_name,
                   year_batch:student.year_batch,
                   selected_students:selectStudents
@@ -110,6 +115,8 @@ const GetStudents = () => {
           
       
             const result = await res.json();
+            console.log(result.data)
+        
             console.log(result);
           } catch (error) {
             console.log(error);
@@ -123,6 +130,8 @@ const GetStudents = () => {
         try {
             const token = localStorage.getItem("jwt");
             console.log(collegeDetails.state.officer_id)
+            console.log(student);
+            
           const response = await fetch(
             "http://localhost:4000/api/company/getStudentDetailsbyDeptAndYear",
             {
@@ -144,6 +153,7 @@ const GetStudents = () => {
           }
     
           const result = await response.json();
+          setStudent({ ...student, students: result.data });
           console.log(result.data);
          
         } catch (error) {
