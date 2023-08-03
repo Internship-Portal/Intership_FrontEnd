@@ -4,12 +4,12 @@ import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlin
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { menu, close } from "../assets";
-const Navbar = () => {
+const Navbar = (props) => {
   const [toggle, setToggle] = React.useState(false);
   return (
     <nav className="w-full flex justify-between items-center">
       <div className="w-full p-[0.82rem] flex items-center justify-between">
-
+        <span className="ml-[23px] text-sky-600 font-poppins text-[1.6rem] font-semibold">{props.pageName}</span>
         <ul className="list-none sm:flex hidden justify-end items-center flex-1">
           <div className="flex items-center mr-5 relative">
             <FullscreenExitOutlinedIcon className="icon font-[20px]" />

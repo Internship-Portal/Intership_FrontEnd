@@ -88,7 +88,8 @@ const ConfirmedCollege = () => {
  
       navigate("/getStudents", {
         state: {
-          officer_id: college.officer_id,       
+          officer_id: college.officer_id, 
+          name : college.college_name      
         },
       });
   }; 
@@ -105,7 +106,7 @@ const ConfirmedCollege = () => {
         </div>
       </div>
       <div className="flex-[3] bg-white">
-        <Navbar />
+        <Navbar pageName={"Confirmed Colleges"}/>
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
 
         <DataTable

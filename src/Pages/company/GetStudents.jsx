@@ -82,13 +82,13 @@ const GetStudents = () => {
 
       const { headers } = config();
 
-      const successLogin = () => {
+      const successSend = () => {
         toast.success("List sent Successfully", {
           position: "top-center",
         });
       };
 
-      const errLogin = () => {
+      const errSend = () => {
         toast.error("Couldn't send the List", {
           position: "top-center",
         });
@@ -122,11 +122,11 @@ const GetStudents = () => {
             );
       
             if (!res.ok) {
-              errLogin()
+              errSend()
               throw new Error("Request failed");
             }
             else{
-              successLogin()
+              successSend()
             }
           
       
@@ -186,8 +186,8 @@ const GetStudents = () => {
         <Sidebar user={"Company"} />
       </div>
       <div className="flex-[3]">
+      <Navbar pageName={`Students - ${collegeDetails.state.name}`}/>
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
-       
         <StudentDataTable
           col={col}
           row={student.students}
