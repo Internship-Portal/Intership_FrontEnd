@@ -67,38 +67,30 @@ function SubComp() {
 
   const handleClick = async (company) => {
     try {
-      console.log(company)
-      navigate('/sendList',{
-        state: {
-          company_id: company.company_id,
+      const token = localStorage.getItem("jwt");
+      console.log(company);
+      const res = await fetch(
+        "http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+            authorization: `bearer ${token}`,
+          },
+          body: JSON.stringify({
+            company_id: company.company_id,
             message: company.message,
-            company_name:company.company_name
-        },
-      })
-      // const token = localStorage.getItem("jwt");
-      // console.log(company);
-      // const res = await fetch(
-      //   "http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
-      //   {
-      //     method: "PUT",
-      //     headers: {
-      //       "content-type": "application/json",
-      //       authorization: `bearer ${token}`,
-      //     },
-      //     body: JSON.stringify({
-      //       company_id: company.company_id,
-      //       message: company.message,
-      //     }),
-      //   }
-      // );
+          }),
+        }
+      );
 
-      // if (!res.ok) {
-      //   throw new Error("Request failed");
-      // }
-      // getConf();
+      if (!res.ok) {
+        throw new Error("Request failed");
+      }
+      getConf();
 
-      // const result = await res.json();
-      // console.log(result);
+      const result = await res.json();
+      console.log(result);
     } catch (error) {
       console.log(error);
     }

@@ -99,10 +99,7 @@ const GetStudents = () => {
            
           
             const token = localStorage.getItem("jwt");
-            console.log(token)
-            console.log(selectStudents)
-            console.log(student)
-            console.log(collegeDetails.state.officer_id)
+            
            
             const res = await fetch(
               "http://localhost:4000/api/company/setSelectedStudentsWithoutDates",
@@ -145,8 +142,7 @@ const GetStudents = () => {
       const getConf = async () => {
         try {
             const token = localStorage.getItem("jwt");
-            console.log(collegeDetails.state.officer_id)
-            console.log(student);
+           
             
           const response = await fetch(
             "http://localhost:4000/api/company/getStudentDetailsbyDeptAndYear",
