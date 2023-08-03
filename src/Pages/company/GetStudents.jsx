@@ -172,9 +172,49 @@ const GetStudents = () => {
           console.log(error);
         }
       };
+
+      const getselected = async () => {
+        try {
+            const token = localStorage.getItem("jwt");
+           
+            
+          const response = await fetch(
+            "http://localhost:4000/api/company/getStudentDetailsbyDeptAndYear",
+            {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+                authorization: `bearer ${token}`,
+              },
+              body: JSON.stringify({
+                officer_id:collegeDetails.state.officer_id,
+                year_batch: student.year_batch,
+                department_name: student.department_name,
+              }),
+            }
+          );
+    
+          if (!response.ok) {
+            throw new Error("Request failed with status code " + response.status);
+          }
+    
+          const result = await response.json();
+          setStudent({ ...student, students: result.data });
+          console.log(result.data);
+         
+        } catch (error) {
+          console.log(error);
+        }
+      };
     
       useEffect(() => {
-        getConf();
+        if(collegeDetails.state.Role==="send"){
+          getConf();
+        }
+        else{
+          getselected();
+        }
+        
       }, [student.year_batch, student.department_name]);
   return (
     <div className="bg-white flex">
@@ -192,6 +232,7 @@ const GetStudents = () => {
           handleBatch={handleBatch}
           handleDept={handleDept}
           handleClick={handleClick}
+          Role= {collegeDetails.state.Role}
         />
       </div>
       <ToastContainer/>

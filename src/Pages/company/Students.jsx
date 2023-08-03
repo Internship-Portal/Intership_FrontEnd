@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
-import axios from "axios";
-import Dropdown_batch from "../../components/Dropdown_batch";
-import Dropdown_dept from "../../components/Dropdown_dept";
 import DataTable from "../../components/DataTable";
-
 import { useNavigate } from "react-router-dom";
 
 const ConfirmedCollege = () => {
@@ -30,7 +26,7 @@ const ConfirmedCollege = () => {
       diplay: true,
     },
     {
-      name: "Available Studen",
+      name: "Available Student",
       diplay: true,
     },
     {
@@ -90,7 +86,7 @@ const ConfirmedCollege = () => {
         state: {
           officer_id: college.officer_id, 
           name : college.college_name ,
-          Role : "send"
+          Role : "get"
         },
       });
   }; 
@@ -107,14 +103,14 @@ const ConfirmedCollege = () => {
         </div>
       </div>
       <div className="flex-[3] bg-white">
-        <Navbar pageName={"Confirmed Colleges"}/>
+        <Navbar pageName={"Selected Students"}/>
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
 
         <DataTable
           col={col}
           row={data}
           handleChange={handleClick}
-          action={"View List"}
+          action={"View Students"}
         />
       </div>
     </div>

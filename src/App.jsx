@@ -12,7 +12,7 @@ import ConfComp from "./Pages/College/ConfComp";
 import DashBoard from "./Pages/company/DashBoard";
 import GetCompany from "./Pages/company/GetCollege";
 import ConfirmedCollege from "./Pages/company/ConfirmedCollege";
-
+import SelectedStudents from "./Pages/company/Students"
 import SubscribedCollege from "./Pages/company/SubscribedCollege";
 import DisplayStudents from "./Pages/company/DisplayStudents";
 
@@ -46,6 +46,7 @@ function App() {
           <Route path="/verify" element={<Verfication/>}></Route>
           <Route path="/sendList" element={<SendList/>}></Route>
           <Route path="/getStudents" element={<GetStudents/>}></Route>
+          <Route path="/selectedStudents" element={<SelectedStudents/>}></Route>
           
         </Routes>
       </BrowserRouter>

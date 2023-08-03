@@ -124,10 +124,12 @@ const StudentDataTable = (props) => {
 
         <Dropdown_dept onhandleDeptChange={handleDept} />
         <Dropdown_batch onhandleBatchChange={handleBatch} />
-        <button className="font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-2 py-1 rounded-lg " onClick={(e) => {
+
+        {props.Role==="send"? <button className="font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-2 py-1 rounded-lg " onClick={(e) => {
                  
                  handleClick()
-                }}>Send List</button>
+                }} >send list</button> : null}
+        
       </form>
 
       <p className="text-red-800 font-medium ml-12">* Select Department and Year batch to view students</p>
