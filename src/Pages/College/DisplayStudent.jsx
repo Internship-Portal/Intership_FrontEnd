@@ -134,6 +134,7 @@ function DisplayStudent() {
         <Sidebar user={"officer"} />
       </div>
       <div className="flex-[3]">
+      <Navbar pageName={"Display Calender"}/>
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
        
         <StudentDataTable

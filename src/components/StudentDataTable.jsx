@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { pccoe } from "../assets";
 import Dropdown_batch from "./Dropdown_batch";
 import Dropdown_dept from "./Dropdown_dept";
 

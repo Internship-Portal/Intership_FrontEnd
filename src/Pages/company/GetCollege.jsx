@@ -8,12 +8,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DataTable from "../../components/DataTable";
 
-const successLogin = () => {
+const successSub = () => {
   toast.success("Subscribed Successfully", {
     position: "top-center",
   });
 };
-const errLogin = () => {
+const errSub = () => {
   toast.error("Couldn't subscribe", {
     position: "top-center",
   });
@@ -42,11 +42,11 @@ const GetCollege = () => {
     const result = await res.json();
 
     if (res.ok) {
-      successLogin()
+      successSub()
     }
     else
     {
-      errLogin();
+      errSub();
     }
 
     console.log(result);
