@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import DataTable from "../../components/DataTable";
 import { useNavigate } from "react-router-dom";
+import notfound from '../../assets/not.jpg'
 
 function SubComp() {
   const [data, setData] = useState([]);
@@ -120,7 +121,10 @@ function SubComp() {
             handleChange={handleClick}
           />
         ) : (
-          <div className="p-3">No Request Found</div>
+          <div className="m-auto text-4xl w-max  p-10 flex flex-col" >
+            <img src={notfound} alt="" className=""/>
+            <h1 className="font-medium text-cyan-800">No Request found</h1>
+          </div>
         )}
       </div>
     </div>

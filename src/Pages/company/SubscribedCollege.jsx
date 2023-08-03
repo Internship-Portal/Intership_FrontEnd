@@ -4,6 +4,8 @@ import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import DataTable from "../../components/DataTable";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SubscribedCollege = () => {
   const [data, setData] = useState([]);
@@ -36,6 +38,17 @@ const SubscribedCollege = () => {
       displayRow: false,
     },
   ];
+
+  const successLogin = () => {
+    toast.success("Request canceled Successfully", {
+      position: "top-center",
+    });
+  };
+  const errLogin = () => {
+    toast.error("Couldn't cancel request", {
+      position: "top-center",
+    });
+  };
 
   const getConf = async () => {
     try {
@@ -78,6 +91,15 @@ const SubscribedCollege = () => {
         }
       );
       const result = await res.json();
+
+      if (res.ok) {
+        successLogin()
+      }
+      else
+      {
+        errLogin();
+      }
+
       console.log(result);
       getConf();
     } catch (err) {
@@ -110,6 +132,7 @@ const SubscribedCollege = () => {
           <h1 className="text-2xl text-center mt-10">No Requests Found</h1>
         )}
       </div>
+      <ToastContainer/>
     </div>
   );
 };

@@ -67,7 +67,7 @@ const Sidebar = (props) => {
                 to={user != "officer" ? "/Company" : "/college"}
                 style={{ textDecoration: "none" }}
               >
-                <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
+                <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
                   {/* <DashboardIcon className="icon" /> */}
                   <span className="text-[13px] font-semibold text-white ml-[10px]">
                     Dashboard
@@ -89,16 +89,16 @@ const Sidebar = (props) => {
                   }}
                 >
                   <span className="text-[13px] mr-2 font-semibold text-white ml-[10px]" id="display_info">
-                    {user == "officer" ? "Colleges" : "Comapanies"}
+                    {user == "officer" ? "Companies" : "Colleges"}
                   </span>
-                  <ArrowDropDownRoundedIcon style={{ color: "grey" }} />
+                  <ArrowDropDownRoundedIcon style={{ color: "powderblue" }} />
                 </div>
 
                 {showCompany && (
                   <ul>
                     <div className="flex flex-col">
                       {user != "officer" && (
-                        <li className="items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]" id="display_college">
+                        <li className="items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]" id="display_college">
                           <Link
                             to={"/getcollege"}
                             style={{ textDecoration: "none" }}
@@ -110,7 +110,7 @@ const Sidebar = (props) => {
                           </Link>
                         </li>
                       )}
-                      <li className="items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
+                      <li className="items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
                         <Link
                           to={
                             user == "officer"
@@ -121,11 +121,11 @@ const Sidebar = (props) => {
                         >
                           <span className="text-[13px] font-semibold text-white ml-[10px]">
                             Requested{" "}
-                            {user == "officer" ? "Comapanies" : "Colleges"}
+                            {user == "officer" ? "Companies" : "Colleges"}
                           </span>
                         </Link>
                       </li>
-                      <li className="items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
+                      <li className="items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
                         <Link
                           to={
                             user == "officer"
@@ -136,7 +136,7 @@ const Sidebar = (props) => {
                         >
                           <span className="text-[13px] font-semibold text-white ml-[10px]">
                             Confirmed{" "}
-                            {user == "officer" ? "Comapanies" : "Colleges"}
+                            {user == "officer" ? "Companies" : "Colleges"}
                           </span>
                         </Link>
                       </li>
@@ -157,13 +157,13 @@ const Sidebar = (props) => {
                     <span className="text-[13px] mr-2 font-semibold text-white ml-[10px]">
                       Calender
                     </span>
-                    <ArrowDropDownRoundedIcon style={{ color: "grey" }} />
+                    <ArrowDropDownRoundedIcon style={{ color: "powderblue" }} />
                   </div>
 
                   {showCalendar && (
                     <ul>
                       <div className="flex flex-col">
-                        <li className="items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
+                        <li className="items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
                           <Link
                             to="/addstudents"
                             style={{ textDecoration: "none" }}
@@ -173,7 +173,7 @@ const Sidebar = (props) => {
                             </span>
                           </Link>
                         </li>
-                        <li className="items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
+                        <li className="items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
                           <Link
                             to="/displaystudents"
                             style={{ textDecoration: "none" }}
@@ -195,13 +195,13 @@ const Sidebar = (props) => {
               USER
             </p>
             <div className={`${!open && "hidden"}`}>
-              <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
+              <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
                 {/* <AccountCircleOutlinedIcon className="icon" /> */}
                 <span className="text-[13px] font-semibold text-white ml-[10px]">
                   Profile
                 </span>
               </li>
-              <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#ece8ff]">
+              <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
                 {/* <ExitToAppIcon className="icon" /> */}
                 <span className="text-[13px] font-semibold text-white ml-[10px]" onClick={logout}>
                   Logout

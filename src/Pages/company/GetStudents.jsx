@@ -4,7 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import "react-toastify/dist/ReactToastify.css";
 import config from "../../hooks/config";
 import StudentDataTable from "../../components/StudentDataTable";
-
+import { ToastContainer, toast } from "react-toastify";
 import { useLocation } from 'react-router-dom';
 
 const GetStudents = () => {
@@ -82,6 +82,18 @@ const GetStudents = () => {
 
       const { headers } = config();
 
+      const successLogin = () => {
+        toast.success("List sent Successfully", {
+          position: "top-center",
+        });
+      };
+
+      const errLogin = () => {
+        toast.error("Couldn't send the List", {
+          position: "top-center",
+        });
+      };
+
       const handleClick=async()=>{
         try {
            
@@ -110,7 +122,11 @@ const GetStudents = () => {
             );
       
             if (!res.ok) {
+              errLogin()
               throw new Error("Request failed");
+            }
+            else{
+              successLogin()
             }
           
       
@@ -157,7 +173,7 @@ const GetStudents = () => {
           console.log(result.data);
          
         } catch (error) {
-          console.log(error.response);
+          console.log(error);
         }
       };
     
@@ -182,6 +198,7 @@ const GetStudents = () => {
           handleClick={handleClick}
         />
       </div>
+      <ToastContainer/>
     </div>
   )
 }

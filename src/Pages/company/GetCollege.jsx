@@ -4,9 +4,20 @@ import { useState, useEffect } from "react";
 import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
-import { pccoe } from "../../assets";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import DataTable from "../../components/DataTable";
+
+const successLogin = () => {
+  toast.success("Subscribed Successfully", {
+    position: "top-center",
+  });
+};
+const errLogin = () => {
+  toast.error("Couldn't subscribe", {
+    position: "top-center",
+  });
+};
 
 const GetCollege = () => {
   const [clicked, setClicked] = useState(false);
@@ -30,6 +41,14 @@ const GetCollege = () => {
     );
     const result = await res.json();
 
+    if (res.ok) {
+      successLogin()
+    }
+    else
+    {
+      errLogin();
+    }
+
     console.log(result);
     getallcollege();
   };
@@ -38,7 +57,7 @@ const GetCollege = () => {
     try {
       const res = await axios
         .get(
-          `http://localhost:4000/api/company/getAllOfficerByFilterInChunks?chunk=1
+          `http://localhost:4000/api/company/getAllOfficerByFilterInChunks?chunk=2
         `,
           {
             headers,
@@ -111,7 +130,9 @@ const GetCollege = () => {
             action={"Subscribe"}
           />
         </div>
+        
       </div>
+      <ToastContainer/>
     </>
   );
 };
