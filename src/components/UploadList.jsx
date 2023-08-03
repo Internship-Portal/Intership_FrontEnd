@@ -155,10 +155,10 @@ const UploadList = () => {
         user,
         { headers }
       );
-      successfulUpload();
+    //  successfulUpload();
       console.log(res);
     } catch (error) {
-      unsuccessfulUpload();
+      //unsuccessfulUpload();
       console.log(error.response.data);
     }
   };

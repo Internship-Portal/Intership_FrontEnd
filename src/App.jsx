@@ -20,6 +20,10 @@ import DataTable from "./components/DataTable";
 import Verfication from "./Pages/Login/Verfication";
 import SendList from "./Pages/College/SendList";
 import GetStudents from "./Pages/company/GetStudents";
+import ConfirmStudents from "./Pages/College/ConfirmStudents";
+
+import SelectStudents from "./Pages/College/SelectStudents";
+
 
 function App() {
   return (
@@ -46,7 +50,8 @@ function App() {
           <Route path="/verify" element={<Verfication/>}></Route>
           <Route path="/sendList" element={<SendList/>}></Route>
           <Route path="/getStudents" element={<GetStudents/>}></Route>
-          
+          <Route path="/confirmStudents" element={<ConfirmStudents/>}></Route>
+          <Route path="/selectStudents" element={<SelectStudents/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
