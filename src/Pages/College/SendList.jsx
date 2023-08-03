@@ -86,7 +86,7 @@ const SendList = () => {
             const token = localStorage.getItem("jwt");
            
             const res = await fetch(
-              "http://localhost:4000/api/officer/addSubscribedOfficerFromOfficer",
+              "http://localhost:4000/api/officer/setMoreStudentInCompany",
               {
                 method: "PUT",
                 headers: {
@@ -96,13 +96,10 @@ const SendList = () => {
                 body: JSON.stringify({
                   company_id: companyDetails.state.company_id,
                   message: companyDetails.state.message,
-                  selected_students:[
-                    {
-                        department_name:student.department_name,
-                        year_batch:student.year_batch,
-                        student_details:selectStudents
-                    }
-                  ]
+                  department_name:student.department_name,
+                  year_batch:student.year_batch,
+                  student_details:selectStudents
+                 
                 }),
               }
             );

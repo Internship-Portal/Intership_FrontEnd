@@ -5,10 +5,11 @@ import config from "../../hooks/config";
 import Dropdown_batch from "../../components/Dropdown_batch";
 import Dropdown_dept from "../../components/Dropdown_dept";
 import DataTable from "../../components/DataTable";
- 
+import { useNavigate } from "react-router-dom";
 function ConfComp() {
   const { id, headers } = config();
   const [data, setData] = useState([]);
+  const navigate=useNavigate();
   const col = [
     {
       name: "Logo",
@@ -88,25 +89,33 @@ function ConfComp() {
 
   const handleClick = async (company) => {
     try {
-      console.log(id);
-      console.log(student);
-      const token = localStorage.getItem("jwt");
-      const res = await fetch(
-        "http://localhost:4000/api/officer/giveAccessToCompanies",
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-            authorization: `bearer ${token}`,
-          },
-          body: JSON.stringify({
-            company_id: company.company_id,
-            access: [student],
-          }),
-        }
-      );
-      const result = await res.json();
-      console.log(result);
+
+      navigate('/sendList',{
+        state: {
+          company_id: company.company_id,
+            message: company.message,
+            company_name:company.company_name
+        },
+      })
+      // console.log(id);
+      // console.log(student);
+      // const token = localStorage.getItem("jwt");
+      // const res = await fetch(
+      //   "http://localhost:4000/api/officer/giveAccessToCompanies",
+      //   {
+      //     method: "PUT",
+      //     headers: {
+      //       "content-type": "application/json",
+      //       authorization: `bearer ${token}`,
+      //     },
+      //     body: JSON.stringify({
+      //       company_id: company.company_id,
+      //       access: [student],
+      //     }),
+      //   }
+      // );
+      // const result = await res.json();
+      // console.log(result);
     } catch (error) {
       console.log(error);
     }
