@@ -57,7 +57,7 @@ const GetCollege = () => {
     try {
       const res = await axios
         .get(
-          `http://localhost:4000/api/company/getAllOfficerByFilterInChunks?chunk=2
+          `http://localhost:4000/api/company/getAllOfficerByFilterInChunks?chunk=1
         `,
           {
             headers,

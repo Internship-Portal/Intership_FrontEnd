@@ -73,7 +73,7 @@ const StudentDataTable = (props) => {
   });
   return (
     <div>
-      <form className="m-9 flex flex-row items-center ">
+      <form className="mt-9 ml-9 flex flex-row items-center ">
         <div className="relative w-full lg:max-w-sm p-4">
           <select
             className="w-full p-2.5 text-black bg-slate-300 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
@@ -130,7 +130,7 @@ const StudentDataTable = (props) => {
                 }}>Send List</button>
       </form>
 
-      <p className="text-red-800 font-medium">* Select Department and Year batch to view students</p>
+      <p className="text-red-800 font-medium ml-12">* Select Department and Year batch to view students</p>
       <div class="relative overflow-y-scroll sm:rounded-lg m-9 sm:h-[350px] h-[400px] ">
         <table class="w-full table-auto overflow-scroll text-sm text-left text-gray-500 shadow ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 shadow-md">
