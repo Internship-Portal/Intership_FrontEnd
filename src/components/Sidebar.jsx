@@ -155,7 +155,7 @@ const Sidebar = (props) => {
                 <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
                   {/* <DashboardIcon className="icon" /> */}
                   <span className="text-[13px] font-semibold text-white ml-[10px]">
-                    Students
+                    Selected Students
                   </span>
                 </li>
               </Link>
