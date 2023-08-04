@@ -58,6 +58,16 @@ const GetStudents = () => {
           diplay: true,
           value:"roll_no"
         },
+        {
+          name: "CGPA",
+          diplay: true,
+          value:"cgpa"
+        },
+        {
+          name: "Skills",
+          diplay: true,
+          value:"skills"
+        },
       ];
     
     const handleClg = (data) => {
@@ -232,7 +242,7 @@ const GetStudents = () => {
           handleBatch={handleBatch}
           handleDept={handleDept}
           handleClick={handleClick}
-          Role= {collegeDetails.state.Role}
+          Role={collegeDetails.state.Role}
         />
       </div>
       <ToastContainer/>

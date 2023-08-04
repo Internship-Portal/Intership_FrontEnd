@@ -90,7 +90,7 @@ const ConfirmedCollege = () => {
         state: {
           officer_id: college.officer_id, 
           name : college.college_name ,
-          Role : "send"
+         
         },
       });
   }; 

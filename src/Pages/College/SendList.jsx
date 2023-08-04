@@ -56,6 +56,16 @@ const SendList = () => {
           diplay: true,
           value:"roll_no"
         },
+        {
+          name: "CGPA",
+          diplay: true,
+          value:"cgpa"
+        },
+        {
+          name: "Skills",
+          diplay: true,
+          value:"skills"
+        },
       ];
     
     const handleClg = (data) => {

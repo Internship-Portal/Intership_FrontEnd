@@ -56,6 +56,16 @@ const SelectStudents = () => {
           diplay: true,
           value:"roll_no"
         },
+        {
+          name: "CGPA",
+          diplay: true,
+          value:"cgpa"
+        },
+        {
+          name: "Skills",
+          diplay: true,
+          value:"skills"
+        },
       ];
     
     const handleClg = (data) => {
@@ -170,6 +180,7 @@ const SelectStudents = () => {
           handleBatch={handleBatch}
           handleDept={handleDept}
           handleClick={handleClick}
+         
         />
       </div>
     </div>)

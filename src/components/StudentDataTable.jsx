@@ -27,6 +27,7 @@ const StudentDataTable = (props) => {
 
 
   const searchItem = data.filter((data) =>{
+
   
   const nameMatch = data.name.toLowerCase().includes(search.toLowerCase());
   const locationMatch=data.location.toLowerCase().includes(search.toLowerCase());
@@ -35,6 +36,12 @@ const StudentDataTable = (props) => {
   const skillsMatch = data.skills.some((skill) =>
   skill.toLowerCase().includes(search.toLowerCase())
 );
+
+if(selectItem=="name")return nameMatch;
+else if(selectItem=="skills")return skillsMatch;
+else if(selectItem=="location")return locationMatch;
+else if(selectItem=="cgpa")return cgpaMatch;
+else if(selectItem=="mobile_no")return mobileMatch;
 return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
  
   
@@ -99,7 +106,7 @@ return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
   return (
     <div>
       <form className="mt-9 ml-9 flex flex-row items-center ">
-        {/* <div className="relative w-full lg:max-w-sm p-4">
+        <div className="relative w-full lg:max-w-sm p-4">
           <select
             className="w-full p-2.5 text-black bg-slate-300 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
             onClick={handleSelectItem}
@@ -112,7 +119,7 @@ return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
               </option>
             ))}
           </select>
-        </div> */}
+        </div>
         <label
           for="default-search"
           class="mb-2 text-sm font-medium text-gray-900 sr-only "
@@ -150,10 +157,10 @@ return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
         <Dropdown_dept onhandleDeptChange={handleDept} />
         <Dropdown_batch onhandleBatchChange={handleBatch} />
 
-        {props.Role==="send"? <button className="font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-2 py-1 rounded-lg " onClick={(e) => {
+        {props.Role==="get"? null : <button className="font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-2 py-1 rounded-lg " onClick={(e) => {
                  
                  handleClick()
-                }} >send list</button> : null}
+                }} >send list</button>}
         
       </form>
 
