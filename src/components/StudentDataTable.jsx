@@ -7,12 +7,17 @@ const StudentDataTable = (props) => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [selectItem,setselectItem]=useState("")
+  
   const user = props.user;
   const col = props.col;
   const handleChange = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
   };
+  
+  
+
+  
 
   const handleSelectItem =(e)=>{
    setselectItem(e.target.value)
@@ -21,13 +26,23 @@ const StudentDataTable = (props) => {
   } 
 
 
-  const searchItem = data.filter((data) =>
+  const searchItem = data.filter((data) =>{
   
-  (selectItem =="name")?data.name.toLowerCase().includes(search.toLowerCase()):
-   (selectItem == "mobile_no")? data.mobile_no.toLowerCase().includes(search.toLowerCase()):
-   data.roll_no.toLowerCase().includes(search.toLowerCase())
+  const nameMatch = data.name.toLowerCase().includes(search.toLowerCase());
+  const locationMatch=data.location.toLowerCase().includes(search.toLowerCase());
+  const cgpaMatch=data.cgpa.toString().toLowerCase().includes(search.toLowerCase());
+  const mobileMatch=data.mobile_no.toLowerCase().includes(search.toLowerCase());
+  const skillsMatch = data.skills.some((skill) =>
+  skill.toLowerCase().includes(search.toLowerCase())
+);
+return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
  
-  );
+  
+  // (selectItem =="name")?data.name.toLowerCase().includes(search.toLowerCase()):
+  //  (selectItem == "mobile_no")? data.mobile_no.toLowerCase().includes(search.toLowerCase()):
+  //  data.roll_no.toLowerCase().includes(search.toLowerCase())
+ 
+});
 
 
 
@@ -58,6 +73,17 @@ const StudentDataTable = (props) => {
     return maskedEmail;
   };
 
+  const maskPhoneNumber = (phoneNumber) => {
+    if (!phoneNumber || typeof phoneNumber !== 'string') {
+      return ''; // Return empty string for invalid input
+    }
+  
+    const maskedDigits = phoneNumber.slice(0, -3).replace(/\d/g, 'X');
+    const lastThreeDigits = phoneNumber.slice(-3);
+  
+    return maskedDigits + lastThreeDigits;
+  };
+
   const handleBatch = (data) => {
     props.handleBatch(data);
   };
@@ -73,7 +99,7 @@ const StudentDataTable = (props) => {
   return (
     <div>
       <form className="mt-9 ml-9 flex flex-row items-center ">
-        <div className="relative w-full lg:max-w-sm p-4">
+        {/* <div className="relative w-full lg:max-w-sm p-4">
           <select
             className="w-full p-2.5 text-black bg-slate-300 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
             onClick={handleSelectItem}
@@ -86,7 +112,7 @@ const StudentDataTable = (props) => {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
         <label
           for="default-search"
           class="mb-2 text-sm font-medium text-gray-900 sr-only "
@@ -115,7 +141,7 @@ const StudentDataTable = (props) => {
             type="search"
             id="default-search"
             class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300  rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-gray-300 "
-            placeholder="Search College Names..."
+            placeholder="Search"
             onChange={handleChange}
             required
           />
@@ -148,9 +174,11 @@ const StudentDataTable = (props) => {
             </tr>
           </thead>
           <tbody>
-            {searchItem ? (
-              searchItem.map((student, index) => (
-                <tr class="bg-white border-b  hover:bg-gray-50  hover:shadow-md">
+            {searchItem  ? (
+              searchItem .map((student, index) => ( 
+                    (student.internships_till_now.length==0
+                      ?(
+                      <tr class="bg-white border-b  hover:bg-gray-50  hover:shadow-md">
                   <td key={index}>
                     <input
                       type="checkbox"
@@ -174,9 +202,18 @@ const StudentDataTable = (props) => {
                     {maskingEmail(student.email_id)}
                   </th>
                   <td class=" py-2 text-center">{student.location}</td>
-                  <td class=" py-2 text-center">{student.mobile_no}</td>
+                  <td class=" py-2 text-center">{maskPhoneNumber(student.mobile_no)}</td>
                   <td class=" py-2 text-center">{student.roll_no}</td>
+                  <td class=" py-2 text-center">{student.cgpa}</td>
+                  <td class=" py-2 text-left">{student.skills}</td>
                 </tr>
+
+
+                    ):(<div></div>))
+                
+                
+
+
               ))
             ) : (
               <td class=" py-2 text-center">No Data Found</td>
