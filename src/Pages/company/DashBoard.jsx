@@ -29,7 +29,7 @@ function Dashboard() {
       <div className='flex-[3]'>
         <Navbar />
         <hr className='h-0 border-r-[0.5px] border-solid border-[#E6E3E3]' />
-        <div className="box">
+        {/* <div className="box">
           <div className='m-4 flex justify-between'>
             <div className="flex flex-col">
               <label for="fname" className='block mb-2 text-gray-900 text-[20px] font-semibold'>Job Position:</label>
@@ -53,7 +53,7 @@ function Dashboard() {
           </div>
             
           <button className="mx-4 my-3 font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-4 py-2 rounded-lg "> Send </button>
-        </div>
+        </div> */}
       </div>
     </div>
   )
