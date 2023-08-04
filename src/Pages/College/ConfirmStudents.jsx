@@ -94,7 +94,7 @@ const ConfirmStudents = () => {
       navigate('/selectStudents',{
         state: {
           company_id: company.company_id,  
-          company_name:company.company_name
+          company_name:company.company_name,
         },
       })
     
@@ -109,7 +109,7 @@ const ConfirmStudents = () => {
       <Sidebar user={"officer"}/>
       </div>
       <div className="flex-[3]">
-        <Navbar />
+        <Navbar pageName={"Confirm Students"}/>
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
 
         {data &&

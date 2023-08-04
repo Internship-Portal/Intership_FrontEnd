@@ -145,6 +145,24 @@ const Sidebar = (props) => {
                 )}
               </li>
             </div>
+
+            {user !== "officer" && (
+              <div className={`${!open && "hidden"}`}>
+              <Link
+                to="/selectedStudents"
+                style={{ textDecoration: "none" }}
+              >
+                <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
+                  {/* <DashboardIcon className="icon" /> */}
+                  <span className="text-[13px] font-semibold text-white ml-[10px]">
+                    Students
+                  </span>
+                </li>
+              </Link>
+            </div>
+            )
+            }
+            
             {user == "officer" && (
               <div className={`${!open && "hidden"}`}>
                 <li className="items-center p-[5px] cursor-pointer">
@@ -187,8 +205,23 @@ const Sidebar = (props) => {
                     </ul>
                   )}
                 </li>
+
+                <div className={`${!open && "hidden"}`}>
+              <Link
+                to="/confirmStudents"
+                style={{ textDecoration: "none" }}
+              >
+                <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
+                  {/* <DashboardIcon className="icon" /> */}
+                  <span className="text-[13px] font-semibold text-white ml-[10px]">
+                    Selected Students
+                  </span>
+                </li>
+              </Link>
+            </div>
+
               </div>
-            )}
+            ) }
 
             <p className="text-[10px] font-bold text-white mt-[15px] mb-[5px] py-4">
               <PersonIcon />
