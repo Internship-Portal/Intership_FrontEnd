@@ -24,6 +24,12 @@ const Setmessage = () => {
     useEffect(() => {
       console.log(id)
     }, []);
+
+    const handleJobDescription=(e)=>{
+        setmessage({...message,job_description:e.target.value})
+        console.log(message)
+        console.log(message)
+    }
   
     const handleDept = (data) => {
         if(data!="Dept"){
@@ -84,6 +90,7 @@ const Setmessage = () => {
               id="fname" 
               name="fname"
               placeholder="Job Position" 
+              onChange={handleJobDescription}
               className='block p-2.5 w-max text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 mb-5'
               ></input>
             </div>

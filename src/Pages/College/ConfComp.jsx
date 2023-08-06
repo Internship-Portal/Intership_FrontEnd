@@ -90,7 +90,7 @@ function ConfComp() {
   const handleClick = async (company) => {
     try {
 
-      navigate('/sendList', {
+      navigate('/getmessage',{
         state: {
           company_id: company.company_id,
           message: company.message,
