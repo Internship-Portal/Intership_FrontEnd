@@ -1,11 +1,12 @@
 import React from "react";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+
 import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import { menu, close } from "../assets";
+
 const Navbar = (props) => {
   const [toggle, setToggle] = React.useState(false);
+
   return (
     <nav className="w-full flex justify-between items-center">
       <div className="w-full p-[0.82rem] flex items-center justify-between">
@@ -22,7 +23,7 @@ const Navbar = (props) => {
             <ChatBubbleOutlineOutlinedIcon className="icon font-[20px]" />
             <div className="counter">2</div>
           </div>
-          
+
 
           <div className="flex items-center mr-5 relative">
             <img
@@ -32,10 +33,7 @@ const Navbar = (props) => {
             />
           </div>
         </ul>
-
-       
       </div>
-      
     </nav>
   );
 };

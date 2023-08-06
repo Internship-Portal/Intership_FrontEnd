@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
 import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
 import DataTable from "../../components/DataTable";
+import notfound from '../../assets/not.jpg'
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import notfound from '../../assets/not.jpg'
 
 const SubscribedCollege = () => {
   const [data, setData] = useState([]);
@@ -96,8 +97,7 @@ const SubscribedCollege = () => {
       if (res.ok) {
         successLogin()
       }
-      else
-      {
+      else {
         errLogin();
       }
 
@@ -118,7 +118,7 @@ const SubscribedCollege = () => {
         <Sidebar user={"Company"} />
       </div>
       <div className="flex-[3]">
-        <Navbar pageName={"Subscribed Colleges"}/>
+        <Navbar pageName={"Subscribed Colleges"} />
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
 
         {data && (
@@ -131,12 +131,12 @@ const SubscribedCollege = () => {
         )}
         {!data && (
           <div className="m-auto text-4xl w-max  p-10 flex flex-col" >
-            <img src={notfound} alt="" className=""/>
+            <img src={notfound} alt="" className="" />
             <h1 className="font-medium text-cyan-800">No Request found</h1>
           </div>
         )}
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../components/Sidebar";
-import Navbar from "../../components/Navbar";
-import config from "../../hooks/config";
-import DataTable from "../../components/DataTable";
 import { useNavigate } from "react-router-dom";
 
+import Sidebar from "../../components/Sidebar";
+import Navbar from "../../components/Navbar";
+import DataTable from "../../components/DataTable";
+import config from "../../hooks/config";
+
+
 const ConfirmedCollege = () => {
-  const { id, headers } = config();
+  const { headers } = config();
   const [data, setData] = useState([]);
 
   const navigate = useNavigate();
 
-  
   const col = [
     {
       name: "Logo",
@@ -51,14 +52,6 @@ const ConfirmedCollege = () => {
     },
   ];
 
-  const handleBatch = (data) => {
-    setStudent({ ...student, year_batch: data });
-  };
-
-  const handleDept = (data) => {
-    setStudent({ ...student, department_name: data });
-  };
-
   const getConf = async () => {
     try {
       const response = await fetch(
@@ -81,15 +74,15 @@ const ConfirmedCollege = () => {
   };
 
   const handleClick = (college) => {
- 
-      navigate("/getStudents", {
-        state: {
-          officer_id: college.officer_id, 
-          name : college.college_name ,
-          Role : "get"
-        },
-      });
-  }; 
+
+    navigate("/getStudents", {
+      state: {
+        officer_id: college.officer_id,
+        name: college.college_name,
+        Role: "get"
+      },
+    });
+  };
 
   useEffect(() => {
     getConf();
@@ -103,7 +96,7 @@ const ConfirmedCollege = () => {
         </div>
       </div>
       <div className="flex-[3] bg-white">
-        <Navbar pageName={"Selected Students"}/>
+        <Navbar pageName={"Selected Students"} />
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
 
         <DataTable

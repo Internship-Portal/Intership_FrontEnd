@@ -1,12 +1,14 @@
 
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
+
+
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
     email_id: undefined,
@@ -15,8 +17,6 @@ const Login = (props) => {
 
   const [officer, setOfficer] = useState(false);
   const [company, setCompany] = useState(true);
-
-  const { loading, error } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -70,8 +70,7 @@ const Login = (props) => {
         if (res.ok) {
           navigate("/company");
         }
-        else
-        {
+        else {
           errLogin();
         }
       } catch (error) {
@@ -101,8 +100,7 @@ const Login = (props) => {
         if (res.ok) {
           navigate("/college");
         }
-        else
-        {
+        else {
           errLogin();
         }
       } catch (error) {
@@ -121,9 +119,8 @@ const Login = (props) => {
 
         <div className="grid w-[75%] gap-6 grid-cols-2">
           <div
-            className={`border-solid  p-1 text-center  ${
-              officer ? `border-none` : `border-b-primary border-b-4`
-            }`}
+            className={`border-solid  p-1 text-center  ${officer ? `border-none` : `border-b-primary border-b-4`
+              }`}
           >
             <input
               id="company radio"
@@ -143,18 +140,16 @@ const Login = (props) => {
           </div>
 
           <div
-            className={`border-solid  p-1  text-center ${
-              officer ? `border-b-primary border-b-4` : `border-none`
-            }`}
+            className={`border-solid  p-1  text-center ${officer ? `border-b-primary border-b-4` : `border-none`
+              }`}
           >
             <input
               id="officer radio"
               type="radio"
               value=""
               name="list-radio"
-              className={`hidden peer ${
-                officer ? `border-primary text-white` : "text-black"
-              }`}
+              className={`hidden peer ${officer ? `border-primary text-white` : "text-black"
+                }`}
               onClick={handleOfficerRole}
             />
             <label
@@ -196,7 +191,7 @@ const Login = (props) => {
             placeholder="Password"
             className="bg-transparent placeholder-gray-200 border  border-l-0 border-t-0 border-r-0  border-b-2 focus:border-b-6  border-b-primary outline-none   text-sm   block w-full p-2.5 text-black"
             onChange={handleChange}
-            // onClick={successLogin}
+          // onClick={successLogin}
           />
         </div>
         <Link
@@ -212,9 +207,8 @@ const Login = (props) => {
         </Link>
         <button
           className="py-2 bg-primary font-poppins font-semibold text-[20px] w-[75%] rounded-lg "
-          disabled={loading}
           onClick={handleClick}
-          // onClick={successLogin}
+        // onClick={successLogin}
         >
           Log In
         </button>
@@ -224,11 +218,11 @@ const Login = (props) => {
             <p>Don't Have Account ?</p>
           </Link>
         </div>
-        {error && <span>{error.message}</span>}
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
 
 export default Login;
+

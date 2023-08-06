@@ -1,58 +1,43 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Dropdown_batch from "./Dropdown_batch";
 import Dropdown_dept from "./Dropdown_dept";
 
 const StudentDataTable = (props) => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
-  const [selectItem,setselectItem]=useState("")
-  
+  const [selectItem, setselectItem] = useState("")
+
   const user = props.user;
   const col = props.col;
   const handleChange = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
   };
-  
-  
 
-  
+  const handleSelectItem = (e) => {
+    setselectItem(e.target.value)
+    console.log(selectItem)
 
-  const handleSelectItem =(e)=>{
-   setselectItem(e.target.value)
-   console.log(selectItem)
- 
-  } 
+  }
 
+  const searchItem = data.filter((data) => {
 
-  const searchItem = data.filter((data) =>{
+    const nameMatch = data.name.toLowerCase().includes(search.toLowerCase());
+    const locationMatch = data.location.toLowerCase().includes(search.toLowerCase());
+    const cgpaMatch = data.cgpa.toString().toLowerCase().includes(search.toLowerCase());
+    const mobileMatch = data.mobile_no.toLowerCase().includes(search.toLowerCase());
+    const skillsMatch = data.skills.some((skill) =>
+      skill.toLowerCase().includes(search.toLowerCase())
+    );
 
-  
-  const nameMatch = data.name.toLowerCase().includes(search.toLowerCase());
-  const locationMatch=data.location.toLowerCase().includes(search.toLowerCase());
-  const cgpaMatch=data.cgpa.toString().toLowerCase().includes(search.toLowerCase());
-  const mobileMatch=data.mobile_no.toLowerCase().includes(search.toLowerCase());
-  const skillsMatch = data.skills.some((skill) =>
-  skill.toLowerCase().includes(search.toLowerCase())
-);
+    if (selectItem == "name") return nameMatch;
+    else if (selectItem == "skills") return skillsMatch;
+    else if (selectItem == "location") return locationMatch;
+    else if (selectItem == "cgpa") return cgpaMatch;
+    else if (selectItem == "mobile_no") return mobileMatch;
+    return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
 
-if(selectItem=="name")return nameMatch;
-else if(selectItem=="skills")return skillsMatch;
-else if(selectItem=="location")return locationMatch;
-else if(selectItem=="cgpa")return cgpaMatch;
-else if(selectItem=="mobile_no")return mobileMatch;
-return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
- 
-  
-  // (selectItem =="name")?data.name.toLowerCase().includes(search.toLowerCase()):
-  //  (selectItem == "mobile_no")? data.mobile_no.toLowerCase().includes(search.toLowerCase()):
-  //  data.roll_no.toLowerCase().includes(search.toLowerCase())
- 
-});
-
-
-
+  });
 
   const handleClick = () => {
     props.handleClick();
@@ -72,7 +57,7 @@ return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
     const indexOfAtSymbol = data.indexOf("@");
 
     if (indexOfAtSymbol !== -1) {
-     
+
       maskedEmail =
         "X".repeat(indexOfAtSymbol) + data.substring(indexOfAtSymbol);
     }
@@ -84,10 +69,10 @@ return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
     if (!phoneNumber || typeof phoneNumber !== 'string') {
       return ''; // Return empty string for invalid input
     }
-  
+
     const maskedDigits = phoneNumber.slice(0, -3).replace(/\d/g, 'X');
     const lastThreeDigits = phoneNumber.slice(-3);
-  
+
     return maskedDigits + lastThreeDigits;
   };
 
@@ -157,11 +142,11 @@ return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
         <Dropdown_dept onhandleDeptChange={handleDept} />
         <Dropdown_batch onhandleBatchChange={handleBatch} />
 
-        {props.Role==="get"? null : <button className="font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-2 py-1 rounded-lg " onClick={(e) => {
-                 
-                 handleClick()
-                }} >send list</button>}
-        
+        {props.Role === "get" ? null : <button className="font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-2 py-1 rounded-lg " onClick={(e) => {
+
+          handleClick()
+        }} >send list</button>}
+
       </form>
 
       <p className="text-red-800 font-medium ml-12">* Select Department and Year batch to view students</p>
@@ -181,46 +166,43 @@ return nameMatch || skillsMatch || locationMatch || cgpaMatch || mobileMatch;
             </tr>
           </thead>
           <tbody>
-            {searchItem  ? (
-              searchItem .map((student, index) => ( 
-                    (student.internships_till_now.length==0
-                      ?(
-                      <tr class="bg-white border-b  hover:bg-gray-50  hover:shadow-md">
-                  <td key={index}>
-                    <input
-                      type="checkbox"
-                      value={student}
-                      onChange={(e) => {
-                        handleCheck(student, e);
-                      }}
-                    />
-                  </td>
+            {searchItem ? (
+              searchItem.map((student, index) => (
+                (student.internships_till_now.length == 0
+                  ? (
+                    <tr class="bg-white border-b  hover:bg-gray-50  hover:shadow-md">
+                      <td key={index}>
+                        <input
+                          type="checkbox"
+                          value={student}
+                          onChange={(e) => {
+                            handleCheck(student, e);
+                          }}
+                        />
+                      </td>
 
-                  <th
-                    scope="row"
-                    class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap"
-                  >
-                    {student.name}
-                  </th>
-                  <th
-                    scope="row"
-                    class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap"
-                  >
-                    {maskingEmail(student.email_id)}
-                  </th>
-                  <td class=" py-2 text-center">{student.location}</td>
-                  <td class=" py-2 text-center">{maskPhoneNumber(student.mobile_no)}</td>
-                  <td class=" py-2 text-center">{student.roll_no}</td>
-                  <td class=" py-2 text-center">{student.cgpa}</td>
-                  <td class=" py-2 text-left">{student.skills}</td>
-                </tr>
-
-
-                    ):(<div></div>))
-                
-                
+                      <th
+                        scope="row"
+                        class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap"
+                      >
+                        {student.name}
+                      </th>
+                      <th
+                        scope="row"
+                        class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap"
+                      >
+                        {maskingEmail(student.email_id)}
+                      </th>
+                      <td class=" py-2 text-center">{student.location}</td>
+                      <td class=" py-2 text-center">{maskPhoneNumber(student.mobile_no)}</td>
+                      <td class=" py-2 text-center">{student.roll_no}</td>
+                      <td class=" py-2 text-center">{student.cgpa}</td>
+                      <td class=" py-2 text-left">{student.skills}</td>
+                    </tr>
 
 
+                  ) : (<div></div>))
+                  
               ))
             ) : (
               <td class=" py-2 text-center">No Data Found</td>

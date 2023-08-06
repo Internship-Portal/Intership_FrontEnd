@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
 import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
-import config from "../../hooks/config";
 import DataTable from "../../components/DataTable";
-import { useNavigate } from "react-router-dom";
+import config from "../../hooks/config";
+
 import notfound from '../../assets/not.jpg'
 
 function SubComp() {
   const [data, setData] = useState([]);
   const { headers } = config();
-  const navigate=useNavigate();
   const col = [
     {
       name: "Logo",
@@ -102,7 +101,7 @@ function SubComp() {
         <Sidebar user={"officer"} />
       </div>
       <div className="flex-[3]">
-        <Navbar pageName={"Requested Companies"}/>
+        <Navbar pageName={"Requested Companies"} />
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
         {data ? (
           <DataTable
@@ -114,7 +113,7 @@ function SubComp() {
           />
         ) : (
           <div className="m-auto text-4xl w-max  p-10 flex flex-col" >
-            <img src={notfound} alt="" className=""/>
+            <img src={notfound} alt="" className="" />
             <h1 className="font-medium text-cyan-800">No Request found</h1>
           </div>
         )}

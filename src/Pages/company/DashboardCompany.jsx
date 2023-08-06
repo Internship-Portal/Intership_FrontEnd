@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../../components/Navbar'
 import Sidebar from '../../components/Sidebar'
-import UploadList from '../../components/UploadList'
+import config from '../../hooks/config'
 
+function Dashboard() {
+  const { id } = config()
 
-function AddStudent() {
+  useEffect(() => {
+    console.log(id)
+  }, []);
+
   return (
     <div className='bg-white flex'>
-      <div className='hidden sm:flex'>
-        <Sidebar user={"officer"} />
+      <div className='sm:flex'>
+        <Sidebar user={"company"} />
       </div>
       <div className='flex-[3]'>
-        <Navbar pageName={"Publish Calender"} />
+        <Navbar />
         <hr className='h-0 border-r-[0.5px] border-solid border-[#E6E3E3]' />
-        <UploadList />
       </div>
     </div>
   )
 }
 
-export default AddStudent
+export default Dashboard

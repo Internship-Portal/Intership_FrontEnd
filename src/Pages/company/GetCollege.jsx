@@ -1,12 +1,13 @@
 import axios from "axios";
-import React from "react";
-import { useState, useEffect } from "react";
+import React ,{ useState, useEffect } from "react";
+
 import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
+import DataTable from "../../components/DataTable";
 import config from "../../hooks/config";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DataTable from "../../components/DataTable";
 
 const successSub = () => {
   toast.success("Subscribed Successfully", {
@@ -44,8 +45,7 @@ const GetCollege = () => {
     if (res.ok) {
       successSub()
     }
-    else
-    {
+    else {
       errSub();
     }
 
@@ -130,9 +130,9 @@ const GetCollege = () => {
             action={"Subscribe"}
           />
         </div>
-        
+
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 };

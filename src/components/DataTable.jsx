@@ -1,123 +1,113 @@
-import React,{useState} from 'react'
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { pccoe } from '../assets';
 import Dropdown_batch from './Dropdown_batch'
 import Dropdown_dept from './Dropdown_dept'
 
 const DataTable = (props) => {
-    const [data, setData] = useState([]);
-    const [search, setSearch] = useState("");
-    const user=props.user;
-  const col=props.col;
-    const handleChange = (e) => {
-      e.preventDefault();
-      setSearch(e.target.value);
-    };
-  
-    const searchItem = data.filter((data) =>
-    (user=="officer")?
-    
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+  const user = props.user;
+  const col = props.col;
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
+
+  const searchItem = data.filter((data) =>
+    (user == "officer") ?
+
       data.company_name.toLowerCase().includes(search.toLowerCase())
- 
-    
-    :
+
+
+      :
       data.college_name.toLowerCase().includes(search.toLowerCase())
-    
+
 
   );
-  const handleClick=(data)=>{
-   props.handleChange(data);
+  const handleClick = (data) => {
+    props.handleChange(data);
   }
 
-  const handleBatch=(data)=>{
+  const handleBatch = (data) => {
     props.handleBatch(data)
   }
 
-  const handleDept=(data)=>{
+  const handleDept = (data) => {
     props.handleDept(data)
   }
 
- 
-  
-  useEffect(()=>{
-setData(props.row)
+  useEffect(() => {
+    setData(props.row)
   })
+
   return (
     <div >
 
-    <form className="m-9 ">
-      <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
-      <div class="relative">
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <svg aria-hidden="true" class="w-5 h-5 text-gray-500 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+      <form className="m-9 ">
+        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+          <input type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300  rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-gray-300 " placeholder="Search College Names..." onChange={handleChange} required />
+
         </div>
-        <input type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300  rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-gray-300 " placeholder="Search College Names..." onChange={handleChange} required />
+      </form>
 
-      </div>
-    </form>
-    <div class="relative overflow-y-scroll sm:rounded-lg m-9 sm:h-[350px] h-[400px] ">
-      <table class="w-full table-auto overflow-scroll text-sm text-left text-gray-500 shadow ">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 shadow-md">
-          <tr className='bg-cardBackground text-white'>
+      <div class="relative overflow-y-scroll sm:rounded-lg m-9 sm:h-[350px] h-[400px] ">
+        <table class="w-full table-auto overflow-scroll text-sm text-left text-gray-500 shadow ">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 shadow-md">
+            <tr className='bg-cardBackground text-white'>
 
-            {
+              {
 
-              col.map((col) => (<th scope="col" class="px-6 py-3">
-                {(col.diplay) ? <>{col.name}</> : <span class="sr-only">{col.name}</span>}
+                col.map((col) => (<th scope="col" class="px-6 py-3">
+                  {(col.diplay) ? <>{col.name}</> : <span class="sr-only">{col.name}</span>}
 
-              </th>))
-            }
-          </tr>
-        </thead>
-        <tbody >{
-          searchItem?searchItem.map((users) => (
-            <tr class="bg-white border-b  hover:bg-gray-50  hover:shadow-md">
-              <td class=" px-3 py-2">
-                <img src={pccoe} alt="" className="h-[2rem] sm:h-[3rem] " />
-              </td>
-              <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
-               {(user!="officer")?users.college_name: users.company_name}
-              </th>
-              <td class=" py-2 text-center">
-                Pune
-              </td>
-              <td class=" py-2 text-center">
-              {(user!="officer")?"234":"SDE Intern"}
-              </td>
-              <td class=" py-2 text-center">
-                June - July
-              </td>
-             {props.deptYear && <td class=" py-2 text-center">
-              <Dropdown_batch onhandleBatchChange={handleBatch} />
-              </td> }
-              {props.deptYear && <td class=" py-2 text-center">
-              <Dropdown_dept onhandleDeptChange={handleDept} />
-              </td> }
-              
-              
-              
-                 
-              
-              <td class="px-6 py-4 text-right">
-                <button className="font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-2 py-1 rounded-lg " onClick={(e) => {
-                  console.log(users)
-                 handleClick(users)
-                }}>{props.action}</button>
-              </td>
+                </th>))
+              }
             </tr>
-          )):<td class=" py-2 text-center">
-         No Data Found
-        </td>
+          </thead>
+          <tbody >{
+            searchItem ? searchItem.map((users) => (
+              <tr class="bg-white border-b  hover:bg-gray-50  hover:shadow-md">
+                <td class=" px-3 py-2">
+                  <img src={pccoe} alt="" className="h-[2rem] sm:h-[3rem] " />
+                </td>
+                <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
+                  {(user != "officer") ? users.college_name : users.company_name}
+                </th>
+                <td class=" py-2 text-center">
+                  Pune
+                </td>
+                <td class=" py-2 text-center">
+                  {(user != "officer") ? "234" : "SDE Intern"}
+                </td>
+                <td class=" py-2 text-center">
+                  June - July
+                </td>
+                {props.deptYear && <td class=" py-2 text-center">
+                  <Dropdown_batch onhandleBatchChange={handleBatch} />
+                </td>}
+                {props.deptYear && <td class=" py-2 text-center">
+                  <Dropdown_dept onhandleDeptChange={handleDept} />
+                </td>}
+                <td class="px-6 py-4 text-right">
+                  <button className="font-medium text-gray-100 bg-blue-500 hover:bg-blue-600 font-poppins px-2 py-1 rounded-lg " onClick={(e) => {
+                    console.log(users)
+                    handleClick(users)
+                  }}>{props.action}</button>
+                </td>
+              </tr>
+            )) : <td class=" py-2 text-center">
+              No Data Found
+            </td>
           }
-          
+          </tbody>
+        </table>
+      </div>
 
-
-        </tbody>
-      </table>
     </div>
-
-
-  </div>
   )
 }
 

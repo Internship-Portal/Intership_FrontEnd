@@ -1,18 +1,16 @@
-import React from "react";
-import axios from "axios";
-import { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { launchPoster } from "../../assets";
-import { toggleButtonGroupClasses } from "@mui/material";
-import { Link } from "react-router-dom";
+
 
 const Verfication = () => {
+
   const [email_id, setEmail] = useState("");
   const navigate = useNavigate();
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
+
   const handleClick = async () => {
     try {
       const res = await fetch(`http://localhost:4000/api/otp/verifyEmailOTP`, {
@@ -33,6 +31,7 @@ const Verfication = () => {
       console.log(err);
     }
   };
+
   return (
     <div>
       <div className="w-full h-screen bg-no-repeat bg-cover bg-fixed bg-loginBackground flex items-center justify-center">
@@ -42,9 +41,9 @@ const Verfication = () => {
           </h2>
           <h4 className=" my-2 mt-4 text-gray-900 font-semibold text-lg text-center">Welcome</h4>
           <div className="flex flex-col w-[75%] my-3">
-          <div className="flex flex-row items-center justify-between ">
-            <label className="text-primaryText text-[20px] font-semibold">Email</label>
-          </div>
+            <div className="flex flex-row items-center justify-between ">
+              <label className="text-primaryText text-[20px] font-semibold">Email</label>
+            </div>
             <input
               name="email_id"
               type="text"
@@ -56,13 +55,11 @@ const Verfication = () => {
           </div>
           <button
             className=" py-2 bg-primary font-poppins font-semibold text-[20px] w-[75%] rounded-lg "
-            // disabled={loading}
             onClick={handleClick}
           >
             Send Otp
           </button>
 
-          {/* {error && <span>{error.message}</span>} */}
         </div>
       </div>
     </div>

@@ -30,7 +30,7 @@ const OTP = () => {
 
       const result = await res.json();
       console.log(result);
-        console.log(res.ok);
+      console.log(res.ok);
       if (res.ok) {
         localStorage.clear();
         localStorage.setItem("jwt", result.token);
@@ -76,7 +76,6 @@ const OTP = () => {
             Submit
           </button>
 
-          {/* <h4>{error.message}</h4> */}
         </div>
       </div>
     </div>

@@ -2,20 +2,16 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
 import config from "../../hooks/config";
-import axios from "axios";
-import Dropdown_batch from "../../components/Dropdown_batch";
-import Dropdown_dept from "../../components/Dropdown_dept";
 import DataTable from "../../components/DataTable";
 
 import { useNavigate } from "react-router-dom";
 
 const ConfirmedCollege = () => {
-  const { id, headers } = config();
+  const { headers } = config();
   const [data, setData] = useState([]);
 
   const navigate = useNavigate();
 
-  
   const col = [
     {
       name: "Logo",
@@ -55,14 +51,6 @@ const ConfirmedCollege = () => {
     },
   ];
 
-  const handleBatch = (data) => {
-    setStudent({ ...student, year_batch: data });
-  };
-
-  const handleDept = (data) => {
-    setStudent({ ...student, department_name: data });
-  };
-
   const getConf = async () => {
     try {
       const response = await fetch(
@@ -85,15 +73,15 @@ const ConfirmedCollege = () => {
   };
 
   const handleClick = (college) => {
- 
-      navigate("/setmessage", {
-        state: {
-          officer_id: college.officer_id, 
-          name : college.college_name ,
-         
-        },
-      });
-  }; 
+
+    navigate("/setmessage", {
+      state: {
+        officer_id: college.officer_id,
+        name: college.college_name,
+
+      },
+    });
+  };
 
   useEffect(() => {
     getConf();
@@ -107,7 +95,7 @@ const ConfirmedCollege = () => {
         </div>
       </div>
       <div className="flex-[3] bg-white">
-        <Navbar pageName={"Confirmed Colleges"}/>
+        <Navbar pageName={"Confirmed Colleges"} />
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
 
         <DataTable

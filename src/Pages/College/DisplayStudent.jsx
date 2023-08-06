@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
-import StudentData from "../../components/StudentData";
-import "react-toastify/dist/ReactToastify.css";
 import config from "../../hooks/config";
 import StudentDataTable from "../../components/StudentDataTable";
-import DropDownB from "../../components/Dropdown_batch";
-import DropDownD from "../../components/Dropdown_dept";
+
 function DisplayStudent() {
   const [student, setStudent] = useState({
     department_name: "",
@@ -20,7 +17,6 @@ function DisplayStudent() {
   const handleDept = (data) => {
     setStudent({ ...student, department_name: data });
   };
-
 
   const [selectStudents, setSelectStudents] = useState([]);
 
@@ -48,66 +44,49 @@ function DisplayStudent() {
     {
       name: "Name",
       diplay: false,
-      value:"name"
+      value: "name"
     },
 
     {
       name: "Name",
       diplay: true,
-      value:"name"
+      value: "name"
     },
     {
       name: "Email Id",
       diplay: true,
-      value:"email_id"
+      value: "email_id"
     },
     {
       name: "Location",
       diplay: true,
-      value:"location"
+      value: "location"
     },
     {
       name: "Mobile No",
       diplay: true,
-      value:"mobile_no"
+      value: "mobile_no"
     },
 
     {
       name: "Roll No",
       diplay: true,
-      value:"roll_no"
+      value: "roll_no"
     },
     {
       name: "CGPA",
       diplay: true,
-      value:"cgpa"
+      value: "cgpa"
     },
     {
       name: "Skills",
       diplay: true,
-      value:"skills"
+      value: "skills"
     },
-  
-  ];
 
-  const columns = [
-    "name",
-    "email_id",
-    "mobile_no",
-    "roll_no",
-    "skills",
-    "achievements",
-    "cgpa",
-    // "Unavailable Dates",
-    "year_batch",
-    "backlog",
-    "location",
-    "tenth_percentage",
-    "twelve_percentage",
   ];
 
   const { headers } = config();
-
 
   const getConf = async () => {
     try {
@@ -145,9 +124,9 @@ function DisplayStudent() {
         <Sidebar user={"officer"} />
       </div>
       <div className="flex-[3]">
-      <Navbar pageName={"Display Calender"}/>
+        <Navbar pageName={"Display Calender"} />
         <hr className="h-0 border-r-[0.5px] border-solid border-[#E6E3E3]" />
-       
+
         <StudentDataTable
           col={col}
           row={student.students}

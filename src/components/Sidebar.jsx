@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import HomeIcon from "@mui/icons-material/Home";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import PersonIcon from "@mui/icons-material/Person";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import SchoolIcon from "@mui/icons-material/School";
+
+
 const Sidebar = (props) => {
   const user = props.user;
 
@@ -14,27 +16,25 @@ const Sidebar = (props) => {
   const [showCompany, setshowCompany] = useState(false);
   const [showCalendar, setshowCalendar] = useState(false);
   const [officer, isOfficer] = useState(user);
-  const navigate=useNavigate();
-  const logout=()=>{
+  const navigate = useNavigate();
+  const logout = () => {
     localStorage.clear();
     navigate("/")
-    
+
   }
-  useState(() => {}, []);
+  useState(() => { }, []);
 
   return (
     <>
       <div className="flex h-full  bg-cardBackground">
         <div
-          className={`${
-            open ? " w-64" : "w-20"
-          } duration-300 h-screen bg-cardBackground relative p-5 pt-8`}
+          className={`${open ? " w-64" : "w-20"
+            } duration-300 h-screen bg-cardBackground relative p-5 pt-8`}
         >
           <img
             src="./src/assets/symbol.png"
-            className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple rounded-full ${
-              open && "rotate-180"
-            }`}
+            className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple rounded-full ${open && "rotate-180"
+              }`}
             onClick={() => setOpen(!open)}
           />
           <div className="flex gap-x-4 items-center">
@@ -49,9 +49,8 @@ const Sidebar = (props) => {
               style={{ textDecoration: "none" }}
             >
               <h1
-                className={`text-white origin-left font-medium text-xl duration-300 ${
-                  !open && "scale-0"
-                }`}
+                className={`text-white origin-left font-medium text-xl duration-300 ${!open && "scale-0"
+                  }`}
               >
                 Dashboard
               </h1>
@@ -148,21 +147,21 @@ const Sidebar = (props) => {
 
             {user !== "officer" && (
               <div className={`${!open && "hidden"}`}>
-              <Link
-                to="/selectedStudents"
-                style={{ textDecoration: "none" }}
-              >
-                <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
-                  {/* <DashboardIcon className="icon" /> */}
-                  <span className="text-[13px] font-semibold text-white ml-[10px]">
-                    Selected Students
-                  </span>
-                </li>
-              </Link>
-            </div>
+                <Link
+                  to="/selectedStudents"
+                  style={{ textDecoration: "none" }}
+                >
+                  <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
+                    {/* <DashboardIcon className="icon" /> */}
+                    <span className="text-[13px] font-semibold text-white ml-[10px]">
+                      Selected Students
+                    </span>
+                  </li>
+                </Link>
+              </div>
             )
             }
-            
+
             {user == "officer" && (
               <div className={`${!open && "hidden"}`}>
                 <li className="items-center p-[5px] cursor-pointer">
@@ -207,21 +206,20 @@ const Sidebar = (props) => {
                 </li>
 
                 <div className={`${!open && "hidden"}`}>
-              <Link
-                to="/confirmStudents"
-                style={{ textDecoration: "none" }}
-              >
-                <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
-                  {/* <DashboardIcon className="icon" /> */}
-                  <span className="text-[13px] font-semibold text-white ml-[10px]">
-                    Selected Students
-                  </span>
-                </li>
-              </Link>
-            </div>
+                  <Link
+                    to="/confirmStudents"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
+                      <span className="text-[13px] font-semibold text-white ml-[10px]">
+                        Selected Students
+                      </span>
+                    </li>
+                  </Link>
+                </div>
 
               </div>
-            ) }
+            )}
 
             <p className="text-[10px] font-bold text-white mt-[15px] mb-[5px] py-4">
               <PersonIcon />
@@ -229,13 +227,11 @@ const Sidebar = (props) => {
             </p>
             <div className={`${!open && "hidden"}`}>
               <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
-                {/* <AccountCircleOutlinedIcon className="icon" /> */}
                 <span className="text-[13px] font-semibold text-white ml-[10px]">
                   Profile
                 </span>
               </li>
               <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#77b0e5]">
-                {/* <ExitToAppIcon className="icon" /> */}
                 <span className="text-[13px] font-semibold text-white ml-[10px]" onClick={logout}>
                   Logout
                 </span>

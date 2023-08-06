@@ -1,16 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { launchPoster } from "../../assets";
-import { toggleButtonGroupClasses } from "@mui/material";
-import { Link } from "react-router-dom";
-import jwt_decode from "jwt-decode";
+
 import config from "../../hooks/config";
 import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import { ToastContainer } from "react-toastify";
+
 
 const SignUp = () => {
   const [officer, setOfficer] = useState(false);
@@ -18,7 +12,6 @@ const SignUp = () => {
 
   const [companyDetails, setCompanyDetails] = useState({
     username: "",
-
     mobile_no: "",
     company_name: "",
     password: "",
@@ -100,9 +93,8 @@ const SignUp = () => {
 
         <div className="grid w-[75%] gap-6 grid-cols-2">
           <div
-            className={`border-solid  p-1 text-center  ${
-              officer ? `border-none` : `border-b-primary border-b-4`
-            }`}
+            className={`border-solid  p-1 text-center  ${officer ? `border-none` : `border-b-primary border-b-4`
+              }`}
           >
             <input
               id="company radio"
@@ -122,18 +114,16 @@ const SignUp = () => {
           </div>
 
           <div
-            className={`border-solid  p-1  text-center ${
-              officer ? `border-b-primary border-b-4` : `border-none`
-            }`}
+            className={`border-solid  p-1  text-center ${officer ? `border-b-primary border-b-4` : `border-none`
+              }`}
           >
             <input
               id="officer radio"
               type="radio"
               value=""
               name="list-radio"
-              className={`hidden peer ${
-                officer ? `border-primary text-white` : "text-black"
-              }`}
+              className={`hidden peer ${officer ? `border-primary text-white` : "text-black"
+                }`}
               onClick={handleOfficerRole}
             />
             <label
@@ -191,7 +181,6 @@ const SignUp = () => {
               type="text"
               id="college_name"
               placeholder="College Name"
-              // defaultValue={officerDetails.college_name}
               className=" bg-transparent placeholder-gray-200 border  border-l-0 border-t-0 border-r-0  border-b-2 focus:border-b-6  border-b-primary outline-none   text-sm   block w-full p-2.5 text-black"
               onChange={handleChangeOfficer}
             ></input>
@@ -225,7 +214,6 @@ const SignUp = () => {
             id="password"
             placeholder="Password"
             className=" bg-transparent placeholder-gray-200 border  border-l-0 border-t-0 border-r-0  border-b-2 focus:border-b-6  border-b-primary outline-none   text-sm   block w-full p-2.5 text-black"
-            // onChange={handleChange}
           ></input>
         </div>
         <div className="flex flex-col w-[75%] my-3">
@@ -244,7 +232,6 @@ const SignUp = () => {
 
         <button
           className="py-2  bg-primary font-poppins font-semibold text-[20px] w-[75%] rounded-lg"
-          // disabled={loading}
           onClick={() => handleClick()}
         >
           Create New Account
@@ -253,11 +240,9 @@ const SignUp = () => {
           <Link to='/'> Already have account? </Link>
         </div>
       </div>
-      <ToastContainer/>
-      {/* {error && <span>{error.message}</span>} */}
+
     </div>
-    // </div>
-    // </div>
+
   );
 };
 
