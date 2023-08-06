@@ -86,7 +86,7 @@ const ConfirmedCollege = () => {
 
   const handleClick = (college) => {
  
-      navigate("/getStudents", {
+      navigate("/setmessage", {
         state: {
           officer_id: college.officer_id, 
           name : college.college_name ,
