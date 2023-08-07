@@ -2,7 +2,7 @@ import React, { useEffect} from 'react'
 import Navbar from '../../components/Navbar'
 import Sidebar from '../../components/Sidebar'
 import config from '../../hooks/config'
-import './dash.css'
+
 import Dropdown_batch from "../../components/Dropdown_batch";
 import Dropdown_dept from "../../components/Dropdown_dept";
 import { useState } from 'react'

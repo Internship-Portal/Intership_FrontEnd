@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 
 import Navbar from '../../components/Navbar'
 import Sidebar from '../../components/Sidebar'
-import StudentList from '../../components/StudentList'
+
 
 const DisplayStudents = () => {
 
