@@ -106,9 +106,81 @@ const csv = [
     "leetcode.com/rahulgupta",
     "geeksforgeeks.org/rahulgupta",
   ],
-  ["Jiya Singh", "jiya.singh@email.com", "MIT", "	NASHIK", "ENTC", "	9123410154", "	ENTC76", "	Best Paper Presentation Award", "AutoCAD, Project Management", "Reading, Football", "5.5", "2023", "0", "82.96", "78", "92.56", "", "", "0", "linkedin.com/in/jiyasingh", "	github.com/jiyasingh", "leetcode.com/jiyasingh", "geeksforgeeks.org/jiyasingh"],
-  ["Pranav Desai", "	pranav.desai@email.com", "PCCOE", "	Pune", "	MECH", "8783782324", "	ME765", "	Robotics Competition Winner	", " CAD/CAM, SolidWorks", "Cooking, Cycling", "	8.2", "2023", "1", "58", "58", "95.5", "Jan 15, 2023", "Nov 11,2023", "0", "linkedin.com/in/pranavdesai", "	github.com/pranavdesai ", "	leetcode.com/pranavdesai	", "geeksforgeeks.org/pranavdesai"],
-  ["Riya Verma", "riya.verma@email.com", "COEP", "Pune", "	IT", "	8875210156", "	IT45", "Google Summer of Code Participant", "Python, JavaScript", " Reading, Photography", "5.8", "2022", "0", "85", "85", "56", "", "", "2", "linkedin.com/in/riyaverma", "github.com/riyaverma", "leetcode.com/riyaverma", "geeksforgeeks.org/riyaverma"]
+  [
+    "Jiya Singh",
+    "jiya.singh@email.com",
+    "MIT",
+    "	NASHIK",
+    "ENTC",
+    "	9123410154",
+    "	ENTC76",
+    "	Best Paper Presentation Award",
+    "AutoCAD, Project Management",
+    "Reading, Football",
+    "5.5",
+    "2023",
+    "0",
+    "82.96",
+    "78",
+    "92.56",
+    "",
+    "",
+    "0",
+    "linkedin.com/in/jiyasingh",
+    "	github.com/jiyasingh",
+    "leetcode.com/jiyasingh",
+    "geeksforgeeks.org/jiyasingh",
+  ],
+  [
+    "Pranav Desai",
+    "	pranav.desai@email.com",
+    "PCCOE",
+    "	Pune",
+    "	MECH",
+    "8783782324",
+    "	ME765",
+    "	Robotics Competition Winner	",
+    " CAD/CAM, SolidWorks",
+    "Cooking, Cycling",
+    "	8.2",
+    "2023",
+    "1",
+    "58",
+    "58",
+    "95.5",
+    "Jan 15, 2023",
+    "Nov 11,2023",
+    "0",
+    "linkedin.com/in/pranavdesai",
+    "	github.com/pranavdesai ",
+    "	leetcode.com/pranavdesai	",
+    "geeksforgeeks.org/pranavdesai",
+  ],
+  [
+    "Riya Verma",
+    "riya.verma@email.com",
+    "COEP",
+    "Pune",
+    "	IT",
+    "	8875210156",
+    "	IT45",
+    "Google Summer of Code Participant",
+    "Python, JavaScript",
+    " Reading, Photography",
+    "5.8",
+    "2022",
+    "0",
+    "85",
+    "85",
+    "56",
+    "",
+    "",
+    "2",
+    "linkedin.com/in/riyaverma",
+    "github.com/riyaverma",
+    "leetcode.com/riyaverma",
+    "geeksforgeeks.org/riyaverma",
+  ],
 ];
 
 const UploadList = () => {
@@ -252,9 +324,10 @@ const UploadList = () => {
         data={csv}
         filename={"CSV_Template.csv"}
       >
-        <div className="bg-gray-300 hover:bg-gray-400 text-gray-800 mx-auto p-2 rounded-lg">Download Template CSV File</div>
+        <div className="bg-gray-300 hover:bg-gray-400 text-gray-800 mx-auto p-2 rounded-lg">
+          Download Template CSV File
+        </div>
       </CSVLink>
-
     </div>
   );
 };
